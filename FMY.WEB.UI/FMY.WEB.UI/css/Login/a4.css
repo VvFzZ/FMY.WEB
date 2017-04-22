@@ -1,0 +1,43 @@
+﻿#download_img{display:none;}
+@media (max-width: 979px){body{ padding-top:0; }}
+@media (max-width: 640px){#download {display: none;}#download_img{display:block;}}
+.again-btn {background-color: #5bb75b;}
+.ml20{margin-left:20px;}
+.a_btn{	border: 1px solid #DFDFDF;	border-radius: 5px;	background-color: #F2F2F2;	text-decoration: none;	width: 112px;	height: 32px;	display: inline-block;	line-height: 35px;	text-align: center;	color:#A0A0A0;}
+.top_list p {	min-height: 50px;}
+.p_span_font{color:#A0A0A0;	font-size: 14px;	font-weight_font: 50;}
+select{	background-color: #f2f2f2;}
+.p_checkbox span{margin-right: 40px;	line-height: 40px;}
+.weight_font{font-weight: bolder;}
+.new-well{ padding:10px 0;}
+.new-clo1{padding:30px 15px;}
+.new-clo2{padding:30px;}
+@media only screen and (min-width:980px) and (max-width:1199px){
+.span2x{ width:8%!important;}
+.span10x{ width:88%!important;}	
+}
+.btbt{width:120px;font-weight:bold;text-align:right;margin-top:5px;padding-right:10px;}
+input.p_checkbox{margin-top:-1px;margin-right:5px;}
+hr { margin-top: 20px; margin-bottom: 20px; border: 0; border-top: 1px solid #eee;}
+.red{color:#ff0000;}
+
+#Dtop{background-color:#fff;padding:20px;}
+#Dtop .dbody{border:#efefef 1px solid;}
+#Dtop .dhead{padding:0 0 0 10px;letter-spacing:1px;line-height:26px;height:26px;font-weight:bold;cursor:move;-moz-user-select:none;-khtml-user-select:none;user-select:none;}
+#Dtop .dhead span{float:right;cursor:pointer;display:block;width:26px;height:26px;background:url('../../../../admin/image/close.gif') no-repeat center center;}
+#Dtop .dbox{padding:8px;overflow:hidden;line-height:200%;clear:both;}
+#Dtop .dsize{height:11px;font-size:1px;}
+#Dtop .dsize div{height:11px;width:11px;background:url('../../../../resize.gif') no-repeat;cursor:se-resize;font-size:1px;float:right;}
+
+#Dtop label{display:inline;}
+#Dtop td{ height: 50px;}
+.gray { 
+    -webkit-filter: grayscale(100%);
+    -moz-filter: grayscale(100%);
+    -ms-filter: grayscale(100%);
+    -o-filter: grayscale(100%);
+    
+    filter: grayscale(100%);
+	
+    filter: gray;
+}

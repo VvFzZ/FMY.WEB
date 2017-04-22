@@ -1,0 +1,76 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link href="~/css/bootstrap/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/css/regist/regist-index.css" rel="stylesheet" />
+    <script src="~/js/jquery-1.10.2.min.js"></script>
+    <script src="~/js/jquery.validate.min.js"></script>
+    <script src="~/js/bootstrap/bootstrap.min.js"></script>
+    <script src="~/js/Regist/regist-index.js"></script>
+    <title>Login</title>
+</head>
+<body>
+    <div class="container">
+        <div class="row clearfix">
+            <div class="col-md-12 column">
+                <form class="form-horizontal" role="form" id="regist-form" method="post">
+                    <div class="form-group">
+                        <label for="Name" class="col-sm-2 control-label">UserName</label>
+                        <div class="col-sm-10">
+                            <input type="text" name="Name" class="form-control" id="Name" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="Email" class="col-sm-2 control-label">Email</label>
+                        <div class="col-sm-10">
+                            <input type="text" name="Email" class="form-control" id="Email" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="Password" class="col-sm-2 control-label">Password</label>
+                        <div class="col-sm-10">
+                            <input type="password" name="Password" class="form-control" id="Password" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputInsurePassword" class="col-sm-2 control-label">InsurePassword</label>
+                        <div class="col-sm-10">
+                            <input type="password" name="InsurePassword" class="form-control" id="InsurePassword" />
+                        </div>
+                    </div>
+                    <div class="form-group no-mg-btm div-error" id="err-place"></div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-10">
+                            <input type="submit" id="regist" class="btn btn-default" value="Regist" />
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <span class="err_span"></span>
+        </div>
+    </div>
+</body>
+@*<script>
+        $(function () {
+            $('#regist').click(function () {
+                $.ajax({
+                    type: 'post',
+                    url: '/Regist/Regist/',
+                    data: $('#regist-form').serialize(),
+                    success: function (data) {
+
+                    },
+                    error: function () {
+
+                    }
+                });
+            });
+        });
+    </script>*@
+</html>
