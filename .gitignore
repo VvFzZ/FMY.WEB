@@ -16,3 +16,7 @@ FMY.WEB.UI/Contract/bin/
 FMY.WEB.UI/Client/obj/
 FMY.WEB.UI/Client/bin/
 FMY.WEB.UI/Services/obj/
+FMY.WEB.UI/.vs/config/applicationhost.config
+FMY.WEB.UI/packages/
+FMY.WEB.UI/UpgradeLog.htm
+FMY.WEB.UI/UpgradeLog2.htm
