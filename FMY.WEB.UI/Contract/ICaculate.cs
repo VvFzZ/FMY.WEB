@@ -6,7 +6,7 @@ using System.ServiceModel;
 
 namespace FMY.WCF.Test.Contract
 {
-    [ServiceContract(Name = "CalculatorService", Namespace = "http://www.artech.com/")]
+    [ServiceContract(Name = "CalculatorService")]
     public interface ICalculator
     {
         [OperationContract]
