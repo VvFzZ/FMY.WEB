@@ -20,3 +20,5 @@ FMY.WEB.UI/.vs/config/applicationhost.config
 FMY.WEB.UI/packages/
 FMY.WEB.UI/UpgradeLog.htm
 FMY.WEB.UI/UpgradeLog2.htm
+.vs/VSWorkspaceState.json
+.vs/slnx.sqlite
