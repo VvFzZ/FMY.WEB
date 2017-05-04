@@ -26,6 +26,7 @@ namespace FMY.WEB.Model
             get { return name; }
             set { name = value; }
         }
+
         private string phone;
         /// <summary>
         /// 用户电话
@@ -55,6 +56,7 @@ namespace FMY.WEB.Model
             get { return password; }
             set { password = value; }
         }
+
         private string email;
         /// <summary>
         /// 邮箱  
@@ -74,6 +76,7 @@ namespace FMY.WEB.Model
             get { return createTime; }
             set { createTime = value; }
         }
+
         private DateTime activeTime;
         /// <summary>
         /// 激活时间
@@ -83,6 +86,7 @@ namespace FMY.WEB.Model
             get { return activeTime; }
             set { activeTime = value; }
         }
+
         private DateTime updateTime;
         /// <summary>
         /// 更新时间
@@ -92,6 +96,7 @@ namespace FMY.WEB.Model
             get { return updateTime; }
             set { updateTime = value; }
         }
+
         private bool status;
         /// <summary>
         /// 是否激活

@@ -8,6 +8,7 @@ namespace FMY.WEB.Model
     public class UserRegistEmail
     {
         private int id;
+
         /// <summary>
         /// 主键id
         /// </summary>
@@ -16,7 +17,10 @@ namespace FMY.WEB.Model
             get { return id; }
             set { id = value; }
         }
+
+
         private int userId;
+
         /// <summary>
         /// 用户id
         /// </summary>
@@ -25,7 +29,10 @@ namespace FMY.WEB.Model
             get { return userId; }
             set { userId = value; }
         }
+
+
         private DateTime sendTime;
+
         /// <summary>
         /// 邮件发送时间
         /// </summary>
@@ -34,7 +41,10 @@ namespace FMY.WEB.Model
             get { return sendTime; }
             set { sendTime = value; }
         }
+
+
         private int status;
+
         /// <summary>
         /// 邮件是否失效（超过两小时失效）
         /// </summary>
@@ -43,7 +53,10 @@ namespace FMY.WEB.Model
             get { return status; }
             set { status = value; }
         }
+
+
         private string validateCode;
+
         /// <summary>
         /// 验证码（验证邮件的验证码：guid）
         /// </summary>
