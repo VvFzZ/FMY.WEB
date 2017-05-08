@@ -18,6 +18,6 @@ namespace FMY.WEB.Comm.Tools.Log
 
         private LogTool()
         { }
-
     }
 }
+

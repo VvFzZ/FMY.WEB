@@ -25,7 +25,7 @@ namespace FMY.WEB.DAL
         public int AddUser(User user)
         {
             UserDao userDao = new UserDao();
-            string sql = string.Format("INSERT INTO dbo.[user] (Name, phone, sex, passowrd,email,status) VALUES (@name,@phone,@sex,@password,@email,@status);SELECT @@IDENTITY");
+            string sql = string.Format("INSERT INTO dbo.[user] (Name, Phone, Sex, PassWord,Email,Status) VALUES (@name,@phone,@sex,@password,@email,@status);SELECT @@IDENTITY");
             SqlParameter[] parameters = new SqlParameter[] { 
                 new System.Data.SqlClient.SqlParameter("@name",System.Data.SqlDbType.NVarChar),
                 new System.Data.SqlClient.SqlParameter("@phone",System.Data.SqlDbType.NVarChar),

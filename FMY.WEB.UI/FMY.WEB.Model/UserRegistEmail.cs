@@ -2,13 +2,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Runtime.Serialization;
 
 namespace FMY.WEB.Model
 {
     public class UserRegistEmail
     {
         private int id;
-
+        [DataMember]
         /// <summary>
         /// 主键id
         /// </summary>
@@ -20,7 +21,7 @@ namespace FMY.WEB.Model
 
 
         private int userId;
-
+        [DataMember]
         /// <summary>
         /// 用户id
         /// </summary>
@@ -32,7 +33,7 @@ namespace FMY.WEB.Model
 
 
         private DateTime sendTime;
-
+        [DataMember]
         /// <summary>
         /// 邮件发送时间
         /// </summary>
@@ -44,7 +45,7 @@ namespace FMY.WEB.Model
 
 
         private int status;
-
+        [DataMember]
         /// <summary>
         /// 邮件是否失效（超过两小时失效）
         /// </summary>
@@ -56,7 +57,7 @@ namespace FMY.WEB.Model
 
 
         private string validateCode;
-
+        [DataMember]
         /// <summary>
         /// 验证码（验证邮件的验证码：guid）
         /// </summary>

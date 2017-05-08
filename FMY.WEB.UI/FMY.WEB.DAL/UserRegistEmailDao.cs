@@ -18,7 +18,7 @@ namespace FMY.WEB.DAL
         /// <returns>记录id</returns>
         public int addEmailRecrd(UserRegistEmail model)
         {
-            string sql = string.Format("INSERT INTO dbo.user_regist_email ( userid ,sendtime ,status ,validatecode)VALUES ({0},{1},{2},{3});select @@identity", "@userid", "@sendtime", "@status", "@validatecode");
+            string sql = string.Format("INSERT INTO dbo.UserRegistEmail ( userid ,sendtime ,status ,validatecode)VALUES ({0},{1},{2},{3});select @@identity", "@userid", "@sendtime", "@status", "@validatecode");
             SqlParameter[] parameters ={
                                            new SqlParameter("@userid",SqlDbType.Int),
                                            new SqlParameter("@sendtime",SqlDbType.DateTime),
@@ -42,7 +42,7 @@ namespace FMY.WEB.DAL
         /// <returns></returns>
         public int GetIdByUidAndVcode(string emailId, string validateCode)
         {
-            string sql = string.Format("SELECT id FROM dbo.user_regist_email ure WHERE ure.userid={0} AND ure.validatecode='{1}' AND ure.status=0", emailId, validateCode);//status=0待激活
+            string sql = string.Format("SELECT id FROM dbo.UserRegistEmail ure WHERE ure.userid={0} AND ure.validatecode='{1}' AND ure.status=0", emailId, validateCode);//status=0待激活
             return SQLHelper.Excute(sql, CommandType.Text);
         }
         /// <summary>
@@ -53,7 +53,7 @@ namespace FMY.WEB.DAL
         /// <returns></returns>
         public int UpdateEmailStatus(int id, string validateCode, int status)
         {
-            string sql = string.Format("UPDATE dbo.user_regist_email SET status={0} WHERE id={1} AND validatecode='{2}'", status, id, validateCode);
+            string sql = string.Format("UPDATE dbo.UserRegistEmail SET status={0} WHERE id={1} AND validatecode='{2}'", status, id, validateCode);
             return SQLHelper.Excute(sql, CommandType.Text);
         }
     }

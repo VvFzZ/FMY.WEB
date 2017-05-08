@@ -2,12 +2,17 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.ServiceModel;
+using System.Runtime.Serialization;
 
 namespace FMY.WEB.Model
 {
+    [DataContract]
     public class User
     {
+        
         private int id;
+        [DataMember]
         /// <summary>
         /// id
         /// </summary>
@@ -16,11 +21,12 @@ namespace FMY.WEB.Model
             get { return id; }
             set { id = value; }
         }
-
+        
         private string name;
         /// <summary>
         /// 用户名
         /// </summary>
+        [DataMember]
         public string Name
         {
             get { return name; }
@@ -28,6 +34,7 @@ namespace FMY.WEB.Model
         }
 
         private string phone;
+        [DataMember]
         /// <summary>
         /// 用户电话
         /// </summary>
@@ -38,6 +45,7 @@ namespace FMY.WEB.Model
         }
 
         private int sex;
+        [DataMember]
         /// <summary>
         /// 性别
         /// </summary>
@@ -48,6 +56,7 @@ namespace FMY.WEB.Model
         }
         
         private string password;
+        [DataMember]
         /// <summary>
         /// 密码
         /// </summary>
@@ -58,6 +67,7 @@ namespace FMY.WEB.Model
         }
 
         private string email;
+        [DataMember]
         /// <summary>
         /// 邮箱  
         /// </summary>
@@ -68,6 +78,7 @@ namespace FMY.WEB.Model
         }
 
         private DateTime createTime;
+        [DataMember]
         /// <summary>
         /// 创建时间
         /// </summary>
@@ -78,6 +89,7 @@ namespace FMY.WEB.Model
         }
 
         private DateTime activeTime;
+        [DataMember]
         /// <summary>
         /// 激活时间
         /// </summary>
@@ -88,6 +100,7 @@ namespace FMY.WEB.Model
         }
 
         private DateTime updateTime;
+        [DataMember]
         /// <summary>
         /// 更新时间
         /// </summary>
@@ -98,6 +111,7 @@ namespace FMY.WEB.Model
         }
 
         private bool status;
+        [DataMember]
         /// <summary>
         /// 是否激活
         /// </summary>

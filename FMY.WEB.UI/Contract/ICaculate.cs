@@ -3,13 +3,22 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.ServiceModel;
+using FMY.WEB.Model;
 
 namespace FMY.WCF.Test.Contract
 {
-    [ServiceContract(Name = "CalculatorService")]
-    public interface ICalculator
+    [ServiceContract(Name = "CalculatorService",SessionMode =SessionMode.Required)]    
+    public partial interface ICalculator
     {
         [OperationContract]
         int Add(int i, int j);
+
+        [OperationContract]
+        [TransactionFlow(TransactionFlowOption.Allowed)]        
+        int InsertUser(User user);
+
+        [OperationContract]
+        [TransactionFlow(TransactionFlowOption.Allowed)]
+        int InserRegistEmail(UserRegistEmail userRegistEmailModel);
     }
 }
