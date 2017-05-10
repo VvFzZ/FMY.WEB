@@ -40,9 +40,9 @@ namespace FMY.WEB.DAL
         /// <param name="userId"></param>
         /// <param name="validateCode"></param>
         /// <returns></returns>
-        public int GetIdByUidAndVcode(string emailId, string validateCode)
+        public int GetIdByUidAndVcode(string userId, string validateCode)
         {
-            string sql = string.Format("SELECT id FROM dbo.UserRegistEmail ure WHERE ure.userid={0} AND ure.validatecode='{1}' AND ure.status=0", emailId, validateCode);//status=0待激活
+            string sql = string.Format("SELECT id FROM dbo.UserRegistEmail ure WHERE ure.userid={0} AND ure.validatecode='{1}' AND ure.status=0", userId, validateCode);//status=0待激活
             return SQLHelper.Excute(sql, CommandType.Text);
         }
         /// <summary>

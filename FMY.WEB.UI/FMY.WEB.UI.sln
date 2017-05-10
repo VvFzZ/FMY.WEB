@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.21005.1
+# Visual Studio 15
+VisualStudioVersion = 15.0.26403.7
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FMY.WEB.UI", "FMY.WEB.UI\FMY.WEB.UI.csproj", "{29B4ACA0-71AF-497C-90D8-1B7925039EF5}"
 EndProject
@@ -24,13 +24,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{79CF11
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WCF", "WCF", "{9495DC69-B207-4F91-A704-753FCD496588}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Contract", "Contract\Contract.csproj", "{38BBC16D-BD23-4175-876B-D80D365A1238}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TEST.Contract", "Contract\TEST.Contract.csproj", "{38BBC16D-BD23-4175-876B-D80D365A1238}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Services", "Services\Services.csproj", "{6DFD7091-64BC-4A1F-A881-7F66DC90EFF1}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TEST.Services", "Services\TEST.Services.csproj", "{6DFD7091-64BC-4A1F-A881-7F66DC90EFF1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Host", "Host\Host.csproj", "{CC16C52D-9E97-4017-924D-DC3F2477E529}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TEST.Host", "Host\TEST.Host.csproj", "{CC16C52D-9E97-4017-924D-DC3F2477E529}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Client", "Client\Client.csproj", "{4478BD25-AEC8-4701-BC6C-FCC791859B62}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TEST.Client", "Client\TEST.Client.csproj", "{4478BD25-AEC8-4701-BC6C-FCC791859B62}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

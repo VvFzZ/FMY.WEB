@@ -24,5 +24,10 @@ namespace FMY.WCF.Test.Services
         {
             return 4;
         }
+
+        public int InsertUserNoTrans(User user)
+        {
+            return 1;
+        }
     }
 }

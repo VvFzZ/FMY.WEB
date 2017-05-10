@@ -45,9 +45,9 @@ namespace FMY.WEB.BLL
         /// <param name="userId"></param>
         /// <param name="validateCode"></param>
         /// <returns></returns>
-        public int GetIdByUidAndVcode(string emailId, string validateCode)
+        public int GetIdByUidAndVcode(string userId, string validateCode)
         {
-            return userRegistEmailDao.GetIdByUidAndVcode(emailId, validateCode);
+            return userRegistEmailDao.GetIdByUidAndVcode(userId, validateCode);
         }
     }
 }

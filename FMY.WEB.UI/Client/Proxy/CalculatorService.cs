@@ -294,18 +294,22 @@ public interface CalculatorService
     System.Threading.Tasks.Task<int> AddAsync(int i, int j);
     
     [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/CalculatorService/InsertUser", ReplyAction="http://tempuri.org/CalculatorService/InsertUserResponse")]
-    [System.ServiceModel.TransactionFlowAttribute(System.ServiceModel.TransactionFlowOption.Allowed)]
     int InsertUser(FMY.WEB.Model.User user);
     
     [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/CalculatorService/InsertUser", ReplyAction="http://tempuri.org/CalculatorService/InsertUserResponse")]
     System.Threading.Tasks.Task<int> InsertUserAsync(FMY.WEB.Model.User user);
     
     [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/CalculatorService/InserRegistEmail", ReplyAction="http://tempuri.org/CalculatorService/InserRegistEmailResponse")]
-    [System.ServiceModel.TransactionFlowAttribute(System.ServiceModel.TransactionFlowOption.Allowed)]
     int InserRegistEmail(FMY.WEB.Model.UserRegistEmail userRegistEmailModel);
     
     [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/CalculatorService/InserRegistEmail", ReplyAction="http://tempuri.org/CalculatorService/InserRegistEmailResponse")]
     System.Threading.Tasks.Task<int> InserRegistEmailAsync(FMY.WEB.Model.UserRegistEmail userRegistEmailModel);
+    
+    [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/CalculatorService/InsertUserNoTrans", ReplyAction="http://tempuri.org/CalculatorService/InsertUserNoTransResponse")]
+    int InsertUserNoTrans(FMY.WEB.Model.User user);
+    
+    [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/CalculatorService/InsertUserNoTrans", ReplyAction="http://tempuri.org/CalculatorService/InsertUserNoTransResponse")]
+    System.Threading.Tasks.Task<int> InsertUserNoTransAsync(FMY.WEB.Model.User user);
 }
 
 [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -370,5 +374,15 @@ public partial class CalculatorServiceClient : System.ServiceModel.ClientBase<Ca
     public System.Threading.Tasks.Task<int> InserRegistEmailAsync(FMY.WEB.Model.UserRegistEmail userRegistEmailModel)
     {
         return base.Channel.InserRegistEmailAsync(userRegistEmailModel);
+    }
+    
+    public int InsertUserNoTrans(FMY.WEB.Model.User user)
+    {
+        return base.Channel.InsertUserNoTrans(user);
+    }
+    
+    public System.Threading.Tasks.Task<int> InsertUserNoTransAsync(FMY.WEB.Model.User user)
+    {
+        return base.Channel.InsertUserNoTransAsync(user);
     }
 }

@@ -8,7 +8,7 @@ namespace FMY.WEB.Comm.Tools.Log
     public class LogTool
     {
         private readonly static object looker = new object();
-        private  LogTool logHelper;
+        private volatile  LogTool logHelper;
 
         //public LogTool LogHelper
         //{
