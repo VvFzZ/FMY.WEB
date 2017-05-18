@@ -113,6 +113,7 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="App_Start\CastleConfig.cs" />
     <Compile Include="Controllers\TestController.cs" />
     <Compile Include="Handlers\ActiveUser.ashx.cs">
       <DependentUpon>ActiveUser.ashx</DependentUpon>
