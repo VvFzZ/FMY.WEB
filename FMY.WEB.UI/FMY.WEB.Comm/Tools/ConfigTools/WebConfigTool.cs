@@ -12,5 +12,11 @@ namespace FMY.WEB.Comm.Tools.ConfigTools
         {
             return ConfigurationManager.AppSettings[key].ToString();
         }
+
+        public static string GetRobsunPara()
+        {
+            RobsunPara para = ConfigurationManager.GetSection("robsunGroup/robsunSection") as RobsunPara;
+            return string.Format("CompanyName:{0},Path:{1},isPrivate:{2}", para.CompanyName, para.Path, para.IsPrivate);
+        }
     }
 }

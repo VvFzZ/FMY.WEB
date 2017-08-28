@@ -48,11 +48,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Tools\ConfigTools\CustomConfigSectionHandler.cs" />
     <Compile Include="Tools\ConfigTools\WebConfigTool.cs" />
     <Compile Include="Tools\Email.cs" />
     <Compile Include="Tools\Log\LogHelper.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Tools\Config\" />
     <Folder Include="Tools\EncryptTools\" />
   </ItemGroup>
   <ItemGroup>

@@ -4,6 +4,8 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using FMY.WEB.BLL;
+using System.Web.Security;
+using FMY.WEB.Comm.Tools.ConfigTools;
 
 namespace FMY.WEB.UI.Controllers
 {
@@ -14,11 +16,7 @@ namespace FMY.WEB.UI.Controllers
 
         public ActionResult Index()
         {
-            BLL.UserService userService = new UserService();
-            userService.AddUser(new Model.User()
-            {
-                Name = "Test1"
-            });
+           string str= WebConfigTool.GetRobsunPara();
             return View();
         }
 

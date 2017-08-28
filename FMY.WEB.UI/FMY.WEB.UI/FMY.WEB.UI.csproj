@@ -139,6 +139,7 @@
     <Content Include="css\Login\login-index.css" />
     <Content Include="css\main.css" />
     <Content Include="css\regist\regist-index.css" />
+    <Content Include="Error\500.html" />
     <Content Include="Error\error1.html" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />

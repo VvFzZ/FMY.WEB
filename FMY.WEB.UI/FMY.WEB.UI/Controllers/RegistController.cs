@@ -91,10 +91,18 @@ namespace FMY.WEB.UI.Controllers
                         });
                         emailTool.SendEmail();//发送邮件
                         trans.Complete();
-                        return Json(new Result() { IsSuccess = true, Data = userId.ToString() });
+                        return Json(new Result()
+                        {
+                            IsSuccess = true,
+                            Data = userId.ToString()
+                        });
                     }
                     else
-                        return Json(new Result() { IsSuccess = false, Data = "注册失败！" });
+                        return Json(new Result()
+                        {
+                            IsSuccess = false,
+                            Data = "注册失败！"
+                        });
                 }
             }
             catch (Exception ex)
