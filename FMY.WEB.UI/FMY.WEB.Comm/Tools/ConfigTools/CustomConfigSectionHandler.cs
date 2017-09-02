@@ -32,7 +32,6 @@ namespace FMY.WEB.Comm.Tools.ConfigTools
                         break;
                 }
             }
-
             return para;
         }
     }
