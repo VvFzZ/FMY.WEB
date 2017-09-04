@@ -9,13 +9,19 @@ using System.Data;
 
 namespace FMY.WEB.BLL
 {
+
     public class UserService
     {
+        UserDao userDao;
+
+        public UserService()
+        {
+            userDao = new UserDao();
+        }
 
         public DataTable GetAllUser()
         {
-            UserDao userDao = new UserDao();
-            string sql="SELECT * FROM dbo.[user]";
+            string sql = "SELECT * FROM dbo.[user]";
             return userDao.GetAllUser(sql);
         }
 
@@ -26,17 +32,16 @@ namespace FMY.WEB.BLL
         /// <returns></returns>
         public int AddUser(User user)
         {
-            UserDao userDao = new UserDao();
             return userDao.AddUser(user);
         }
+
         public int GetUserCountByEmail(string email)
         {
-            UserDao userDao = new UserDao();
             return userDao.GetUserCountByEmail(email);
         }
+
         public void TestExecProc1()
         {
-            UserDao userDao = new UserDao();
             userDao.ExecProc("adduser", CommandType.StoredProcedure);
         }
     }

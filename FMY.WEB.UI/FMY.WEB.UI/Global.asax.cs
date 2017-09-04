@@ -58,7 +58,7 @@ namespace FMY.WEB.UI
                  */
                 Response.StatusCode = 500;
 
-                Response.Redirect("/Error/404.html");
+                Response.Redirect("/Error/500.html");
                 //Response.WriteFile("~/Error/500.html");
                 //一定要调用Server.ClearError()否则会触发错误详情页（就是黄页）
                 Server.ClearError();
