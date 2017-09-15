@@ -19,5 +19,6 @@ namespace FMY.WEB.UI.Controllers
            string str= WebConfigTool.GetRobsunPara();
             return View();
         }
+
     }
 }

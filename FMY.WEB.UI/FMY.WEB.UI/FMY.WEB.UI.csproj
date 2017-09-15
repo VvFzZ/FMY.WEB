@@ -115,6 +115,7 @@
   <ItemGroup>
     <Compile Include="App_Start\CastleConfig.cs" />
     <Compile Include="Controllers\TestController.cs" />
+    <Compile Include="Controllers\TestUploadFileController.cs" />
     <Compile Include="Handlers\ActiveUser.ashx.cs">
       <DependentUpon>ActiveUser.ashx</DependentUpon>
     </Compile>
@@ -151,6 +152,8 @@
     <Content Include="js\jquery.validate.min.js" />
     <Content Include="js\Login\index.js" />
     <Content Include="js\Regist\regist-index.js" />
+    <Content Include="js\Test\TestUploadFile.js" />
+    <Content Include="Views\TestUploadFile\Detail.aspx" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -198,6 +201,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Config\Memchache.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\TestUploadFile\Index.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -1,0 +1,74 @@
+<#@ template language="c#" HostSpecific="True" #>
+<#@ output extension= ".cs" #>
+<#
+	TableHost host = (TableHost)(Host);		
+	string ModelSpace = host.NameSpace+".Model."+ host.GetModelClass(host.TableName);
+	string DALSpace= host.NameSpace+".DAL."+ host.GetDALClass(host.TableName);
+	ColumnInfo identityKey=host.IdentityKey;
+	string returnValue = "void";
+    if (identityKey!=null)
+    {         
+         returnValue = CodeCommon.DbTypeToCS(identityKey.TypeName);              
+    }
+#>
+using System; 
+using System.Data;
+using System.Collections.Generic; 
+namespace CYI.Dao
+{
+
+	public partial class <#=host.TableName#>Dao
+	{		
+		#region ADD
+		
+		public int Insert(<#= host.TableName#> model)
+		{
+			if(model==null) throw new ArgumentNullException("model");
+			return MyBatisRepository.Insert<<#= host.TableName#>>("Add<#= host.TableName#>", model);
+		}
+		
+		public int InsertBatch(IList<<#= host.TableName#>> list)
+		{
+			if(model==null) throw new ArgumentNullException("model");
+			return MyBatisRepository.InsertBatch("Add<#= host.TableName#>", list);
+		}
+		
+		#endregion
+		
+		
+		#region UPDATE
+		
+		public int UpdateById(Hashtable param)
+        {
+            return MyBatisRepository.Update("Update<#= host.TableName#>ById", param);
+        }
+        
+        #endregion
+
+		 public OrderComplaint Get<#= host.TableName#>ById(int id)
+        {
+            return MyBatisRepository.Get<<#= host.TableName#>>("Get<#= host.TableName#>ById", id);
+        }
+        
+        public int Get<#= host.TableName#>CountByDynamic(Hashtable param)
+        {
+            return MyBatisRepository.QueryForObject("Get<#= host.TableName#>CountByDynamic", param);
+        }
+
+        public IList<<#= host.TableName#>> Get<#= host.TableName#>ListByDynamic(Hashtable param)
+        {
+            return MyBatisRepository.QueryForList<<#= host.TableName#>>("Get<#= host.TableName#>ListByDynamic", param);
+        }
+
+        public IList<<#= host.TableName#>> Get<#= host.TableName#>ListPage(Hashtable param, int pageIndex, int pageSize)
+        {
+            if (param == null)
+                param = new Hashtable();
+            param.Add("End", pageIndex * pageSize);
+            param.Add("Start", (pageIndex - 1) * pageSize + 1);
+            return MyBatisRepository.QueryForList<<#= host.TableName#>>("Get<#= host.TableName#>ListPage", param);
+        }
+		
+   
+	}
+}

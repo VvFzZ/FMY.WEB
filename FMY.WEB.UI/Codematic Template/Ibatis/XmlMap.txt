@@ -1,0 +1,116 @@
+<#@ template language="C#" HostSpecific="True" #>
+<#@ output extension= "Map.xml"  #>
+<#
+	TableHost host = (TableHost)(Host);
+	host.Fieldlist.Sort(CodeCommon.CompareByintOrder);
+	
+//1号框架 1.0
+//author:Lyp
+#>
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <alias>
+		<!--类的别名-->
+		<typeAlias alias="<#= host.TableName #>" type="CYI.Core.Domain.<#= host.TableName #>, CYI.Core"/>
+ </alias>
+  <resultMaps>
+  <!--映射-->
+		<resultMap id="<#= host.TableName #>-ResultMap" class="<#= host.TableName #>">
+		<# foreach (ColumnInfo c in host.Fieldlist)
+		{
+		    WriteLine("<result property=\"{0}\" column=\"{0}\" />",c.ColumnName);
+		}#>
+		</resultMap>
+ </resultMaps>
+   <statements>
+    <!--Insert-->
+    <insert id="Insert<#= host.TableName#>" parameterClass="<#= host.TableName#>" resultClass="int">
+    INERT INTO <#= host.TableName#> 
+    (<# int coulumnCount=host.Fieldlist.Count;#>
+	<#for(int i=0;i<coulumnCount-1;i++)
+	{if(host.Fieldlist[i].IsIdentity) continue;#>
+	<#=host.Fieldlist[i].ColumnName #>
+	,<#}#><#=host.Fieldlist[coulumnCount-1].ColumnName #>)
+    VALUES(
+	<#for(int i=0;i<coulumnCount-1;i++)
+	{if(host.Fieldlist[i].IsIdentity) continue;#>
+	#<#=host.Fieldlist[i].ColumnName #>#
+	,<#}#>
+	#<#=host.Fieldlist[coulumnCount-1].ColumnName #>#
+    )
+    <selectKey resultClass="Int32" type="post" property="Id" >
+    			SELECT @@IDENTITY AS Id
+    		</selectKey>
+    </insert>
+    <!--InsertBatch-->
+    <insert id="Insert<#= host.TableName#>Batch" parameterClass="<#= host.TableName#>" resultClass="int">
+    INERT INTO <#= host.TableName#> 
+    (
+	<#for(int i=0;i<coulumnCount-1;i++)
+	{if(host.Fieldlist[i].IsIdentity) continue;#>
+	<#=host.Fieldlist[i].ColumnName #>
+	,<#}#><#=host.Fieldlist[coulumnCount-1].ColumnName #>)
+    VALUES
+    <iterate conjunction="," open="" close="">
+    (
+	<#for(int i=0;i<coulumnCount-1;i++)
+	{if(host.Fieldlist[i].IsIdentity) continue;#>
+	#[].<#=host.Fieldlist[i].ColumnName #>#
+	,<#}#>
+	#[].<#=host.Fieldlist[coulumnCount-1].ColumnName #>#
+    )
+    </iterate>
+    </insert>
+    
+    <!--DeleteById-->
+<delete id="Delete<#= host.TableName #>" parameterClass="int" resultClass="int">
+ delete from <#= host.TableName #> where Id=#Id#
+</delete>
+    
+<!--UpdateById-->
+<update id="Update<#=host.TableName#>ById" parameterClass="Hashtable" resultClass="int">
+UPDATE <#=host.TableName#> SET
+<dynamic prepend=",">
+<#foreach(ColumnInfo c in host.Fieldlist) { if(c.IsIdentity) continue;#>
+	<isNotNull prepend="," property="<#=c.ColumnName #>"> <#=c.ColumnName #> = #<#=c.ColumnName #>#</isNotNull>
+<#}#>
+</dynamic>
+WHERE Id=#Id#
+</update>
+
+<!--WHERE-->
+<sql id="<#=host.TableName#>-DynamicWhere">
+<dynamic prepend="WHERE">
+<# foreach (ColumnInfo c in host.Fieldlist)
+{ #>
+	<isPropertyAvailable property="<#=c.ColumnName#>" prepend="AND">
+	<#=c.ColumnName#>= #<#=c.ColumnName#>#
+	</isPropertyAvailable>
+<# } #>
+</dynamic>
+</sql>
+<!--GetById-->
+<select id="Get<#=host.TableName#>ById" parameterClass="int" resultMap="<#= host.TableName#>-ResultMap">
+	SELECT * FROM dbo.<#=host.TableName#> WHERE Id=#Id#
+</select>
+<!--GetPageList-->
+<select id="Get<#=host.TableName#>PageList" parameterClass="Hashtable" resultMap="<#= host.TableName #>-ResultMap">
+SELECT * FROM (
+SELECT ROW_NUMBER()OVER(ORDER BY id DESC) AS RowNum, * FROM dbo.<#= host.TableName #>
+<include refid="<#=host.TableName#>-DynamicWhere"></include>
+)A
+WHERE A.RowNum BETWEEN #Start# AND #End#
+</select>
+<!--GetListByDynamic-->
+    <select id="Get<#=host.TableName#>ListByDynamic" parameterClass="Hashtable" resultMap="<#= host.TableName #>-ResultMap">
+    SELECT * FROM dbo.<#=host.TableName#>
+    <include refid="<#=host.TableName#>-DynamicWhere"></include>
+    </select>
+<!--GetCountByDynamic-->
+    <select id="Get<#= host.TableName #>CountByDynamic" parameterType="Hashtable" resultClass="int">
+      SELECT COUNT(1) FROM <#= host.TableName #>
+      <include refid="<#=host.TableName#>-DynamicWhere"></include>
+    </select>
+
+  </statements>
+</sqlMap>
