@@ -1,11 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 using System.Net.Mail;
 using System.Net;
-using System.Configuration;
-using FMY.WEB.Comm.Tools.ConfigTools;
 using FMY.WEB.Model.Comm;
 using FMY.WEB.Model;
 
@@ -45,11 +42,11 @@ namespace FMY.WEB.Comm.Tools.CommTools
         public void SendEmail()
         {
             //发送地址
-            System.Net.Mail.MailAddress mailSender = new MailAddress(email.SenderAddr);
+            MailAddress mailSender = new MailAddress(email.SenderAddr);
             //目标地址
-            System.Net.Mail.MailAddress mailReceiver = new MailAddress(email.ReceiverAddr);
+            MailAddress mailReceiver = new MailAddress(email.ReceiverAddr);
             //初始化邮件
-            System.Net.Mail.MailMessage mailMessage = new MailMessage(mailSender, mailReceiver);
+            MailMessage mailMessage = new MailMessage(mailSender, mailReceiver);
             mailMessage.Body = this.GetSendBody(email.Body, email.ActiveLinkUrl, email.ActiveLinkParams);//正文
             mailMessage.BodyEncoding = email.BodyEncoding;//正文编码
             mailMessage.IsBodyHtml = email.IsBodyHtml;

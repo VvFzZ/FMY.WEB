@@ -72,7 +72,7 @@ namespace FMY.WEB.UI.Controllers
                         IDictionary<string, string> paramDic = new Dictionary<string, string>();//激活邮件url参数
                         paramDic.Add("emailId", emailId.ToString());
                         paramDic.Add("validateCode", validateCode);
-                        EmailTool emailTool = new EmailTool(new Email
+                        new EmailTool(new Email
                         {
                             ActiveLinkUrl = WebConfigTool.GetAppsetting("UserActivePageUrl"),
                             ActiveLinkParams = paramDic,
@@ -88,8 +88,7 @@ namespace FMY.WEB.UI.Controllers
                             SmtpHost = "smtp.163.com",
                             Subject = "感谢您的注册",
                             SubjectEncoding = Encoding.UTF8
-                        });
-                        emailTool.SendEmail();//发送邮件
+                        }).SendEmail();//发送邮件
                         trans.Complete();
                         return Json(new Result()
                         {
