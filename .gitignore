@@ -22,3 +22,5 @@ FMY.WEB.UI/UpgradeLog.htm
 FMY.WEB.UI/UpgradeLog2.htm
 .vs/VSWorkspaceState.json
 .vs/slnx.sqlite
+FMY.WEB.UI/FMY.WEB.IDao/obj/
+FMY.WEB.UI/FMY.WEB.IbatisDao/obj/

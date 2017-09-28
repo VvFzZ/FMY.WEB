@@ -1,16 +1,15 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using FMY.WEB.Model;
-using FMY.SQL.ADO;
 using System.Data;
 using System.Data.SqlClient;
+using FMY.WEB.Model;
+using FMY.SQL.ADO;
+using FMY.WEB.IDao;
 
-namespace FMY.WEB.DAL
+namespace FMY.WEB.Dao
 {
-    public class UserRegistEmailDao
+    public class UserRegistEmailDao:IUserRegistEmailDao
     {
+
         /// <summary>
         /// 增加一条记录
         /// </summary>
@@ -29,11 +28,13 @@ namespace FMY.WEB.DAL
             parameters[1].Value = model.SendTime;
             parameters[2].Value = model.Status;
             parameters[3].Value = model.ValidateCode;
-            //object obj=SQLHelper.SelectFirst(sql, CommandType.Text, parameters);
-            object obj = Instance.GetInstance().SelectFirst(sql, CommandType.Text, parameters);
+            object obj=SQLHelper.SelectFirst(sql, CommandType.Text, parameters);
+            //object obj = Instance.GetInstance().SelectFirst(sql, CommandType.Text, parameters);
 
             return Convert.ToInt32(obj);
         }
+
+
         /// <summary>
         /// 根据用户id 验证码查询记录数
         /// </summary>
@@ -45,6 +46,8 @@ namespace FMY.WEB.DAL
             string sql = string.Format("SELECT id FROM dbo.UserRegistEmail ure WHERE ure.userid={0} AND ure.validatecode='{1}' AND ure.status=0", userId, validateCode);//status=0待激活
             return SQLHelper.Excute(sql, CommandType.Text);
         }
+
+
         /// <summary>
         /// 根据id修改记录状态为
         /// </summary>
@@ -56,5 +59,6 @@ namespace FMY.WEB.DAL
             string sql = string.Format("UPDATE dbo.UserRegistEmail SET status={0} WHERE id={1} AND validatecode='{2}'", status, id, validateCode);
             return SQLHelper.Excute(sql, CommandType.Text);
         }
+
     }
 }

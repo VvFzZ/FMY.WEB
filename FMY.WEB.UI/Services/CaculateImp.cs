@@ -52,7 +52,7 @@ namespace FMY.WCF.Test.Services
                     user.Name = user.Name + "_";
                     userServie.AddUser(user);
                 }
-                catch (Exception ex)
+                catch (Exception)
                 {
                     System.Transactions.Transaction.Current.Rollback();
                     throw;

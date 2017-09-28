@@ -51,6 +51,10 @@
       <Project>{3ed7159b-164e-434a-a46b-19d29e6d9800}</Project>
       <Name>FMY.SQL.ADO</Name>
     </ProjectReference>
+    <ProjectReference Include="..\FMY.WEB.IDao\FMY.WEB.IDao.csproj">
+      <Project>{41b975a3-c36c-4f41-a688-2ffb69423d30}</Project>
+      <Name>FMY.WEB.IDao</Name>
+    </ProjectReference>
     <ProjectReference Include="..\FMY.WEB.Model\FMY.WEB.Model.csproj">
       <Project>{67a3d63d-ddfd-4135-8a21-c455e7f23c68}</Project>
       <Name>FMY.WEB.Model</Name>

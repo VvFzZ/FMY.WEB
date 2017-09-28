@@ -115,7 +115,6 @@
   <ItemGroup>
     <Compile Include="App_Start\CastleConfig.cs" />
     <Compile Include="Controllers\TestController.cs" />
-    <Compile Include="Controllers\TestUploadFileController.cs" />
     <Compile Include="Handlers\ActiveUser.ashx.cs">
       <DependentUpon>ActiveUser.ashx</DependentUpon>
     </Compile>
