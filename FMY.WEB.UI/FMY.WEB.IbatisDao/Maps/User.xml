@@ -1,0 +1,168 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="FMY.WEB.IbatisDao.User" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <alias>
+    <!--类的别名-->
+    <typeAlias alias="User" type="FMY.WEB.Model.User, FMY.WEB.Model"/>
+  </alias>
+  <resultMaps>
+    <!--映射-->
+    <resultMap id="User-ResultMap" class="User">
+      <result property="Id" column="Id" />
+      <result property="Name" column="Name" />
+      <result property="Phone" column="Phone" />
+      <result property="Sex" column="Sex" />
+      <result property="PassWord" column="PassWord" />
+      <result property="Email" column="Email" />
+      <result property="Status" column="Status" />
+      <result property="CreateTime" column="CreateTime" />
+      <result property="ActiveTime" column="ActiveTime" />
+      <result property="UpdateTime" column="UpdateTime" />
+    </resultMap>
+  </resultMaps>
+  <statements>
+    <!--Insert-->
+    <insert id="InsertUser" parameterClass="User" resultClass="int">
+      INSERT INTO dbo.[User]
+      (		Name
+      ,	Phone
+      ,	Sex
+      ,	PassWord
+      ,	Email
+      ,	Status
+      ,	CreateTime
+      ,	ActiveTime
+      ,	UpdateTime)
+      VALUES(
+      #Name#
+      ,	#Phone#
+      ,	#Sex#
+      ,	#PassWord#
+      ,	#Email#
+      ,	#Status#
+      ,	#CreateTime#
+      ,	#ActiveTime#
+      ,	#UpdateTime#
+      )
+      <selectKey resultClass="Int32" type="post" property="Id" >
+        SELECT @@IDENTITY AS Id
+      </selectKey>
+    </insert>
+    <!--InsertBatch-->
+    <insert id="InsertUserBatch" parameterClass="User" resultClass="int">
+      INERT INTO User
+      (
+      Name
+      ,	Phone
+      ,	Sex
+      ,	PassWord
+      ,	Email
+      ,	Status
+      ,	CreateTime
+      ,	ActiveTime
+      ,	UpdateTime)
+      VALUES
+      <iterate conjunction="," open="" close="">
+        (
+        #[].Name#
+        ,	#[].Phone#
+        ,	#[].Sex#
+        ,	#[].PassWord#
+        ,	#[].Email#
+        ,	#[].Status#
+        ,	#[].CreateTime#
+        ,	#[].ActiveTime#
+        ,	#[].UpdateTime#
+        )
+      </iterate>
+    </insert>
+
+    <!--DeleteById-->
+    <delete id="DeleteUser" parameterClass="int" resultClass="int">
+      delete from User where Id=#Id#
+    </delete>
+
+    <!--UpdateById-->
+    <update id="UpdateUserById" parameterClass="Hashtable" resultClass="int">
+      UPDATE User SET
+      <dynamic prepend=",">
+        <isNotNull prepend="," property="Name"> Name = #Name#</isNotNull>
+        <isNotNull prepend="," property="Phone"> Phone = #Phone#</isNotNull>
+        <isNotNull prepend="," property="Sex"> Sex = #Sex#</isNotNull>
+        <isNotNull prepend="," property="PassWord"> PassWord = #PassWord#</isNotNull>
+        <isNotNull prepend="," property="Email"> Email = #Email#</isNotNull>
+        <isNotNull prepend="," property="Status"> Status = #Status#</isNotNull>
+        <isNotNull prepend="," property="CreateTime"> CreateTime = #CreateTime#</isNotNull>
+        <isNotNull prepend="," property="ActiveTime"> ActiveTime = #ActiveTime#</isNotNull>
+        <isNotNull prepend="," property="UpdateTime"> UpdateTime = #UpdateTime#</isNotNull>
+      </dynamic>
+      WHERE Id=#Id#
+    </update>
+
+    <!--WHERE-->
+    <sql id="User-DynamicWhere">
+      <dynamic prepend="WHERE">
+        <isPropertyAvailable property="Id" prepend="AND">
+          Id= #Id#
+        </isPropertyAvailable>
+        <isPropertyAvailable property="Name" prepend="AND">
+          Name= #Name#
+        </isPropertyAvailable>
+        <isPropertyAvailable property="Phone" prepend="AND">
+          Phone= #Phone#
+        </isPropertyAvailable>
+        <isPropertyAvailable property="Sex" prepend="AND">
+          Sex= #Sex#
+        </isPropertyAvailable>
+        <isPropertyAvailable property="PassWord" prepend="AND">
+          PassWord= #PassWord#
+        </isPropertyAvailable>
+        <isPropertyAvailable property="Email" prepend="AND">
+          Email= #Email#
+        </isPropertyAvailable>
+        <isPropertyAvailable property="Status" prepend="AND">
+          Status= #Status#
+        </isPropertyAvailable>
+        <isPropertyAvailable property="CreateTime" prepend="AND">
+          CreateTime= #CreateTime#
+        </isPropertyAvailable>
+        <isPropertyAvailable property="ActiveTime" prepend="AND">
+          ActiveTime= #ActiveTime#
+        </isPropertyAvailable>
+        <isPropertyAvailable property="UpdateTime" prepend="AND">
+          UpdateTime= #UpdateTime#
+        </isPropertyAvailable>
+      </dynamic>
+    </sql>
+    
+    <!--GetById-->
+    <select id="GetUserById" parameterClass="int" resultMap="User-ResultMap">
+      SELECT * FROM dbo.User WHERE Id=#Id#
+    </select>
+
+    <select id="GetAllUser" resultMap="User-ResultMap">
+      SELECT * FROM dbo.User
+    </select>
+    
+    <!--GetPageList-->
+    <select id="GetUserPageList" parameterClass="Hashtable" resultMap="User-ResultMap">
+      SELECT * FROM (
+      SELECT ROW_NUMBER()OVER(ORDER BY id DESC) AS RowNum, * FROM dbo.User
+      <include refid="User-DynamicWhere"></include>
+      )A
+      WHERE A.RowNum BETWEEN #Start# AND #End#
+    </select>
+    
+    <!--GetListByDynamic-->
+    <select id="GetUserListByDynamic" parameterClass="Hashtable" resultMap="User-ResultMap">
+      SELECT * FROM dbo.User
+      <include refid="User-DynamicWhere"></include>
+    </select>
+    
+    <!--GetCountByDynamic-->
+    <select id="GetUserCountByDynamic" parameterType="Hashtable" resultClass="int">
+      SELECT COUNT(1) FROM User
+      <include refid="User-DynamicWhere"></include>
+    </select>
+
+  </statements>
+</sqlMap>

@@ -11,19 +11,25 @@ namespace FMY.WEB.IbatisDao
 {
     public class UserDao : IUserDao
     {
+        private string GetMapFullName(string statementName)
+        {
+            return string.Format("{0}.{1}.{2}", Mapper.MapperDomain, "User", statementName);
+        }
+
         public int AddUser(User user)
         {
-            throw new NotImplementedException();
+            string mapper = GetMapFullName("InsertUser");
+            return (Int32)Mapper.GetInstance().Insert(mapper, user);
         }
 
         public DataTable GetAllUser()
         {
-            throw new NotImplementedException();
+            return null;
         }
 
         public int GetUserCountByEmail(string email)
         {
-            throw new NotImplementedException();
+            return 0;
         }
     }
 }

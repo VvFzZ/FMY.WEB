@@ -15,7 +15,7 @@ namespace FMY.WEB.BLL
         public UserService()
         {
             //需要解耦
-            userDao = new UserDao();
+            userDao = new FMY.WEB.IbatisDao.UserDao();  //new UserDao();
         }
 
 

@@ -35,13 +35,13 @@ namespace FMY.WEB.UI.Controllers
         public JsonResult Regist(User user)
         {
             #region 验证
-            if (user.Name == null || user.Password == null || user.Email == null)
+            if (user.Name == null || user.PassWord == null || user.Email == null)
                 return Json(new Result() { IsSuccess = false, Data = "信息不完善！" });
             Regex reg = new Regex("^[A-Za-z0-9_\u554A-\u9C52]+$");
             if (user.Name.Length < 2 || user.Name.Length > 10 || !reg.Match(user.Name).Success)
                 return Json(new Result() { IsSuccess = false, Data = "错误数据提交！" });
             reg = new Regex(".*");
-            if (user.Password.Length < 5 || user.Password.Length > 20)//|| reg.Match(user.Password).Success
+            if (user.PassWord.Length < 5 || user.PassWord.Length > 20)//|| reg.Match(user.Password).Success
                 return Json(new Result() { IsSuccess = false, Data = "错误数据提交！" });
             reg = new Regex("^[a-z0-9]+([._\\-]*[a-z0-9])*@([a-z0-9]+[-a-z0-9]*[a-z0-9]+.){1,63}[a-z0-9]+$");
             if (!reg.Match(user.Email).Success)
@@ -55,6 +55,8 @@ namespace FMY.WEB.UI.Controllers
                 {
                     if (userService.GetUserCountByEmail(user.Email) > 0)
                         return Json(new Result() { IsSuccess = false, Data = "注册失败：该邮箱已注册！" });
+                    user.CreateTime = DateTime.Now;
+                    user.UpdateTime = DateTime.Now;
                     if ((userId = userService.AddUser(user)) > -1)
                     {
                         //用户状态session默认失效时间20min

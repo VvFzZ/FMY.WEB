@@ -37,7 +37,7 @@ namespace FMY.WEB.Dao
             parameters[0].Value = user.Name;
             parameters[1].Value = user.Phone ?? "";
             parameters[2].Value = user.Sex;
-            parameters[3].Value = user.Password;
+            parameters[3].Value = user.PassWord;
             parameters[4].Value = user.Email;
             parameters[5].Value = 0;
             return Convert.ToInt32(SQLHelper.SelectFirst(sql, CommandType.Text, parameters));

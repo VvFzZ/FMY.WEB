@@ -204,6 +204,17 @@
   <ItemGroup>
     <Content Include="Views\TestUploadFile\Index.cshtml" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="providers.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="sample.SqlMap.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Config\FMY.WEB.IbatisDao.Properties.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

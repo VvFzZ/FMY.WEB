@@ -55,15 +55,15 @@ namespace FMY.WEB.Model
             set { sex = value; }
         }
         
-        private string password;
+        private string passWord;
         [DataMember]
         /// <summary>
         /// 密码
         /// </summary>
-        public string Password
+        public string PassWord
         {
-            get { return password; }
-            set { password = value; }
+            get { return passWord; }
+            set { passWord = value; }
         }
 
         private string email;
@@ -77,34 +77,34 @@ namespace FMY.WEB.Model
             set { email = value; }
         }
 
-        private DateTime createTime;
+        private DateTime? createTime;
         [DataMember]
         /// <summary>
         /// 创建时间
         /// </summary>
-        public DateTime CreateTime
+        public DateTime? CreateTime
         {
             get { return createTime; }
             set { createTime = value; }
         }
 
-        private DateTime activeTime;
+        private DateTime? activeTime;
         [DataMember]
         /// <summary>
         /// 激活时间
         /// </summary>
-        public DateTime ActiveTime
+        public DateTime? ActiveTime
         {
             get { return activeTime; }
             set { activeTime = value; }
         }
 
-        private DateTime updateTime;
+        private DateTime? updateTime;
         [DataMember]
         /// <summary>
         /// 更新时间
         /// </summary>
-        public DateTime UpdateTime
+        public DateTime? UpdateTime
         {
             get { return updateTime; }
             set { updateTime = value; }

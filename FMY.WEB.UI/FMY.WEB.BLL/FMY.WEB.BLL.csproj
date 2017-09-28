@@ -52,6 +52,10 @@
       <Project>{2d1aac84-caf9-4e37-91d8-c0a8b526f2cd}</Project>
       <Name>FMY.WEB.Dao</Name>
     </ProjectReference>
+    <ProjectReference Include="..\FMY.WEB.IbatisDao\FMY.WEB.IbatisDao.csproj">
+      <Project>{f78a9714-fdae-42d5-a87f-6925e1536af4}</Project>
+      <Name>FMY.WEB.IbatisDao</Name>
+    </ProjectReference>
     <ProjectReference Include="..\FMY.WEB.IDao\FMY.WEB.IDao.csproj">
       <Project>{41b975a3-c36c-4f41-a688-2ffb69423d30}</Project>
       <Name>FMY.WEB.IDao</Name>

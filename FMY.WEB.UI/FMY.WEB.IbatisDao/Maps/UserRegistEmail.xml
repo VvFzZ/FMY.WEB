@@ -1,0 +1,115 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <alias>
+    <!--类的别名-->
+    <typeAlias alias="UserRegistEmail" type=" FMY.WEB.Model.UserRegistEmail, FMY.WEB.Model"/>
+  </alias>
+  <resultMaps>
+    <!--映射-->
+    <resultMap id="UserRegistEmail-ResultMap" class="UserRegistEmail">
+      <result property="Id" column="Id" />
+      <result property="UserId" column="UserId" />
+      <result property="SendTime" column="SendTime" />
+      <result property="Status" column="Status" />
+      <result property="ValidateCode" column="ValidateCode" />
+    </resultMap>
+  </resultMaps>
+  <statements>
+    <!--Insert-->
+    <insert id="InsertUserRegistEmail" parameterClass="UserRegistEmail" resultClass="int">
+      INERT INTO UserRegistEmail
+      (		UserId
+      ,	SendTime
+      ,	Status
+      ,ValidateCode)
+      VALUES(
+      #UserId#
+      ,	#SendTime#
+      ,	#Status#
+      ,	#ValidateCode#
+      )
+      <selectKey resultClass="Int32" type="post" property="Id" >
+        SELECT @@IDENTITY AS Id
+      </selectKey>
+    </insert>
+    <!--InsertBatch-->
+    <insert id="InsertUserRegistEmailBatch" parameterClass="UserRegistEmail" resultClass="int">
+      INERT INTO UserRegistEmail
+      (
+      UserId
+      ,	SendTime
+      ,	Status
+      ,ValidateCode)
+      VALUES
+      <iterate conjunction="," open="" close="">
+        (
+        #[].UserId#
+        ,	#[].SendTime#
+        ,	#[].Status#
+        ,	#[].ValidateCode#
+        )
+      </iterate>
+    </insert>
+
+    <!--DeleteById-->
+    <delete id="DeleteUserRegistEmail" parameterClass="int" resultClass="int">
+      delete from UserRegistEmail where Id=#Id#
+    </delete>
+
+    <!--UpdateById-->
+    <update id="UpdateUserRegistEmailById" parameterClass="Hashtable" resultClass="int">
+      UPDATE UserRegistEmail SET
+      <dynamic prepend=",">
+        <isNotNull prepend="," property="UserId"> UserId = #UserId#</isNotNull>
+        <isNotNull prepend="," property="SendTime"> SendTime = #SendTime#</isNotNull>
+        <isNotNull prepend="," property="Status"> Status = #Status#</isNotNull>
+        <isNotNull prepend="," property="ValidateCode"> ValidateCode = #ValidateCode#</isNotNull>
+      </dynamic>
+      WHERE Id=#Id#
+    </update>
+
+    <!--WHERE-->
+    <sql id="UserRegistEmail-DynamicWhere">
+      <dynamic prepend="WHERE">
+        <isPropertyAvailable property="Id" prepend="AND">
+          Id= #Id#
+        </isPropertyAvailable>
+        <isPropertyAvailable property="UserId" prepend="AND">
+          UserId= #UserId#
+        </isPropertyAvailable>
+        <isPropertyAvailable property="SendTime" prepend="AND">
+          SendTime= #SendTime#
+        </isPropertyAvailable>
+        <isPropertyAvailable property="Status" prepend="AND">
+          Status= #Status#
+        </isPropertyAvailable>
+        <isPropertyAvailable property="ValidateCode" prepend="AND">
+          ValidateCode= #ValidateCode#
+        </isPropertyAvailable>
+      </dynamic>
+    </sql>
+    <!--GetById-->
+    <select id="GetUserRegistEmailById" parameterClass="int" resultMap="UserRegistEmail-ResultMap">
+      SELECT * FROM dbo.UserRegistEmail WHERE Id=#Id#
+    </select>
+    <!--GetPageList-->
+    <select id="GetUserRegistEmailPageList" parameterClass="Hashtable" resultMap="UserRegistEmail-ResultMap">
+      SELECT * FROM (
+      SELECT ROW_NUMBER()OVER(ORDER BY id DESC) AS RowNum, * FROM dbo.UserRegistEmail
+      <include refid="UserRegistEmail-DynamicWhere"></include>
+      )A
+      WHERE A.RowNum BETWEEN #Start# AND #End#
+    </select>
+    <!--GetListByDynamic-->
+    <select id="GetUserRegistEmailListByDynamic" parameterClass="Hashtable" resultMap="UserRegistEmail-ResultMap">
+      SELECT * FROM dbo.UserRegistEmail
+      <include refid="UserRegistEmail-DynamicWhere"></include>
+    </select>
+    <!--GetCountByDynamic-->
+    <select id="GetUserRegistEmailCountByDynamic" parameterType="Hashtable" resultClass="int">
+      SELECT COUNT(1) FROM UserRegistEmail
+      <include refid="UserRegistEmail-DynamicWhere"></include>
+    </select>
+
+  </statements>
+</sqlMap>
