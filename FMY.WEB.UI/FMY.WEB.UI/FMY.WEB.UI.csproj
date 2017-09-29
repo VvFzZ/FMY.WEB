@@ -205,12 +205,6 @@
     <Content Include="Views\TestUploadFile\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="providers.config">
-      <SubType>Designer</SubType>
-    </Content>
-    <Content Include="sample.SqlMap.config" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Config\FMY.WEB.IbatisDao.Properties.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

@@ -69,7 +69,9 @@
     <EmbeddedResource Include="providers.config">
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="SqlMap.config" />
+    <EmbeddedResource Include="SqlMap.config">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Maps\User.xml" />

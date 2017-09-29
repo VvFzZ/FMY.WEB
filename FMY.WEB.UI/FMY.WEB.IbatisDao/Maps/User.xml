@@ -4,6 +4,7 @@
     <!--类的别名-->
     <typeAlias alias="User" type="FMY.WEB.Model.User, FMY.WEB.Model"/>
   </alias>
+  
   <resultMaps>
     <!--映射-->
     <resultMap id="User-ResultMap" class="User">
@@ -19,7 +20,9 @@
       <result property="UpdateTime" column="UpdateTime" />
     </resultMap>
   </resultMaps>
+  
   <statements>
+    
     <!--Insert-->
     <insert id="InsertUser" parameterClass="User" resultClass="int">
       INSERT INTO dbo.[User]
@@ -47,6 +50,7 @@
         SELECT @@IDENTITY AS Id
       </selectKey>
     </insert>
+    
     <!--InsertBatch-->
     <insert id="InsertUserBatch" parameterClass="User" resultClass="int">
       INERT INTO User
@@ -162,6 +166,10 @@
     <select id="GetUserCountByDynamic" parameterType="Hashtable" resultClass="int">
       SELECT COUNT(1) FROM User
       <include refid="User-DynamicWhere"></include>
+    </select>
+
+    <select id="GetdictionaryTest" parameterClass="" resultMap="User-ResultMap">
+      SELECT * FROM dbo.[User]  u WHERE u.Id IN(8,9)
     </select>
 
   </statements>
