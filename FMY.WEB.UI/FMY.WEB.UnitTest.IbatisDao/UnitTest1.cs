@@ -12,6 +12,10 @@ namespace FMY.WEB.UnitTest.IbatisDaoTest
         [TestMethod]
         public void TestMethod1()
         {
+            //http://www.cnblogs.com/xiekeli/p/4611113.html
+            //http://www.cnblogs.com/kissazi2/p/3392605.html
+            //http://www.cnblogs.com/lzrabbit/archive/2012/03/23/2413180.html
+            //http://blog.csdn.net/zhoufoxcn/article/details/6029021
             //UserDao userDao = new UserDao();
             //userDao.GetDictionary<string, string>();
             string fileName = AppDomain.CurrentDomain.BaseDirectory + "/Config/log4net.xml";
