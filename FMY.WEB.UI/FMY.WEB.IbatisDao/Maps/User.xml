@@ -105,9 +105,15 @@
     <!--WHERE-->
     <sql id="User-DynamicWhere">
       <dynamic prepend="WHERE">
-        <isPropertyAvailable property="Id" prepend="AND">
+        <isNotParameterPresent prepend="AND">
+          Id = 18
+        </isNotParameterPresent>
+        <!--<isPropertyAvailable property="Id" prepend="AND">
           Id= #Id#
-        </isPropertyAvailable>
+        </isPropertyAvailable>-->
+        <isNotNull property="Id" prepend="AND">
+          Id= #Id#
+        </isNotNull>
         <isPropertyAvailable property="Name" prepend="AND">
           Name= #Name#
         </isPropertyAvailable>
@@ -135,6 +141,12 @@
         <isPropertyAvailable property="UpdateTime" prepend="AND">
           UpdateTime= #UpdateTime#
         </isPropertyAvailable>
+        <isPropertyAvailable property="NameLike" prepend="AND">
+          Name LIKE #NameLike#+'%'
+        </isPropertyAvailable>
+        <!--<isPropertyAvailable property="NameLike_" prepend="AND">
+          Name LIKE '%$NameLike_$%'
+        </isPropertyAvailable>-->
       </dynamic>
     </sql>
     
@@ -157,8 +169,8 @@
     </select>
     
     <!--GetListByDynamic-->
-    <select id="GetUserListByDynamic" parameterClass="Hashtable" resultMap="User-ResultMap">
-      SELECT * FROM dbo.User
+    <select id="GetUserListByDynamic" parameterClass="System.Collections.IDictionary" resultMap="User-ResultMap">
+      SELECT * FROM dbo.[User]
       <include refid="User-DynamicWhere"></include>
     </select>
     

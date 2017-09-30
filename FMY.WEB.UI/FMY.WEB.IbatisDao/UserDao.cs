@@ -26,6 +26,22 @@ namespace FMY.WEB.IbatisDao
         }
 
 
+        public IList<User> GetUserListByDynamic(IDictionary param)
+        {
+            string mapper = GetMapFullName("GetUserListByDynamic");
+            return Mapper.GetInstance().QueryForList<User>(mapper, param);
+        }
+
+
+        public IList<User> GetUserListByNameLike(string name)
+        {
+            Hashtable ht = new Hashtable() {
+                { "NameLike",name}
+            };
+            return GetUserListByDynamic(ht);
+        }
+
+
         public DataTable GetAllUser()
         {
             return null;

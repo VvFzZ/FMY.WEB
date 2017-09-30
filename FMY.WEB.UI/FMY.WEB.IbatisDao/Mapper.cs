@@ -29,6 +29,11 @@ namespace FMY.WEB.IbatisDao
             return _mapper;
         }
 
+
+        /// <summary>
+        /// 从资源文件加载SqlMap.config 创建ISqlMapper
+        /// </summary>
+        /// <returns></returns>
         private static ISqlMapper InitMapper()
         {
             //SqlMapSession sesstion= 
@@ -45,7 +50,6 @@ namespace FMY.WEB.IbatisDao
                 {
                     throw;
                 }
-
             }
         }
 
@@ -61,16 +65,16 @@ namespace FMY.WEB.IbatisDao
         {
             try
             {
-                IBatisNet.DataMapper.MappedStatements.IMappedStatement statement = Mapper.GetInstance().GetMappedStatement(statementName);
-                if (!Mapper.GetInstance().IsSessionStarted)
+                IBatisNet.DataMapper.MappedStatements.IMappedStatement statement = GetInstance().GetMappedStatement(statementName);
+                if (!GetInstance().IsSessionStarted)
                 {
-                    Mapper.GetInstance().OpenConnection();
+                    GetInstance().OpenConnection();
                 }
-                IBatisNet.DataMapper.Scope.RequestScope scope = statement.Statement.Sql.GetRequestScope(statement, paramObject, Mapper.GetInstance().LocalSession);
-                statement.PreparedCommand.Create(scope, Mapper.GetInstance().LocalSession, statement.Statement, paramObject);
-                System.Text.StringBuilder sbSql = new System.Text.StringBuilder();
+                IBatisNet.DataMapper.Scope.RequestScope scope = statement.Statement.Sql.GetRequestScope(statement, paramObject, GetInstance().LocalSession);
+                statement.PreparedCommand.Create(scope, GetInstance().LocalSession, statement.Statement, paramObject);
+                StringBuilder sbSql = new StringBuilder();
 
-                System.Func<string, string> fn = (type) =>
+                Func<string, string> fn = (type) =>
                 {
                     switch (type)
                     {
@@ -96,7 +100,7 @@ namespace FMY.WEB.IbatisDao
                 sbSql.Append(scope.PreparedStatement.PreparedSql);
                 return sbSql.ToString();
             }
-            catch (System.Exception ex)
+            catch (Exception ex)
             {
                 return "获取SQL语句出现异常：" + ex.Message;
             }
