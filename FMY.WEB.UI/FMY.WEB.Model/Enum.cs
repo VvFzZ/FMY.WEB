@@ -5,6 +5,7 @@ using System.Text;
 
 namespace FMY.WEB.Model
 {
+
     /// <summary>
     /// 用户状态
     /// </summary>
@@ -23,6 +24,8 @@ namespace FMY.WEB.Model
         /// </summary>
         Invalid = 2
     }
+
+
     /// <summary>
     /// 注册邮件状态
     /// </summary>
@@ -41,6 +44,8 @@ namespace FMY.WEB.Model
         /// </summary>
         Invalid = 2
     }
+
+
     public enum EmailPriority
     {
         Normal = 0,

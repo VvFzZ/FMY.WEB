@@ -16,6 +16,8 @@ namespace FMY.WEB.Comm.Tools.CommTools
         {
             email = model;
         }
+
+
         /// <summary>
         /// 生成激活邮件内容
         /// </summary>
@@ -24,7 +26,7 @@ namespace FMY.WEB.Comm.Tools.CommTools
         private string GetSendBody(string body, string linkDomain, IDictionary<string, string> dic)
         {
             if (dic == null || dic.Count < 1)
-                throw new Exception("paramemeter is null!");
+                throw new ArgumentNullException("dic");
             StringBuilder bodyBuilder = new StringBuilder(body);
             StringBuilder paramBuilder = new StringBuilder();
             foreach (var item in dic)
@@ -34,6 +36,8 @@ namespace FMY.WEB.Comm.Tools.CommTools
             bodyBuilder.AppendFormat("{0}?{1}", linkDomain, paramBuilder.ToString().Substring(1));
             return bodyBuilder.ToString();
         }
+
+
         /// <summary>
         /// 发送激活邮件
         /// </summary>

@@ -3,11 +3,10 @@ using System.Data;
 using System.Data.SqlClient;
 using FMY.WEB.Model;
 using FMY.SQL.ADO;
-using FMY.WEB.IDao;
 
-namespace FMY.WEB.Dao
+namespace FMY.WEB.DAL
 {
-    public class UserRegistEmailDao:IUserRegistEmailDao
+    public class UserRegistEmailDao
     {
 
         /// <summary>
@@ -17,7 +16,8 @@ namespace FMY.WEB.Dao
         /// <returns>记录id</returns>
         public int addEmailRecrd(UserRegistEmail model)
         {
-            string sql = string.Format("INSERT INTO dbo.UserRegistEmail ( UserId ,SendTime ,Status ,ValidateCode)VALUES ({0},{1},{2},{3});select @@identity", "@userid", "@sendtime", "@status", "@validatecode");
+            string sql = string.Format(@"INSERT INTO dbo.UserRegistEmail ( userid ,sendtime ,status ,validatecode)
+                  VALUES ({0},{1},{2},{3});SELECT @@IDENTITY", "@userid", "@sendtime", "@status", "@validatecode");
             SqlParameter[] parameters ={
                                            new SqlParameter("@userid",SqlDbType.Int),
                                            new SqlParameter("@sendtime",SqlDbType.DateTime),
@@ -28,12 +28,11 @@ namespace FMY.WEB.Dao
             parameters[1].Value = model.SendTime;
             parameters[2].Value = model.Status;
             parameters[3].Value = model.ValidateCode;
-            object obj=SQLHelper.SelectFirst(sql, CommandType.Text, parameters);
-            //object obj = Instance.GetInstance().SelectFirst(sql, CommandType.Text, parameters);
+            //object obj=SQLHelper.SelectFirst(sql, CommandType.Text, parameters);
+            object obj = Instance.GetInstance().SelectFirst(sql, CommandType.Text, parameters);
 
             return Convert.ToInt32(obj);
         }
-
 
         /// <summary>
         /// 根据用户id 验证码查询记录数
@@ -43,10 +42,11 @@ namespace FMY.WEB.Dao
         /// <returns></returns>
         public int GetIdByUidAndVcode(string userId, string validateCode)
         {
-            string sql = string.Format("SELECT id FROM dbo.UserRegistEmail ure WHERE ure.UserId={0} AND ure.Validatecode='{1}' AND ure.Status=0", userId, validateCode);//status=0待激活
+            string sql = string.Format(@"SELECT id FROM dbo.UserRegistEmail ure
+               WHERE ure.userid={0} AND ure.validatecode='{1}' AND ure.status=0"
+               , userId, validateCode);//status=0待激活
             return SQLHelper.Excute(sql, CommandType.Text);
         }
-
 
         /// <summary>
         /// 根据id修改记录状态为
@@ -56,9 +56,8 @@ namespace FMY.WEB.Dao
         /// <returns></returns>
         public int UpdateEmailStatus(int id, string validateCode, int status)
         {
-            string sql = string.Format("UPDATE dbo.UserRegistEmail SET Status={0} WHERE id={1} AND ValidateCode='{2}'", status, id, validateCode);
+            string sql = string.Format("UPDATE dbo.UserRegistEmail SET status={0} WHERE id={1} AND validatecode='{2}'", status, id, validateCode);
             return SQLHelper.Excute(sql, CommandType.Text);
         }
-
     }
 }

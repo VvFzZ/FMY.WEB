@@ -23,13 +23,14 @@ namespace FMY.WEB.UI.Controllers
         {
             userRegistEmailService = new UserRegistEmailService();
         }
+        
 
-        //
         // GET: /Regist/
         public ActionResult Index()
         {
             return View();
         }
+
 
         [HttpPost]
         public JsonResult Regist(User user)

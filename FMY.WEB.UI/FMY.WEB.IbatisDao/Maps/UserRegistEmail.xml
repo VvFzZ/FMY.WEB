@@ -88,10 +88,12 @@
         </isPropertyAvailable>
       </dynamic>
     </sql>
+    
     <!--GetById-->
     <select id="GetUserRegistEmailById" parameterClass="int" resultMap="UserRegistEmail-ResultMap">
       SELECT * FROM dbo.UserRegistEmail WHERE Id=#Id#
     </select>
+    
     <!--GetPageList-->
     <select id="GetUserRegistEmailPageList" parameterClass="Hashtable" resultMap="UserRegistEmail-ResultMap">
       SELECT * FROM (
@@ -100,11 +102,13 @@
       )A
       WHERE A.RowNum BETWEEN #Start# AND #End#
     </select>
+    
     <!--GetListByDynamic-->
     <select id="GetUserRegistEmailListByDynamic" parameterClass="Hashtable" resultMap="UserRegistEmail-ResultMap">
       SELECT * FROM dbo.UserRegistEmail
       <include refid="UserRegistEmail-DynamicWhere"></include>
     </select>
+    
     <!--GetCountByDynamic-->
     <select id="GetUserRegistEmailCountByDynamic" parameterType="Hashtable" resultClass="int">
       SELECT COUNT(1) FROM UserRegistEmail
