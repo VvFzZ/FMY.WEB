@@ -46,7 +46,7 @@ namespace FMY.WEB.IbatisDao
                 {
                     return builder.Configure(stream);
                 }
-                catch (Exception ex)
+                catch (Exception)
                 {
                     throw;
                 }

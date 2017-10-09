@@ -43,7 +43,7 @@ namespace FMY.WEB.UnitTest.IbatisDaoTest
                 UserDao userDao = new UserDao();
                 IDictionary<string, string> dic = userDao.GetDictionary<string, string>();
             }
-            catch (Exception ex)
+            catch (Exception )
             {
                 throw;
             }
@@ -62,7 +62,7 @@ namespace FMY.WEB.UnitTest.IbatisDaoTest
                 name = "T-";
                 IList<User> userList = userDao.GetUserListByNameLike(name);
             }
-            catch (Exception ex)
+            catch (Exception )
             {
                 throw;
             }

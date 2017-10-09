@@ -10,14 +10,19 @@ namespace FMY.WEB.Comm.Tools.Log
         private readonly static object locker = new object();
         //private volatile  LogTool logHelper;
 
+
         //public LogTool LogHelper
         //{
         //    get { return logHelper; }
         //    set { logHelper = value; }
         //}
 
+
         private LogTool()
         { }
+        
+
+
     }
 }
 
