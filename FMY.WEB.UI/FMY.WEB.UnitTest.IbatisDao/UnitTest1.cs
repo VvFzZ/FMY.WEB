@@ -20,8 +20,9 @@ namespace FMY.WEB.UnitTest.IbatisDaoTest
             //userDao.GetDictionary<string, string>();
             string fileName = AppDomain.CurrentDomain.BaseDirectory + "/Config/log4net.xml";
             System.IO.FileInfo fileInfo = new System.IO.FileInfo(fileName);
-            log4net.Config.XmlConfigurator.Configure();
-            LogManager.GetLogger("Debug").Error("Error");
+            log4net.Config.XmlConfigurator.Configure(fileInfo);
+            //Log4Mongo2.2 与log4net2.0.8不兼容 与1.2.11兼容
+            LogManager.GetLogger("Debug").Error("TestmongoErr");
         }
     }
 }
