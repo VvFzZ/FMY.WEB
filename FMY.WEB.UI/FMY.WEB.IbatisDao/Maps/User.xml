@@ -105,9 +105,10 @@
     <!--WHERE-->
     <sql id="User-DynamicWhere">
       <dynamic prepend="WHERE">
-        <isNotParameterPresent prepend="AND">
+        <!--isNotParameterPresent 默认值-->
+        <!--<isNotParameterPresent prepend="AND">
           Id = 18
-        </isNotParameterPresent>
+        </isNotParameterPresent>-->
         <!--<isPropertyAvailable property="Id" prepend="AND">
           Id= #Id#
         </isPropertyAvailable>-->
@@ -178,10 +179,6 @@
     <select id="GetUserCountByDynamic" parameterType="Hashtable" resultClass="int">
       SELECT COUNT(1) FROM User
       <include refid="User-DynamicWhere"></include>
-    </select>
-
-    <select id="GetdictionaryTest" parameterClass="" resultMap="User-ResultMap">
-      SELECT * FROM dbo.[User]  u WHERE u.Id IN(8,9)
     </select>
 
   </statements>
