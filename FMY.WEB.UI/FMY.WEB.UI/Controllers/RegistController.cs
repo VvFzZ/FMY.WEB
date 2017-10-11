@@ -11,6 +11,7 @@ using FMY.WEB.Model;
 using FMY.WEB.BLL;
 using FMY.WEB.Comm.Tools.CommTools;
 using FMY.WEB.Comm.Tools.ConfigTools;
+using FMY.WEB.Comm.Tools.Log;
 using FMY.WEB.Model.Comm;
 
 

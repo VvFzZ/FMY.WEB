@@ -1,41 +1,34 @@
 ﻿<log4net>
+  <!--配置说明：http://logging.apache.org/log4net/release/config-examples.html;http://www.cnblogs.com/xiekeli/p/4611113.html-->
+
+  <appender name="RollingFileAppender" type="log4net.Appender.RollingFileAppender">
+    <param name="file" value="logs\log.txt" />
+    <param name="appendToFile" value="true" />
+    <param name="rollingStyle" value="Date" />
+    <param name="DatePattern" value="yyyyMMdd&quot;&quot;" />
+    <param name="maxSizeRollBackups" value="50" />
+    <!--<param name="maximumFileSize" value="50MB" />-->
+    <!--设置 rollingstyle 为size 或Composite 有作用-->
+    <param name="staticLogFileName" value="false" />
+    <layout type="log4net.Layout.PatternLayout">
+      <conversionPattern value="%date [%thread] %level %logger - %message%newline" />
+    </layout>
+  </appender>
+
+  <appender name="MongoDBAppender" type="Log4Mongo.MongoDBAppender, Log4Mongo">
+    <connectionString value="mongodb://127.0.0.1/?socketTimeout=1s" />
+    <DatabaseName value="Logs"/>
+    <CollectionName value="FMY_WEB_UI_Log"/>
+  </appender>
 
   <root>
-    <level value="WARN" />
-    <appender-ref ref="LogFileAppender" />
-    <appender-ref ref="ConsoleAppender" />
+    <level value="ALL" />
+    <appender-ref ref="RollingFileAppender" />
+    <appender-ref ref="MongoDBAppender" />
   </root>
-  
-  <logger name="testApp.Logging">
+
+  <!--<logger name="testApp.Logging">
     <level value="DEBUG"/>
-  </logger>
-
-  <appender name="LogFileAppender" type="log4net.Appender.FileAppender" >
-    <param name="File" value="log-file.txt" />
-    <param name="AppendToFile" value="true" />
-    <layout type="log4net.Layout.PatternLayout">
-      <param name="Header" value="[Header] "/>
-      <param name="Footer" value="[Footer] "/>
-      <param name="ConversionPattern" value="%d [%t] %-5p %c [%x]  - %m%n" />
-    </layout>
-
-    <filter type="log4net.Filter.LevelRangeFilter">
-      <param name="LevelMin" value="DEBUG" />
-      <param name="LevelMax" value="WARN" />
-    </filter>
-  </appender>
-
-  <appender name="ConsoleAppender"  type="log4net.Appender.ConsoleAppender" >
-    <layout type="log4net.Layout.PatternLayout">
-      <param name="ConversionPattern"  value="%d [%t] %-5p %c [%x] - %m%n" />
-    </layout>
-
-    <appender name="MongoDBAppender" type="Log4Mongo.MongoDBAppender, Log4Mongo">
-      <connectionString value="mongodb://127.0.0.1/?socketTimeout=1s" />
-      <DatabaseName value="Logs"/>
-      <CollectionName value="FMY_WEB_UI_Log"/>
-    </appender>
-    
-  </appender>
+  </logger>-->
 
 </log4net>

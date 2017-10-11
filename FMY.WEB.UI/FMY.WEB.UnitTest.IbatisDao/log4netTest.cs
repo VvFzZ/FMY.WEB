@@ -22,7 +22,7 @@ namespace FMY.WEB.UnitTest.IbatisDaoTest
             System.IO.FileInfo fileInfo = new System.IO.FileInfo(fileName);
             log4net.Config.XmlConfigurator.Configure(fileInfo);
             //Log4Mongo2.2 与log4net2.0.8不兼容 与1.2.11兼容
-            LogManager.GetLogger("Debug").Error("TestmongoErr");
+            LogManager.GetLogger("Debug").Error("TestmongoErr_log4net1.2.11.0**3");
         }
     }
 }

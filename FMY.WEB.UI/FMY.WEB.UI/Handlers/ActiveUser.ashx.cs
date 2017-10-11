@@ -15,7 +15,9 @@ namespace FMY.WEB.UI
         public void ProcessRequest(HttpContext context)
         {
             context.Response.ContentType = "text/html";
+
             int result = 0;
+            string scriptStr = string.Empty;
             string emailId = context.Request["emailId"];
             string validateCode = context.Request["validateCode"];
             if (string.IsNullOrEmpty(emailId) || string.IsNullOrEmpty(validateCode))
@@ -30,9 +32,10 @@ namespace FMY.WEB.UI
             result = userRegistEmailService.UpdateEmailStatus(int.Parse(emailId), validateCode, (int)UserRegEmailStatEnum.Actived);//修改邮件状态
             //}
             if (result > 0)
-                context.Response.Write("<script>alert('激活成功');location.href='http://localhost:39740/index'</script>");
+                scriptStr = "<script>alert('激活成功');location.href='http://localhost:39740/index'</script>";
             else
-                context.Response.Write("<script>alert('激活失败');");
+                scriptStr = "<script>alert('激活失败');";
+            context.Response.Write(scriptStr);
         }
 
         public bool IsReusable
