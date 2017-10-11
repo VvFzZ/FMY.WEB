@@ -15,11 +15,11 @@ namespace FMY.WEB.UI
         protected void Application_Start()
         {
             AreaRegistration.RegisterAllAreas();
-
             WebApiConfig.Register(GlobalConfiguration.Configuration);
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
         }
+
         protected void Application_Error(Object sender, EventArgs e)
         {
             Exception lastException = Server.GetLastError();

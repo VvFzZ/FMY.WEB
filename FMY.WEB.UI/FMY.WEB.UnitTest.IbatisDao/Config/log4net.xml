@@ -30,5 +30,4 @@
   <!--<logger name="testApp.Logging">
     <level value="DEBUG"/>
   </logger>-->
-
 </log4net>
