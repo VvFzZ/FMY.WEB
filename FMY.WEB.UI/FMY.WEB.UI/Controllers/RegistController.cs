@@ -20,7 +20,7 @@ namespace FMY.WEB.UI.Controllers
     {
         UserRegistEmailService userRegistEmailService;
         public RegistController()
-        {
+        {            
             userRegistEmailService = new UserRegistEmailService();
         }
         

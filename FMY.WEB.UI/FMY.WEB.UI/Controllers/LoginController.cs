@@ -13,17 +13,11 @@ namespace FMY.WEB.UI.Controllers
         // GET: /Login/
 
         public ActionResult Index()
-        {
-            var expiration = DateTime.Now.Add(new TimeSpan(8, 0, 0));
-            FormsAuthenticationTicket authenticationTicket = new FormsAuthenticationTicket(1, "WangFeng", DateTime.Now, expiration
-                , true, "UserData", FormsAuthentication.FormsCookiePath);
-            HttpCookie cookie=new HttpCookie(FormsAuthentication.FormsCookieName, FormsAuthentication.Encrypt(authenticationTicket));
-            System.Web.HttpContext.Current.Response.Cookies.Set(cookie);
+        {            
             //Response.StatusCode = 403;
-            //throw new Exception("1");
+            throw new Exception("1");
             return View();
         }
-
 
     }
 }
