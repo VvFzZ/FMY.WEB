@@ -22,7 +22,7 @@ namespace FMY.WEB.UI
 
         protected void Session_Start(object sender, EventArgs e)
         {
-            ControllerBuilder
+
         }
 
         protected void Application_BeginRequest(object sender, EventArgs e)
@@ -31,6 +31,21 @@ namespace FMY.WEB.UI
         }
 
         protected void Application_AuthenticateRequest(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void Application_PostAuthorizeRequest(object sender, EventArgs e)
+        {
+            //
+            HttpApplication app = (HttpApplication)sender;
+            // 这里将检查URL是否为需要重写的模式，比如:
+            if (string.Compare(app.Context.Request.RawUrl, "/regist.go", true) == 0)
+                app.Context.RewritePath("~/regist/index");
+        }
+
+
+        protected void Application_PostResolveRequestCache(object sender, EventArgs e)
         {
 
         }
@@ -69,7 +84,7 @@ namespace FMY.WEB.UI
 
                 /*
                  * 跳转到指定的http 500错误信息页面
-                 * 跳转到静态页面一定要用Response.WriteFile方法                 
+                 * 跳转到静态页面一定要用Response.WriteFile方法
                  */
                 Response.StatusCode = 500;
 

@@ -1,0 +1,31 @@
+﻿一、注册HttpModule
+
+　　在Asp.net中，实现IHttpModule接口只是实现HttpModule的第一步，在Asp.net中所使用的HttpModule还必须在网站配置文件中进行注册才能真正生效，并在Asp.net中使用。
+
+　　配置文件有3个级别，详细可在配置文件系列中找到：http://www.cnblogs.com/kissdodog/category/468516.html
+
+　　下面以web.config示例进行说明如何注册HttpModule：
+
+　　system.web配置元素的子元素httpModules用来配置网站所使用的HttpModule；httpModules的子元素add用来增加一个新的HttpModule；clear将清除前面注册的所有HttpModule。
+
+　　add元素有两个必选的属性name和type，简介如下：
+
+name表示这个HttpModule在程序中的名字，在网站应用程序中，可以通过这个名字来找到HttpModule对象的引用。HttpApplication的Modules属性表示这个对象所关联的所有HttpModule对象，通过这个name作为索引器，可以找到对应的HttpModule对象。
+type表示HttpModule对象的类型名，Asp.net网站可以使用这个类型名，通过反射来动态创建HttpModule对象。类型的写法就是反射中要求的类型名称写法，如果这个类定义在网站中，那么，就是一个包含命名空间的类的全名，否则，在全名的后面，使用逗号(,)分隔，还需要跟上类型所在的程序集的名称，这个程序集的名称不需要包含.dll扩展名。
+　　对于IIS7.0来说，需要在配置文件的system.webServer配置节中注册HttpModule。注意此时的配置元素名称变为了modules。在IIS7.0中，可以为MapRequestHandler，LogRequest和PostLogRequest事件添加处理程序。
+
+　　只要在IIS7.0集成模式下运行并且与.Net Framework3.0或更高版本一起运行的应用程序，才可以支持这些事件。
+
+<system.webServer>
+    <modules>
+    　　<add name="ModuleExample" type="Samples.ModeleExample">
+    </modules>
+</system.webServer>
+二、两个特殊事件
+1、PreSendRequestHeaders
+
+　　当准备通过HttpResponse回应发送HTTP的Header之前，HttpApplication将会触发PreSendRequestHeaders事件。在这个事件中，可以根据发送的Header来动态设置一些参数，比如，如果通过Content-Type参数获知发送的内容是text/html网页，那么，可以通过启用输出的压缩来提高网络的传输速度。这个操作可以通过设置一个特殊的Header来通知浏览器。
+
+2、PreSendRequestContent
+
+　　当准备通过HttpResponse回应发送HTTP的Body内容之前，HttpApplication将会触发PreSendRequestContent事件。如果配置了输出到客户端的压缩，那么可以在这个事件中包装输出到浏览器的流以实现输出的压缩。

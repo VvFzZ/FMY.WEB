@@ -82,7 +82,7 @@
 
     <!--DeleteById-->
     <delete id="DeleteUser" parameterClass="int" resultClass="int">
-      delete from User where Id=#Id#
+      DELETE FROM User WHERE Id=#Id#
     </delete>
 
     <!--UpdateById-->
