@@ -146,7 +146,9 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Handlers\Going.cs" />
+    <Compile Include="Handlers\ReusableAshxHandlerFactory.cs" />
     <Compile Include="Modules\TestModule.cs" />
+    <Compile Include="Modules\XHttpMethodModule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

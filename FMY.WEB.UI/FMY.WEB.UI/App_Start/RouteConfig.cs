@@ -13,7 +13,7 @@ namespace FMY.WEB.UI
         {
             routes.RouteExistingFiles = false;
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
-            RegisterRoutesExt(routes);
+            //RegisterRoutesExt(routes);
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",

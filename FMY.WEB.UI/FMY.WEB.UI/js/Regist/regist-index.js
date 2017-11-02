@@ -1,5 +1,5 @@
 ﻿$(function () {
-    
+    document.cookie = "userName = hello;";
     jQuery.validator.addMethod("username", function (value, element) {
         var length = value.length;
         var mobile = /^[A-Za-z0-9_\u554A-\u9C52]+$/;//匹配只包含汉字、数字、字母、下划线；    

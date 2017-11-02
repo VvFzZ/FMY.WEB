@@ -55,6 +55,7 @@ namespace FMY.WEB.UI.Controllers
             UserService userService = new UserService();
             try
             {
+                
                 using (TransactionScope trans = new TransactionScope())
                 {
                     if (userService.GetUserCountByEmail(user.Email) > 0)
