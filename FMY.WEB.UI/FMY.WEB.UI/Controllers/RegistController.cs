@@ -42,41 +42,32 @@ namespace FMY.WEB.UI.Controllers
             bool validate = ValidateRegist(user, ref validateMsg);
             if (!validate)
                 return Json(new Result(validate, validateMsg));
-
-            try
+            UserService userService = new UserService();//×××
+            if (userService.GetUserCountByEmail(user.Email) > 0)
+                return Json(new Result(false, "注册失败：该邮箱已注册！"));
+            int userId = -1;
+            using (TransactionScope trans = new TransactionScope())
             {
-                int userId = -1;
-                UserService userService = new UserService();//×××
-                using (TransactionScope trans = new TransactionScope())
+                user.CreateTime = DateTime.Now;
+                user.UpdateTime = DateTime.Now;
+                userId = userService.AddUser(user);
+                if (userId <= 0)
+                    return Json(new Result(false, "注册失败！"));
+                //用户状态session默认失效时间20min
+                Session[string.Format("User{0}", userId)] = user;
+                string validateCode = Guid.NewGuid().ToString();
+                UserRegistEmail emailModel = new UserRegistEmail()
                 {
-                    if (userService.GetUserCountByEmail(user.Email) > 0)
-                        return Json(new Result(false, "注册失败：该邮箱已注册！"));
-                    user.CreateTime = DateTime.Now;
-                    user.UpdateTime = DateTime.Now;
-                    userId = userService.AddUser(user);
-                    if (userId <= 0)
-                        return Json(new Result(false, "注册失败！"));
-                    //用户状态session默认失效时间20min
-                    Session["user" + userId] = user;
-                    string validateCode = Guid.NewGuid().ToString();
-                    UserRegistEmail emailModel = new UserRegistEmail()
-                    {
-                        SendTime = DateTime.Now,
-                        Status = (int)UserRegEmailStatEnum.NeedActive,
-                        ValidateCode = validateCode,
-                        UserId = userId
-                    };
-                    int emailId = userRegistEmailService.addEmailRecrd(emailModel);//数据库记录邮件
-                    SendEmail(emailId, validateCode, user.Email);//发送邮件
-                    trans.Complete();
-                }
-                return Json(new Result() { IsSuccess = true, Data = userId.ToString() });
+                    SendTime = DateTime.Now,
+                    Status = (int)UserRegEmailStatEnum.NeedActive,
+                    ValidateCode = validateCode,
+                    UserId = userId
+                };
+                int emailId = userRegistEmailService.addEmailRecrd(emailModel);//数据库记录邮件
+                SendEmail(emailId, validateCode, user.Email);//发送邮件
+                trans.Complete();
             }
-            catch (Exception ex)
-            {
-                LogTool.Error(ex);
-                throw ex;
-            }
+            return Json(new Result() { IsSuccess = true, Data = userId.ToString() });
         }
 
         private bool ValidateRegist(User user, ref string msg)
