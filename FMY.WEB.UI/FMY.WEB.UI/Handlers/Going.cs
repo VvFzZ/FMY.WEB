@@ -41,7 +41,7 @@ namespace FMY.WEB.UI.Handlers
             get { return false; }
         }
 
-        private int myVar;
+        //private int myVar;
 
         public void ProcessRequest(HttpContext context)
         {

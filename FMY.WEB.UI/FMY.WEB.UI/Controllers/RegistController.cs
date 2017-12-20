@@ -21,10 +21,10 @@ namespace FMY.WEB.UI.Controllers
     {
         UserRegistEmailService userRegistEmailService;
         public RegistController()
-        {            
+        {
             userRegistEmailService = new UserRegistEmailService();
         }
-        
+
 
         // GET: /Regist/
         public ActionResult Index()
@@ -55,7 +55,6 @@ namespace FMY.WEB.UI.Controllers
             UserService userService = new UserService();
             try
             {
-                
                 using (TransactionScope trans = new TransactionScope())
                 {
                     if (userService.GetUserCountByEmail(user.Email) > 0)
@@ -113,7 +112,7 @@ namespace FMY.WEB.UI.Controllers
             }
             catch (Exception ex)
             {
-                LogTool.
+                LogTool.Error(ex);
                 throw ex;
             }
         }
