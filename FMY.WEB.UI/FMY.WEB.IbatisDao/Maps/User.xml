@@ -160,7 +160,7 @@
       SELECT * FROM dbo.User
     </select>
     
-    <!--GetPageList-->
+    <!--获取分页数据集合-->
     <select id="GetUserPageList" parameterClass="Hashtable" resultMap="User-ResultMap">
       SELECT * FROM (
       SELECT ROW_NUMBER()OVER(ORDER BY id DESC) AS RowNum, * FROM dbo.User
@@ -169,13 +169,12 @@
       WHERE A.RowNum BETWEEN #Start# AND #End#
     </select>
     
-    <!--GetListByDynamic-->
+    <!--获取数据集合-->
     <select id="GetUserListByDynamic" parameterClass="System.Collections.IDictionary" resultMap="User-ResultMap">
       SELECT * FROM dbo.[User]
       <include refid="User-DynamicWhere"></include>
     </select>
     
-    <!--GetCountByDynamic-->
     <select id="GetUserCountByDynamic" parameterType="Hashtable" resultClass="int">
       SELECT COUNT(1) FROM User
       <include refid="User-DynamicWhere"></include>

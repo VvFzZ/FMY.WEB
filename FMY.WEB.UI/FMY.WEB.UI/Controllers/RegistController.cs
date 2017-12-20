@@ -113,6 +113,7 @@ namespace FMY.WEB.UI.Controllers
             }
             catch (Exception ex)
             {
+                LogTool.
                 throw ex;
             }
         }

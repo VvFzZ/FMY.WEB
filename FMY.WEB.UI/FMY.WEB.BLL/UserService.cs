@@ -21,7 +21,6 @@ namespace FMY.WEB.BLL
 
         public DataTable GetAllUser()
         {
-            //不要写sql语句
             return userDao.GetAllUser();
         }
 

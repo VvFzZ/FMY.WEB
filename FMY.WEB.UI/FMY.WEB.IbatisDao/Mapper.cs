@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.IO;
 using System.Reflection;
 using IBatisNet.DataMapper;
+using IBatisNet.DataMapper.Configuration;
 
 namespace FMY.WEB.IbatisDao
 {
@@ -37,7 +38,7 @@ namespace FMY.WEB.IbatisDao
         private static ISqlMapper InitMapper()
         {
             //SqlMapSession sesstion= 
-            IBatisNet.DataMapper.Configuration.DomSqlMapBuilder builder = new IBatisNet.DataMapper.Configuration.DomSqlMapBuilder();
+            DomSqlMapBuilder builder = new DomSqlMapBuilder();
             Assembly assembly = Assembly.GetAssembly(typeof(Mapper));
             string resouce = string.Format("{0}.{1}", MapperDomain, "SqlMap.config");
             using (Stream stream = assembly.GetManifestResourceStream(resouce))

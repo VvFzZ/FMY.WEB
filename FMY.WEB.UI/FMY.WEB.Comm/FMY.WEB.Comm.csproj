@@ -68,6 +68,8 @@
     <Compile Include="Tools\ConfigTools\CustomConfigSectionHandler.cs" />
     <Compile Include="Tools\ConfigTools\WebConfigTool.cs" />
     <Compile Include="Tools\Email.cs" />
+    <Compile Include="Tools\Log\IFMYLog.cs" />
+    <Compile Include="Tools\Log\Log4FMYLog.cs" />
     <Compile Include="Tools\Log\LogHelper.cs" />
   </ItemGroup>
   <ItemGroup>
