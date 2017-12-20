@@ -38,83 +38,100 @@ namespace FMY.WEB.UI.Controllers
         [HttpPost]
         public JsonResult Regist(User user)
         {
-            #region 验证
-            if (user.Name == null || user.PassWord == null || user.Email == null)
-                return Json(new Result() { IsSuccess = false, Data = "信息不完善！" });
-            Regex reg = new Regex("^[A-Za-z0-9_\u554A-\u9C52]+$");
-            if (user.Name.Length < 2 || user.Name.Length > 10 || !reg.Match(user.Name).Success)
-                return Json(new Result() { IsSuccess = false, Data = "错误数据提交！" });
-            reg = new Regex(".*");
-            if (user.PassWord.Length < 5 || user.PassWord.Length > 20)//|| reg.Match(user.Password).Success
-                return Json(new Result() { IsSuccess = false, Data = "错误数据提交！" });
-            reg = new Regex("^[a-z0-9]+([._\\-]*[a-z0-9])*@([a-z0-9]+[-a-z0-9]*[a-z0-9]+.){1,63}[a-z0-9]+$");
-            if (!reg.Match(user.Email).Success)
-                return Json(new Result() { IsSuccess = false, Data = "错误数据提交！" });
-            #endregion
-            int userId = -1;
-            UserService userService = new UserService();
+            string validateMsg = string.Empty;
+            bool validate = ValidateRegist(user, ref validateMsg);
+            if (!validate)
+                return Json(new Result(validate, validateMsg));
+
             try
             {
+                int userId = -1;
+                UserService userService = new UserService();//×××
                 using (TransactionScope trans = new TransactionScope())
                 {
                     if (userService.GetUserCountByEmail(user.Email) > 0)
-                        return Json(new Result() { IsSuccess = false, Data = "注册失败：该邮箱已注册！" });
+                        return Json(new Result(false, "注册失败：该邮箱已注册！"));
                     user.CreateTime = DateTime.Now;
                     user.UpdateTime = DateTime.Now;
-                    if ((userId = userService.AddUser(user)) > -1)
+                    userId = userService.AddUser(user);
+                    if (userId <= 0)
+                        return Json(new Result(false, "注册失败！"));
+                    //用户状态session默认失效时间20min
+                    Session["user" + userId] = user;
+                    string validateCode = Guid.NewGuid().ToString();
+                    UserRegistEmail emailModel = new UserRegistEmail()
                     {
-                        //用户状态session默认失效时间20min
-                        Session["user" + userId] = user;
-                        //发送邮件
-                        string validateCode = Guid.NewGuid().ToString();
-                        UserRegistEmail emailModel = new UserRegistEmail()
-                        {
-                            SendTime = DateTime.Now,
-                            Status = (int)UserRegEmailStatEnum.NeedActive,
-                            ValidateCode = validateCode,
-                            UserId = userId
-                        };
-                        int emailId = userRegistEmailService.addEmailRecrd(emailModel);//数据库记录邮件
-                        IDictionary<string, string> paramDic = new Dictionary<string, string>();//激活邮件url参数
-                        paramDic.Add("emailId", emailId.ToString());
-                        paramDic.Add("validateCode", validateCode);
-                        new EmailTool(new Email
-                        {
-                            ActiveLinkUrl = WebConfigTool.GetAppsetting("UserActivePageUrl"),
-                            ActiveLinkParams = paramDic,
-                            Body = WebConfigTool.GetAppsetting("ValidateEmailBody"),
-                            BodyEncoding = Encoding.UTF8,
-                            EmailAcount = "15832163021@163.com",
-                            EmailPassword = "f13932258865",
-                            EnableSsl = true,
-                            IsBodyHtml = false,
-                            Priority = EmailPriority.Normal,
-                            ReceiverAddr = user.Email,
-                            SenderAddr = "15832163021@163.com",
-                            SmtpHost = "smtp.163.com",
-                            Subject = "感谢您的注册",
-                            SubjectEncoding = Encoding.UTF8
-                        }).SendEmail();//发送邮件
-                        trans.Complete();
-                        return Json(new Result()
-                        {
-                            IsSuccess = true,
-                            Data = userId.ToString()
-                        });
-                    }
-                    else
-                        return Json(new Result()
-                        {
-                            IsSuccess = false,
-                            Data = "注册失败！"
-                        });
+                        SendTime = DateTime.Now,
+                        Status = (int)UserRegEmailStatEnum.NeedActive,
+                        ValidateCode = validateCode,
+                        UserId = userId
+                    };
+                    int emailId = userRegistEmailService.addEmailRecrd(emailModel);//数据库记录邮件
+                    SendEmail(emailId, validateCode, user.Email);//发送邮件
+                    trans.Complete();
                 }
+                return Json(new Result() { IsSuccess = true, Data = userId.ToString() });
             }
             catch (Exception ex)
             {
                 LogTool.Error(ex);
                 throw ex;
             }
+        }
+
+        private bool ValidateRegist(User user, ref string msg)
+        {
+            bool result = true;
+            if (user.Name == null || user.PassWord == null || user.Email == null)
+            {
+                msg = "信息不完善！";
+                result = false;
+            }
+            else if (user.Name.Length < 2 || user.Name.Length > 10 || !Regex.IsMatch(user.Name, "^[A-Za-z0-9_\u554A-\u9C52]+$"))
+            {
+                msg = "错误数据提交！";
+                result = false;
+            }
+            else if (user.PassWord.Length < 5 || user.PassWord.Length > 20)
+            {
+                msg = "错误数据提交！";
+                result = false;
+            }
+            else if (!Regex.IsMatch(user.Email, "^[a-z0-9]+([._\\-]*[a-z0-9])*@([a-z0-9]+[-a-z0-9]*[a-z0-9]+.){1,63}[a-z0-9]+$"))
+            {
+                msg = "错误数据提交！";
+                result = false;
+            }
+            return result;
+        }
+
+        /// <summary>
+        /// 发送邮件
+        /// </summary>
+        /// <param name="emailId"></param>
+        /// <param name="validateCode"></param>
+        private void SendEmail(int emailId, string validateCode, string recevierMail)
+        {
+            IDictionary<string, string> paramDic = new Dictionary<string, string>();//激活邮件url参数
+            paramDic.Add("emailId", emailId.ToString());
+            paramDic.Add("validateCode", validateCode);
+            new EmailTool(new Email
+            {
+                ActiveLinkUrl = WebConfigTool.GetAppsetting("UserActivePageUrl"),
+                ActiveLinkParams = paramDic,
+                Body = WebConfigTool.GetAppsetting("ValidateEmailBody"),
+                BodyEncoding = Encoding.UTF8,
+                EmailAcount = "15832163021@163.com",
+                EmailPassword = "f13932258865",
+                EnableSsl = true,
+                IsBodyHtml = false,
+                Priority = EmailPriority.Normal,
+                ReceiverAddr = recevierMail,
+                SenderAddr = "15832163021@163.com",
+                SmtpHost = "smtp.163.com",
+                Subject = "感谢您的注册",
+                SubjectEncoding = Encoding.UTF8
+            }).SendEmail();//发送邮件
         }
     }
 }

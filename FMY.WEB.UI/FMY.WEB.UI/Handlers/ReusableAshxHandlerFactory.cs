@@ -6,7 +6,9 @@ using System.Web.Compilation;
 
 namespace FMY.WEB.UI.Handlers
 {
-    //设计HttpHandlerFactory并不是完全为了重用Handler， 它的主要用途还是如何创建HttpHandler，而且定义IHttpHandlerFactory的主要目的是为了扩展性
+    //设计HttpHandlerFactory并不是完全为了重用Handler， 
+    //它的主要用途还是如何创建HttpHandler，
+    //而且定义IHttpHandlerFactory的主要目的是为了扩展性
     public class ReusableAshxHandlerFactory : IHttpHandlerFactory
     {
         private Dictionary<string, IHttpHandler> _cache
