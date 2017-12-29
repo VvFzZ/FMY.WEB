@@ -70,6 +70,12 @@ namespace FMY.WEB.UI.Controllers
             return Json(new Result() { IsSuccess = true, Data = userId.ToString() });
         }
 
+        /// <summary>
+        /// 验证输入
+        /// </summary>
+        /// <param name="user"></param>
+        /// <param name="msg"></param>
+        /// <returns></returns>
         private bool ValidateRegist(User user, ref string msg)
         {
             bool result = true;

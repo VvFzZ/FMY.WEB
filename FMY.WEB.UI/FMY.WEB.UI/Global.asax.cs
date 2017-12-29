@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Web;
 using System.Web.Http;
 using System.Web.Mvc;
@@ -8,8 +6,6 @@ using System.Web.Routing;
 
 namespace FMY.WEB.UI
 {
-    // 注意: 有关启用 IIS6 或 IIS7 经典模式的说明，
-    // 请访问 http://go.microsoft.com/?LinkId=9394801
     public class MvcApplication : System.Web.HttpApplication
     {
         protected void Application_Start()
@@ -20,7 +16,7 @@ namespace FMY.WEB.UI
             RouteConfig.RegisterRoutes(RouteTable.Routes);
         }
 
-        #region Application管道
+        #region [          Application管道          ]
         //如果是IIS7，第10个事件也就是MapRequestHandler事件，而且在EndRequest 事件前，还增加了另二个事件：LogRequest 和 PostLogRequest 事件。
         //只有当应用程序在 IIS 7.0 集成模式下运行，并且与.NET Framework 3.0 或更高版本一起运行时，才会支持 MapRequestHandler、LogRequest 和 PostLogRequest 事件
 
@@ -128,11 +124,13 @@ namespace FMY.WEB.UI
 
         protected void Application_PostUpdateRequestCache(object sender, EventArgs e)
         {
-
+            
         }
 
         protected void Application_Error(object sender, EventArgs e)
         {
+            //1.将Web.config配置文件中customErrors节点的mode设置为Off
+            //2.在GlobalFilter全局过滤器中取消HandleErrorAttribute的注册：
             return;
             Exception lastException = Server.GetLastError();
             if (lastException != null)

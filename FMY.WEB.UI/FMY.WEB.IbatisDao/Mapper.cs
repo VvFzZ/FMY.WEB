@@ -1,8 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿/*
+ * 作者： JT
+ * 
+ * 时间：
+ * 
+ * 介绍：Ibatis MapperInstance , Get Dynamic Sql
+ */
+using System;
 using System.Text;
-using System.Threading.Tasks;
 using System.IO;
 using System.Reflection;
 using IBatisNet.DataMapper;
@@ -17,17 +21,19 @@ namespace FMY.WEB.IbatisDao
 
         private static volatile ISqlMapper _mapper;
 
-        public static ISqlMapper GetInstance()
+        public static ISqlMapper Instance
         {
-            if (_mapper == null)
-            {
-                lock (typeof(ISqlMapper))
+            get {
+                if (_mapper == null)
                 {
-                    if (_mapper == null)
-                        _mapper = InitMapper();
+                    lock (typeof(ISqlMapper))
+                    {
+                        if (_mapper == null)
+                            _mapper = InitMapper();
+                    }
                 }
+                return _mapper;
             }
-            return _mapper;
         }
 
 
@@ -37,7 +43,7 @@ namespace FMY.WEB.IbatisDao
         /// <returns></returns>
         private static ISqlMapper InitMapper()
         {
-            //SqlMapSession sesstion= 
+            //SqlMapSession sesstion=
             DomSqlMapBuilder builder = new DomSqlMapBuilder();
             Assembly assembly = Assembly.GetAssembly(typeof(Mapper));
             string resouce = string.Format("{0}.{1}", MapperDomain, "SqlMap.config");
@@ -66,13 +72,13 @@ namespace FMY.WEB.IbatisDao
         {
             try
             {
-                IBatisNet.DataMapper.MappedStatements.IMappedStatement statement = GetInstance().GetMappedStatement(statementName);
-                if (!GetInstance().IsSessionStarted)
+                IBatisNet.DataMapper.MappedStatements.IMappedStatement statement = Instance.GetMappedStatement(statementName);
+                if (!Instance.IsSessionStarted)
                 {
-                    GetInstance().OpenConnection();
+                    Instance.OpenConnection();
                 }
-                IBatisNet.DataMapper.Scope.RequestScope scope = statement.Statement.Sql.GetRequestScope(statement, paramObject, GetInstance().LocalSession);
-                statement.PreparedCommand.Create(scope, GetInstance().LocalSession, statement.Statement, paramObject);
+                IBatisNet.DataMapper.Scope.RequestScope scope = statement.Statement.Sql.GetRequestScope(statement, paramObject, Instance.LocalSession);
+                statement.PreparedCommand.Create(scope, Instance.LocalSession, statement.Statement, paramObject);
                 StringBuilder sbSql = new StringBuilder();
 
                 Func<string, string> fn = (type) =>
