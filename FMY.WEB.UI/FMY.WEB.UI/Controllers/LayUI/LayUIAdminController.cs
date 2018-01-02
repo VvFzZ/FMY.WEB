@@ -6,7 +6,7 @@ using System.Web.Mvc;
 
 namespace FMY.WEB.UI.Controllers
 {
-    public class LayUIAdminContorller : Controller
+    public class LayUIAdminController : Controller
     {
         public ActionResult Index()
         {

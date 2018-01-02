@@ -161,7 +161,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\CastleConfig.cs" />
-    <Compile Include="Controllers\LayUI\LayUIAdminContorller.cs" />
+    <Compile Include="Controllers\LayUI\LayUIAdminController.cs" />
     <Compile Include="Controllers\ListController.cs" />
     <Compile Include="Handlers\ActiveUser.ashx.cs">
       <DependentUpon>ActiveUser.ashx</DependentUpon>

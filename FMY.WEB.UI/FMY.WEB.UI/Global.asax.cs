@@ -151,8 +151,7 @@ namespace FMY.WEB.UI
                     if (httpCode == 400 || httpCode == 404)
                     {
                         Response.StatusCode = 404;
-                        //跳转到指定的静态404信息页面，根据需求自己更改URL
-                        
+                        //跳转到指定的静态404信息页面，根据需求自己更改URL                        
                         Response.WriteFile("~/Error/error1.html");
                         Server.ClearError();
                         Response.Flush();
