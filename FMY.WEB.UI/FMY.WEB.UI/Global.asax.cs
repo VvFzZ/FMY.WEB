@@ -3,6 +3,7 @@ using System.Web;
 using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Routing;
+using FMY.WEB.Comm.Containers;
 
 namespace FMY.WEB.UI
 {
@@ -14,7 +15,10 @@ namespace FMY.WEB.UI
             WebApiConfig.Register(GlobalConfiguration.Configuration);
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
+            //ControllerBuilder.Current.SetControllerFactory(new UnityControllerFactory());
         }
+
+
 
         #region [          Application管道          ]
         //如果是IIS7，第10个事件也就是MapRequestHandler事件，而且在EndRequest 事件前，还增加了另二个事件：LogRequest 和 PostLogRequest 事件。
@@ -22,7 +26,7 @@ namespace FMY.WEB.UI
 
         protected void Application_BeginRequest(object sender, EventArgs e)
         {
-            
+
         }
 
         //验证
@@ -46,7 +50,7 @@ namespace FMY.WEB.UI
         /// <param name="e"></param>
         protected void Application_PostAuthorizeRequest(object sender, EventArgs e)
         {
-                       
+
         }
 
         //缓存处理
@@ -124,14 +128,13 @@ namespace FMY.WEB.UI
 
         protected void Application_PostUpdateRequestCache(object sender, EventArgs e)
         {
-            
+
         }
 
         protected void Application_Error(object sender, EventArgs e)
         {
             //1.将Web.config配置文件中customErrors节点的mode设置为Off
-            //2.在GlobalFilter全局过滤器中取消HandleErrorAttribute的注册：
-            return;
+            //2.在GlobalFilter全局过滤器中取消HandleErrorAttribute的注册：            
             Exception lastException = Server.GetLastError();
             if (lastException != null)
             {
@@ -149,10 +152,11 @@ namespace FMY.WEB.UI
                     {
                         Response.StatusCode = 404;
                         //跳转到指定的静态404信息页面，根据需求自己更改URL
-
-                        Response.WriteFile("~/HttpError/404.html");
-
+                        
+                        Response.WriteFile("~/Error/error1.html");
                         Server.ClearError();
+                        Response.Flush();
+                        Response.End();
                         return;
                     }
                 }
@@ -167,11 +171,11 @@ namespace FMY.WEB.UI
                  * 跳转到静态页面一定要用Response.WriteFile方法
                  */
                 Response.StatusCode = 500;
-
-                Response.Redirect("/Error/500.html");
-                //Response.WriteFile("~/Error/500.html");
-                //一定要调用Server.ClearError()否则会触发错误详情页（就是黄页）
+                Response.WriteFile("~/Error/500.html");               
                 Server.ClearError();
+                Response.Flush();
+                Response.End();
+                //一定要调用Server.ClearError()否则会触发错误详情页（就是黄页）                
                 //Server.Transfer("~/HttpError/500.aspx");
             }
         }
@@ -208,7 +212,7 @@ namespace FMY.WEB.UI
         }
 
         #endregion
-        //
+
 
         protected void Session_Start(object sender, EventArgs e)
         {
@@ -227,4 +231,12 @@ namespace FMY.WEB.UI
 
         }
     }
+
+    //public class UnityControllerFactory:DefaultControllerFactory
+    //{
+    //    protected override IController GetControllerInstance(RequestContext requestContext, Type controllerType)
+    //    {
+    //        return (IController)UnityContainerHelper.GetInstance(controllerType);
+    //    }
+    //}
 }

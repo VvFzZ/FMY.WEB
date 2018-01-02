@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
-using System.Data;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Transactions;
@@ -11,7 +8,6 @@ using FMY.WEB.Model;
 using FMY.WEB.BLL;
 using FMY.WEB.Comm.Tools.CommTools;
 using FMY.WEB.Comm.Tools.ConfigTools;
-using FMY.WEB.Comm.Tools.Log;
 using FMY.WEB.Model.Comm;
 
 
@@ -25,16 +21,16 @@ namespace FMY.WEB.UI.Controllers
             userRegistEmailService = new UserRegistEmailService();
         }
 
-
         // GET: /Regist/
         public ActionResult Index()
         {
+            throw new Exception();
             //要让表示层尽可能的简单，简单到不需要测试
             //把调用业务逻辑代码提取到 单独一层(比如叫服务层) ，UI层调用服务层，由服务层去调用BLL （层间API粒度如何设计）
             return View();
         }
 
-
+        
         [HttpPost]
         public JsonResult Regist(User user)
         {
@@ -63,12 +59,15 @@ namespace FMY.WEB.UI.Controllers
                     ValidateCode = validateCode,
                     UserId = userId
                 };
-                int emailId = userRegistEmailService.addEmailRecrd(emailModel);//数据库记录邮件
-                SendEmail(emailId, validateCode, user.Email);//发送邮件
+                //数据库记录邮件
+                int emailId = userRegistEmailService.addEmailRecrd(emailModel);
+                //发送邮件
+                SendEmail(emailId, validateCode, user.Email);
                 trans.Complete();
             }
             return Json(new Result() { IsSuccess = true, Data = userId.ToString() });
         }
+
 
         /// <summary>
         /// 验证输入
@@ -102,6 +101,7 @@ namespace FMY.WEB.UI.Controllers
             return result;
         }
 
+
         /// <summary>
         /// 发送邮件
         /// </summary>
@@ -130,5 +130,6 @@ namespace FMY.WEB.UI.Controllers
                 SubjectEncoding = Encoding.UTF8
             }).SendEmail();//发送邮件
         }
+
     }
 }

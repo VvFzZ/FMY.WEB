@@ -13,7 +13,8 @@ namespace FMY.WEB.UI.Controllers
         // GET: /Login/
 
         public ActionResult Index()
-        {            
+        {
+
             //Response.StatusCode = 403;
             throw new Exception("1");
             return View();
