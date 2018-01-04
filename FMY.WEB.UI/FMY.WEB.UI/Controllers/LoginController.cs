@@ -16,7 +16,7 @@ namespace FMY.WEB.UI.Controllers
         {
 
             //Response.StatusCode = 403;
-            throw new Exception("1");
+            //throw new Exception("1");
             return View();
         }
     }

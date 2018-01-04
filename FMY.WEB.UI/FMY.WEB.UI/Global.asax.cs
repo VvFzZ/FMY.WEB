@@ -133,9 +133,11 @@ namespace FMY.WEB.UI
 
         protected void Application_Error(object sender, EventArgs e)
         {
+            //出处：http://shiyousan.com/post/635813858052755170
             //1.将Web.config配置文件中customErrors节点的mode设置为Off
             //2.在GlobalFilter全局过滤器中取消HandleErrorAttribute的注册：            
             Exception lastException = Server.GetLastError();
+            Response.Clear();
             if (lastException != null)
             {
                 //异常信息

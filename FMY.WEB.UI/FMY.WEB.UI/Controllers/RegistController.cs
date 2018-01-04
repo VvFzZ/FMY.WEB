@@ -24,7 +24,7 @@ namespace FMY.WEB.UI.Controllers
         // GET: /Regist/
         public ActionResult Index()
         {
-            throw new Exception();
+            //throw new Exception();
             //要让表示层尽可能的简单，简单到不需要测试
             //把调用业务逻辑代码提取到 单独一层(比如叫服务层) ，UI层调用服务层，由服务层去调用BLL （层间API粒度如何设计）
             return View();
