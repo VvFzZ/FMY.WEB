@@ -20,7 +20,12 @@ namespace FMY.WEB.UI.Modules
         /// </summary>
         /// <param name="context"></param>
         public void Init(HttpApplication context)
-        {            
+        {
+            context.BeginRequest += Context_BeginRequest;            
+        }
+
+        private void Context_BeginRequest(object sender, EventArgs e)
+        {
             string path = AppDomain.CurrentDomain.BaseDirectory + "/1.txt";
             using (StreamWriter sw = new StreamWriter(path, true))
             {
