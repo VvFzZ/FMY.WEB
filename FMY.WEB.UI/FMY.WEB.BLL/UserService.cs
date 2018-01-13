@@ -14,14 +14,22 @@ namespace FMY.WEB.BLL
 
         public UserService()
         {
-            //需要解耦
-            userDao = new FMY.WEB.IbatisDao.UserDao();  //new UserDao();
+            userDao = new IbatisDao.UserDao();  //new UserDao();
+        }
+
+        //public UserService()
+        //{
+
+        //}
+
+        public UserService(IUserDao userDao)
+        {
+            this.userDao = userDao;
         }
 
 
         public DataTable GetAllUser()
         {
-            //不要写sql语句
             return userDao.GetAllUser();
         }
 

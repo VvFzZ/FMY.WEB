@@ -16,7 +16,7 @@ namespace FMY.WEB.Comm.Tools.Log
             //log4net.Util.LogLog.InternalDebugging = true;//??
             string fileName = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "/Config/log4net.xml");
             FileInfo fileInfo = new FileInfo(fileName);
-            log4net.Config.XmlConfigurator.Configure(fileInfo);
+            log4net.Config.XmlConfigurator.Configure(fileInfo);            
         }
 
         private LogTool() { }
@@ -34,6 +34,25 @@ namespace FMY.WEB.Comm.Tools.Log
             private set { }
         }
 
+        public static void Debug(string message)
+        {
+            Logger.Debug(message);
+        }
+
+        public static void Error(string message)
+        {
+            Logger.Error(message);
+        }
+
+        public static void Error(Exception ex)
+        {
+            logger.Error(ex);
+        }
+
+        public static void Info(string message)
+        {
+            Logger.Info(message);
+        }
     }
 }
 

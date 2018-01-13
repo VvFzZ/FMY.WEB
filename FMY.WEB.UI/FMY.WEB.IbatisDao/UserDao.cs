@@ -22,14 +22,14 @@ namespace FMY.WEB.IbatisDao
         public int AddUser(User user)
         {
             string mapper = GetMapFullName("InsertUser");
-            return (Int32)Mapper.GetInstance().Insert(mapper, user);
+            return (Int32)Mapper.Instance.Insert(mapper, user);
         }
 
 
         public IList<User> GetUserListByDynamic(IDictionary param)
         {
             string mapper = GetMapFullName("GetUserListByDynamic");
-            return Mapper.GetInstance().QueryForList<User>(mapper, param);
+            return Mapper.Instance.QueryForList<User>(mapper, param);
         }
 
 
@@ -57,7 +57,7 @@ namespace FMY.WEB.IbatisDao
         public IDictionary<K, V> GetDictionary<K, V>()
         {
             string mapper = GetMapFullName("GetdictionaryTest");
-            return Mapper.GetInstance().QueryForDictionary<K, V>(mapper, null, "Name", "PassWord");
+            return Mapper.Instance.QueryForDictionary<K, V>(mapper, null, "Name", "PassWord");
         }
 
     }

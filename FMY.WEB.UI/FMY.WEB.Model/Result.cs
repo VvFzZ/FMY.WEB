@@ -7,6 +7,33 @@ namespace FMY.WEB.Model
 {
     public class Result
     {
+        #region [          ctor          ]
+        public Result() : this(false, string.Empty, 0, string.Empty)
+        {
+
+        }
+
+        public Result(bool isSuccess) : this(isSuccess, string.Empty, 0, string.Empty)
+        {
+
+        }
+
+        public Result(bool isSuccess, string data) : this(isSuccess, data, 0, string.Empty)
+        {
+
+        }
+
+
+
+        public Result(bool isSuccess, string data, int status, string info)
+        {
+            this.IsSuccess = isSuccess;
+            this.Data = data;
+            this.Status = status;
+            this.Info = info;
+        } 
+        #endregion
+
         /// <summary>
         /// 是否成功
         /// </summary>
