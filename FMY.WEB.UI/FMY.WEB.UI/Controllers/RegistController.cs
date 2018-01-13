@@ -34,7 +34,7 @@ namespace FMY.WEB.UI.Controllers
             return View();
         }
 
-
+        
         [HttpPost]
         public JsonResult Regist(User user)
         {

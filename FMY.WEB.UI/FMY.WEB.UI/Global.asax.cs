@@ -22,12 +22,12 @@ namespace FMY.WEB.UI
 
         protected void Session_Start(object sender, EventArgs e)
         {
-
+            
         }
 
         protected void Application_BeginRequest(object sender, EventArgs e)
         {
-
+            string.Compare("", "", true);
         }
 
         protected void Application_AuthenticateRequest(object sender, EventArgs e)
@@ -70,7 +70,7 @@ namespace FMY.WEB.UI
                         Response.StatusCode = 404;
                         //跳转到指定的静态404信息页面，根据需求自己更改URL
 
-                        Response.WriteFile("~/HttpError/404.html");
+                        Response.WriteFile("~/Error/404.html");
 
                         Server.ClearError();
                         return;

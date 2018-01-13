@@ -11,13 +11,13 @@ namespace FMY.WEB.UI
     {
         public static void RegisterRoutes(RouteCollection routes)
         {
-            routes.RouteExistingFiles = false;
+            routes.RouteExistingFiles = false;//默认为false
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
             RegisterRoutesExt(routes);
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Regist", action = "Index", id = UrlParameter.Optional }
+                defaults: new { controller = "Regist", action = "Index", id = UrlParameter.Optional,input="extent" }
             );
             
         }
@@ -26,5 +26,6 @@ namespace FMY.WEB.UI
         {
             routes.Add(new Route("going.go", new Handlers.GoingRouteHandler()));
         }
+
     }
 }

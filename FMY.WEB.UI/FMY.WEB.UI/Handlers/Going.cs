@@ -19,6 +19,7 @@ namespace FMY.WEB.UI.Handlers
             context.Response.Write("going");
         }
     }
+
     public class GoingRouteHandler : IRouteHandler
     {
         public IHttpHandler GetHttpHandler(RequestContext requestContext)

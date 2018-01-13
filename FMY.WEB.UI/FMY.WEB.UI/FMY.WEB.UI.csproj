@@ -137,6 +137,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\CastleConfig.cs" />
+    <Compile Include="App_Start\CustomRegistArea.cs" />
+    <Compile Include="Controllers\AreaController.cs" />
+    <Compile Include="Controllers\Practice\AsyncPracticeController.cs" />
+    <Compile Include="Controllers\Practice\HomeController.cs" />
     <Compile Include="Handlers\ActiveUser.ashx.cs">
       <DependentUpon>ActiveUser.ashx</DependentUpon>
     </Compile>
