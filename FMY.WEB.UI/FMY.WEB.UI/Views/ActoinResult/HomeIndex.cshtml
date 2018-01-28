@@ -1,0 +1,29 @@
+﻿@{
+    Layout = null;
+}
+@model IDictionary<ActionDescriptor, ActionResult>
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>ActionResults</title>
+</head>
+<body>
+    <div>
+        <table>
+            <tr>
+                <th>ActionName</th>
+                <th>ActionResult</th>
+            </tr>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.Key.ActionName</td>
+                    <td>@item.Value.GetType().Name</td>
+                </tr>
+            }
+        </table>
+    </div>
+</body>
+</html>

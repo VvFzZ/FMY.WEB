@@ -16,7 +16,7 @@ namespace FMY.WEB.UI
             WebApiConfig.Register(GlobalConfiguration.Configuration);
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
-            ViewEngines.Engines.Insert(0, new StaticFileViewEngine());
+            //ViewEngines.Engines.Insert(0, new StaticFileViewEngine());
             //ControllerBuilder.Current.SetControllerFactory(new UnityControllerFactory());
         }
 
