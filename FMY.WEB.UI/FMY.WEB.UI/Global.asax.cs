@@ -4,6 +4,7 @@ using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Routing;
 using FMY.WEB.Comm.Containers;
+using FMY.WEB.UI.Framework.View;
 
 namespace FMY.WEB.UI
 {
@@ -15,6 +16,7 @@ namespace FMY.WEB.UI
             WebApiConfig.Register(GlobalConfiguration.Configuration);
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
+            ViewEngines.Engines.Insert(0, new StaticFileViewEngine());
             //ControllerBuilder.Current.SetControllerFactory(new UnityControllerFactory());
         }
 

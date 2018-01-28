@@ -161,10 +161,20 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\CastleConfig.cs" />
+    <Compile Include="Controllers\ActionRsult\CustomJavascriptResultController.cs" />
+    <Compile Include="Controllers\ActionRsult\HomeController.cs" />
+    <Compile Include="Controllers\Async\TestAsyncController.cs" />
     <Compile Include="Controllers\LayUI\LayUIAdminController.cs" />
     <Compile Include="Controllers\ListController.cs" />
+    <Compile Include="Controllers\FilterSequence.cs" />
+    <Compile Include="Controllers\ViewResult\ViewEngineController.cs" />
     <Compile Include="Controllers\VIP\ListController.cs" />
     <Compile Include="Controllers\VIP\UserCenterController.cs" />
+    <Compile Include="Filters\CustomAuhtorizeAttribute.cs" />
+    <Compile Include="Filters\FilterBaseAttribute.cs" />
+    <Compile Include="Framework\View\StaticFileView.cs" />
+    <Compile Include="Framework\View\StaticFileViewEngine.cs" />
+    <Compile Include="Framework\View\ViewEngineResultCacheKey.cs" />
     <Compile Include="Handlers\ActiveUser.ashx.cs">
       <DependentUpon>ActiveUser.ashx</DependentUpon>
     </Compile>
@@ -307,6 +317,8 @@
     <Content Include="LayUI\lay\modules\tree.js" />
     <Content Include="LayUI\lay\modules\upload.js" />
     <Content Include="LayUI\lay\modules\util.js" />
+    <Content Include="Views\ViewEngine\Index.html" />
+    <Content Include="Views\ViewEngine\ShowStaticFileView.html" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -364,6 +376,7 @@
     <Content Include="LayUI\font\iconfont.eot" />
     <Content Include="LayUI\font\iconfont.ttf" />
     <Content Include="LayUI\font\iconfont.woff" />
+    <Content Include="Views\ActoinResult\HomeIndex.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

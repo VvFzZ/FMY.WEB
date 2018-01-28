@@ -98,6 +98,7 @@
     <Compile Include="Tools\Log\LogHelper.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Framework\" />
     <Folder Include="Tools\Config\" />
     <Folder Include="Tools\EncryptTools\" />
   </ItemGroup>
