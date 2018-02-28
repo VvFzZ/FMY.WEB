@@ -14,16 +14,20 @@ namespace FMY.WCF.Test.Services
     //   TransactionTimeout = "00:00:30",
     //   InstanceContextMode = InstanceContextMode.PerSession,
     //   TransactionAutoCompleteOnSessionClose = true)]
-    [ServiceBehavior(IncludeExceptionDetailInFaults = true, TransactionTimeout = "00:30:00", InstanceContextMode = InstanceContextMode.PerCall)]
+    //[ServiceBehavior(IncludeExceptionDetailInFaults = true, TransactionTimeout = "00:30:00", InstanceContextMode = InstanceContextMode.PerCall)]
+    //[DeliveryRequirements(RequireOrderedDelivery = true)]
+
     public class CalculatorService : ICalculator
     {
+        [OperationBehavior(TransactionScopeRequired = true)]
         public int Add(int i, int j)
         {
             return i + j;
         }
 
         //[OperationBehavior(TransactionScopeRequired = true, TransactionAutoComplete = false)]
-        [OperationBehavior(TransactionScopeRequired = true)]//, TransactionAutoComplete = true)]
+        //[OperationBehavior(TransactionScopeRequired = true)]//, TransactionAutoComplete = true)]
+        [OperationBehavior(TransactionScopeRequired = true)]
         public int InserRegistEmail(UserRegistEmail userRegistEmailModel)
         {
             FMY.WEB.BLL.UserRegistEmailService userRegistEmailServie = new WEB.BLL.UserRegistEmailService();
@@ -38,29 +42,36 @@ namespace FMY.WCF.Test.Services
         }
 
         //[OperationBehavior(TransactionScopeRequired = true, TransactionAutoComplete = false)]
-        [OperationBehavior(TransactionScopeRequired = true)]//, TransactionAutoComplete = true)]
+        //[OperationBehavior(TransactionScopeRequired = true)]//, TransactionAutoComplete = true)]
+        [OperationBehavior(TransactionScopeRequired = true)]
         public int InsertUser(User user)
         {
             //using (TransactionScope ts = new TransactionScope())
             //{
-                FMY.WEB.BLL.UserService userServie = new WEB.BLL.UserService();
-                try
-                {
-                    userServie.AddUser(user);
+            if (string.IsNullOrEmpty(user.PassWord))
+                user.PassWord = "123456";
+            FMY.WEB.BLL.UserService userServie = new WEB.BLL.UserService();
 
+            try
+            {
+                userServie.AddUser(user);
 
-                    user.Name = user.Name + "_";
-                    userServie.AddUser(user);
-                }
-                catch (Exception)
-                {
-                    System.Transactions.Transaction.Current.Rollback();
-                    throw;
-                }
+                throw new Exception();
+                //user.Name = user.Name + "_";
+
+                //userServie.AddUser(user);
+            }
+            catch (Exception)
+            {
+                //System.Transactions.Transaction.Current.Rollback();
+                throw;
+            }
             //    ts.Complete();
             //}
             return 1;
         }
+
+        [OperationBehavior(TransactionScopeRequired = true)]
         public int InsertUserNoTrans(User user)
         {
             using (TransactionScope ts = new TransactionScope())
