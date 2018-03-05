@@ -18,20 +18,17 @@ namespace FMY.WEB.IbatisDao
             return string.Format("{0}.{1}.{2}", Mapper.MapperDomain, "User", statementName);
         }
 
-
         public int AddUser(User user)
         {
             string mapper = GetMapFullName("InsertUser");
             return (Int32)Mapper.Instance.Insert(mapper, user);
         }
 
-
         public IList<User> GetUserListByDynamic(IDictionary param)
         {
             string mapper = GetMapFullName("GetUserListByDynamic");
             return Mapper.Instance.QueryForList<User>(mapper, param);
         }
-
 
         public IList<User> GetUserListByNameLike(string name)
         {
@@ -40,25 +37,21 @@ namespace FMY.WEB.IbatisDao
             };
             return GetUserListByDynamic(ht);
         }
-
-
+        
         public DataTable GetAllUser()
         {
             return null;
         }
-
 
         public int GetUserCountByEmail(string email)
         {
             return 0;
         }
 
-
         public IDictionary<K, V> GetDictionary<K, V>()
         {
             string mapper = GetMapFullName("GetdictionaryTest");
             return Mapper.Instance.QueryForDictionary<K, V>(mapper, null, "Name", "PassWord");
         }
-
     }
 }

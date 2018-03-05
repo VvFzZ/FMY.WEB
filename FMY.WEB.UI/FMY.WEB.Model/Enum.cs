@@ -50,6 +50,6 @@ namespace FMY.WEB.Model
     {
         Normal = 0,
         Hight = 1,
-        low = 2
+        Low = 2
     }
 }

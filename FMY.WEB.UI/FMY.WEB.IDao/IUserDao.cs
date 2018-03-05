@@ -10,15 +10,11 @@ namespace FMY.WEB.IDao
 {
     public interface IUserDao
     {
-
         DataTable GetAllUser();
-
 
         int AddUser(User user);
 
-
         int GetUserCountByEmail(string email);
-
 
         //void ExecProc(string proc, System.Data.CommandType commandType, params SqlParameter[] parameters)
 

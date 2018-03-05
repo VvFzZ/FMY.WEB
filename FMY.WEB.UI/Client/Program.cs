@@ -11,10 +11,8 @@ namespace Client
     {
         static void Main(string[] args)
         {
-            using (CalculatorServiceClient client = new CalculatorServiceClient();)
+            using (CalculatorServiceClient client = new CalculatorServiceClient())
             {
-
-
                 try
                 {
                     using (TransactionScope ts = new TransactionScope())

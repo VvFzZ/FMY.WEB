@@ -15,7 +15,6 @@ namespace FMY.WEB.BLL
             userRegistEmailDao = new UserRegistEmailDao();
         }
 
-
         /// <summary>
         /// 添加一条激活邮件记录
         /// </summary>
@@ -26,12 +25,10 @@ namespace FMY.WEB.BLL
             return userRegistEmailDao.addEmailRecrd(model);
         }
 
-
         public int UpdateEmailStatus(int id,string validateCode,int status)
         {
             return userRegistEmailDao.UpdateEmailStatus(id, validateCode,status);
         }
-
 
         /// <summary>
         /// 根据用户id 验证码获取 待激活邮件数
@@ -44,7 +41,6 @@ namespace FMY.WEB.BLL
             return this.GetIdByUidAndVcode(userId.ToString(), validateCode);
         }
 
-
         /// <summary>
         /// 根据用户id 验证码获取 待激活邮件数
         /// </summary>
@@ -55,6 +51,5 @@ namespace FMY.WEB.BLL
         {
             return userRegistEmailDao.GetIdByUidAndVcode(userId, validateCode);
         }
-
     }
 }

@@ -34,7 +34,6 @@ namespace FMY.WEB.Dao
             return Convert.ToInt32(obj);
         }
 
-
         /// <summary>
         /// 根据用户id 验证码查询记录数
         /// </summary>
@@ -47,7 +46,6 @@ namespace FMY.WEB.Dao
             return SQLHelper.Excute(sql, CommandType.Text);
         }
 
-
         /// <summary>
         /// 根据id修改记录状态为
         /// </summary>
@@ -59,6 +57,5 @@ namespace FMY.WEB.Dao
             string sql = string.Format("UPDATE dbo.UserRegistEmail SET Status={0} WHERE id={1} AND ValidateCode='{2}'", status, id, validateCode);
             return SQLHelper.Excute(sql, CommandType.Text);
         }
-
     }
 }
