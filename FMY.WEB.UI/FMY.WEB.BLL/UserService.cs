@@ -11,7 +11,6 @@ namespace FMY.WEB.BLL
 
         IUserDao userDao;
 
-
         public UserService()
         {
             userDao = new IbatisDao.UserDao();  //new UserDao();
@@ -27,12 +26,10 @@ namespace FMY.WEB.BLL
             this.userDao = userDao;
         }
 
-
         public DataTable GetAllUser()
         {
             return userDao.GetAllUser();
         }
-
 
         /// <summary>
         /// 添加用户
@@ -44,12 +41,10 @@ namespace FMY.WEB.BLL
             return userDao.AddUser(user);
         }
 
-
         public int GetUserCountByEmail(string email)
         {
             return userDao.GetUserCountByEmail(email);
         }
-
 
         //public void TestExecProc()
         //{

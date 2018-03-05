@@ -11,31 +11,35 @@ namespace Client
     {
         static void Main(string[] args)
         {
-            CalculatorServiceClient client = new CalculatorServiceClient();
-            try
-            {                
-                using (TransactionScope ts = new TransactionScope())
-                {
-                    client.InsertUser(new User()
-                    {
-                        ActiveTime = DateTime.Now,
-                        CreateTime = DateTime.Now,
-                        Email = "1214211329@qq.com",
-                        Name = "TestWF",
-                        PassWord = "123",
-                        Phone = "15832163021",
-                        Sex = 1,
-                        Status = false,
-                        UpdateTime = DateTime.Now
-                    });
-                    int a = 1;
-                    throw new Exception("");
-                }
-            }
-            catch (Exception)
+            using (CalculatorServiceClient client = new CalculatorServiceClient();)
             {
 
-                throw;
+
+                try
+                {
+                    using (TransactionScope ts = new TransactionScope())
+                    {
+                        client.InsertUser(new User()
+                        {
+                            ActiveTime = DateTime.Now,
+                            CreateTime = DateTime.Now,
+                            Email = "1214211329@qq.com",
+                            Name = "TestWF",
+                            PassWord = "123",
+                            Phone = "15832163021",
+                            Sex = 1,
+                            Status = false,
+                            UpdateTime = DateTime.Now
+                        });
+                        int a = 1;
+                        throw new Exception("");
+                    }
+                }
+                catch (Exception)
+                {
+
+                    throw;
+                }
             }
             Console.ReadKey();
         }

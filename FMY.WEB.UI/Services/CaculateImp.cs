@@ -25,8 +25,6 @@ namespace FMY.WCF.Test.Services
             return i + j;
         }
 
-        //[OperationBehavior(TransactionScopeRequired = true, TransactionAutoComplete = false)]
-        //[OperationBehavior(TransactionScopeRequired = true)]//, TransactionAutoComplete = true)]
         [OperationBehavior(TransactionScopeRequired = true)]
         public int InserRegistEmail(UserRegistEmail userRegistEmailModel)
         {
@@ -41,8 +39,6 @@ namespace FMY.WCF.Test.Services
             return 1;
         }
 
-        //[OperationBehavior(TransactionScopeRequired = true, TransactionAutoComplete = false)]
-        //[OperationBehavior(TransactionScopeRequired = true)]//, TransactionAutoComplete = true)]
         [OperationBehavior(TransactionScopeRequired = true)]
         public int InsertUser(User user)
         {
@@ -55,11 +51,7 @@ namespace FMY.WCF.Test.Services
             try
             {
                 userServie.AddUser(user);
-
                 throw new Exception();
-                //user.Name = user.Name + "_";
-
-                //userServie.AddUser(user);
             }
             catch (Exception)
             {
@@ -74,13 +66,8 @@ namespace FMY.WCF.Test.Services
         [OperationBehavior(TransactionScopeRequired = true)]
         public int InsertUserNoTrans(User user)
         {
-            using (TransactionScope ts = new TransactionScope())
-            {
-                FMY.WEB.BLL.UserService userServie = new WEB.BLL.UserService();
-                userServie.AddUser(user);
-                ts.Complete();
-                return 1;
-            }
+            FMY.WEB.BLL.UserService userServie = new WEB.BLL.UserService();
+            return userServie.AddUser(user);
         }
     }
 }
