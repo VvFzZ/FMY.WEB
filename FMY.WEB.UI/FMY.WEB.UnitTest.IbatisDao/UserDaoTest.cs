@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using FMY.WEB.Model;
 using FMY.WEB.IbatisDao;
-
+using System.Diagnostics;
 
 namespace FMY.WEB.UnitTest.IbatisDaoTest
 {
@@ -32,6 +32,7 @@ namespace FMY.WEB.UnitTest.IbatisDaoTest
             };
             UserDao userDao = new UserDao();
             int result = userDao.AddUser(user);
+            Trace.Assert(result > 0);
         }
 
 
@@ -42,8 +43,9 @@ namespace FMY.WEB.UnitTest.IbatisDaoTest
             {
                 UserDao userDao = new UserDao();
                 IDictionary<string, string> dic = userDao.GetDictionary<string, string>();
+                Trace.Assert(dic != null);
             }
-            catch (Exception )
+            catch (Exception)
             {
                 throw;
             }
@@ -62,7 +64,7 @@ namespace FMY.WEB.UnitTest.IbatisDaoTest
                 name = "T-";
                 IList<User> userList = userDao.GetUserListByNameLike(name);
             }
-            catch (Exception )
+            catch (Exception)
             {
                 throw;
             }
@@ -75,6 +77,7 @@ namespace FMY.WEB.UnitTest.IbatisDaoTest
             UserDao userDao = new UserDao();
             IList<User> users = userDao.GetUserListByDynamic(new Hashtable() { { "Id", null } });
             users = userDao.GetUserListByDynamic(null);
+            Trace.Assert(users != null);
         }
 
     }
