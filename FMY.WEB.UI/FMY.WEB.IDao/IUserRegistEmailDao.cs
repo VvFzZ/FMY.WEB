@@ -11,12 +11,9 @@ namespace FMY.WEB.IDao
     {
 
         int addEmailRecrd(UserRegistEmail model);
-
-
+        
         int GetIdByUidAndVcode(string userId, string validateCode);
-
-
+        
         int UpdateEmailStatus(int id, string validateCode, int status);
-
     }
 }

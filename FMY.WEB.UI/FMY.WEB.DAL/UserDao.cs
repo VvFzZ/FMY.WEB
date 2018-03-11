@@ -43,13 +43,11 @@ namespace FMY.WEB.Dao
             return Convert.ToInt32(SQLHelper.SelectFirst(sql, CommandType.Text, parameters));
         }
 
-
         public int GetUserCountByEmail(string email)
         {
             string sql = string.Format("SELECT * FROM dbo.[user] u WHERE u.email='{0}'", email);
             return (int)(SQLHelper.SelectFirst(sql, CommandType.Text) ?? 0);
         }
-
 
         /// <summary>
         /// 

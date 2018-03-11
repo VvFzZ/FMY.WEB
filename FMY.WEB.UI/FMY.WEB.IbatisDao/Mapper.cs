@@ -36,7 +36,6 @@ namespace FMY.WEB.IbatisDao
             }
         }
 
-
         /// <summary>
         /// 从资源文件加载SqlMap.config 创建ISqlMapper
         /// </summary>
@@ -59,7 +58,6 @@ namespace FMY.WEB.IbatisDao
                 }
             }
         }
-
 
         /// <summary>
         /// 得到运行时的IbatisNet动态生成的SQL语句

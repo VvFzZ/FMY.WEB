@@ -119,8 +119,6 @@ namespace FMY.WEB.Model
         {
             get { return status; }
             set { status = value; }
-        } 
-        
-        
+        }        
     }
 }
