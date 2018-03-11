@@ -12,10 +12,39 @@ namespace Client
         static void Main(string[] args)
         {
             CalculatorServiceClient client = new CalculatorServiceClient();
-            try
-            {                
+            CalculatorServiceClient client2 = new CalculatorServiceClient();
+            //client.ClientCredentials.Windows.ClientCredential.Domain = "myDomain";
+
+            //client.ClientCredentials.Windows.ClientCredential.UserName = "name";
+            //client.ClientCredentials.Windows.ClientCredential.Password = "pwd";
+
+            client.Add(1, 1);
+            return;
+            System.Threading.Tasks.Task.Factory.StartNew(() => {
                 using (TransactionScope ts = new TransactionScope())
                 {
+                    Transaction.Current = null;
+                    client2.InsertUser(new User()
+                    {
+                        ActiveTime = DateTime.Now,
+                        CreateTime = DateTime.Now,
+                        Email = "1214211329@qq.com",
+                        Name = "TestWF",
+                        PassWord = "123",
+                        Phone = "15832163021",
+                        Sex = 1,
+                        Status = false,
+                        UpdateTime = DateTime.Now
+                    });
+                    int a = 1;
+                    throw new Exception("");
+                }
+            });
+            try
+            {
+                using (TransactionScope ts = new TransactionScope())
+                {
+                    Transaction.Current = null;
                     client.InsertUser(new User()
                     {
                         ActiveTime = DateTime.Now,
@@ -31,6 +60,7 @@ namespace Client
                     int a = 1;
                     throw new Exception("");
                 }
+                
             }
             catch (Exception)
             {

@@ -16,7 +16,7 @@ namespace FMY.WCF.Test.Host
         {
             using (ServiceHost host = new ServiceHost(typeof(CalculatorService)))
             {
-                #region MyRegion
+                #region [    ]
                 //host.AddServiceEndpoint(typeof(ICalculator), new WSHttpBinding(), "http://127.0.0.1:8095/calculatorservice");
                 //if (host.Description.Behaviors.Find<ServiceMetadataBehavior>() == null)
                 //{
@@ -25,6 +25,15 @@ namespace FMY.WCF.Test.Host
                 //    behavior.HttpGetUrl = new Uri("http://127.0.0.1:8095/calculatorservice/metadata");
                 //    host.Description.Behaviors.Add(behavior);
                 //}` 
+                #endregion
+
+                #region [              设置授权模式 P497          ]
+                //host.Authorization.PrincipalPermissionMode = PrincipalPermissionMode.None; 
+                #endregion
+
+                #region [              自定义X509验证           ]
+                //serviceHost.Credentials.ClientCertificate.Authentication.CertificateValidationMode = X509CertificateValidationMode.Custom;
+                //serviceHost.Credentials.ClientCertificate.Authentication.CustomCertificateValidator = new CustomX509CertificateValidator(); 
                 #endregion
                 host.Opened += delegate
                 {

@@ -6,6 +6,9 @@ using FMY.WCF.Test.Contract;
 using FMY.WEB.Model;
 using System.ServiceModel;
 using System.Transactions;
+using System.Diagnostics;
+using System.Security.Principal;
+using System.Security.Permissions;
 
 namespace FMY.WCF.Test.Services
 {
@@ -20,8 +23,17 @@ namespace FMY.WCF.Test.Services
     public class CalculatorService : ICalculator
     {
         [OperationBehavior(TransactionScopeRequired = true)]
+        [PrincipalPermission(SecurityAction.Demand, Role = "Administrators", Name = "FMY-PC\\FMY")]
         public int Add(int i, int j)
         {
+            Trace.Assert(ServiceSecurityContext.Current != null);
+            Trace.Assert(OperationContext.Current.ServiceSecurityContext != null);
+            Trace.Assert(ServiceSecurityContext.Current == OperationContext.Current.ServiceSecurityContext);
+            IPrincipal principal = System.Threading.Thread.CurrentPrincipal;
+            string userName = principal.Identity.Name;
+            bool isAuthenticated = principal.Identity.IsAuthenticated;
+            bool isInrole = principal.IsInRole(userName);
+            isInrole = ((WindowsPrincipal)principal).IsInRole(WindowsBuiltInRole.Administrator);
             return i + j;
         }
 
@@ -55,7 +67,7 @@ namespace FMY.WCF.Test.Services
             try
             {
                 userServie.AddUser(user);
-
+                System.Threading.Thread.Sleep(1000000);
                 throw new Exception();
                 //user.Name = user.Name + "_";
 
