@@ -288,19 +288,15 @@ public interface CalculatorService
 {
     
     [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/CalculatorService/Add", ReplyAction="http://tempuri.org/CalculatorService/AddResponse")]
-    [System.ServiceModel.TransactionFlowAttribute(System.ServiceModel.TransactionFlowOption.Allowed)]
     int Add(int i, int j);
     
     [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/CalculatorService/InsertUser", ReplyAction="http://tempuri.org/CalculatorService/InsertUserResponse")]
-    [System.ServiceModel.TransactionFlowAttribute(System.ServiceModel.TransactionFlowOption.Allowed)]
     int InsertUser(FMY.WEB.Model.User user);
     
     [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/CalculatorService/InserRegistEmail", ReplyAction="http://tempuri.org/CalculatorService/InserRegistEmailResponse")]
-    [System.ServiceModel.TransactionFlowAttribute(System.ServiceModel.TransactionFlowOption.Allowed)]
     int InserRegistEmail(FMY.WEB.Model.UserRegistEmail userRegistEmailModel);
     
     [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/CalculatorService/InsertUserNoTrans", ReplyAction="http://tempuri.org/CalculatorService/InsertUserNoTransResponse")]
-    [System.ServiceModel.TransactionFlowAttribute(System.ServiceModel.TransactionFlowOption.Allowed)]
     int InsertUserNoTrans(FMY.WEB.Model.User user);
 }
 
