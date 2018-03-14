@@ -46,7 +46,6 @@
   <ItemGroup>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Proxy\CalculatorService.cs" />
     <Compile Include="Proxy\HTTP\CalculatorService.cs" />
   </ItemGroup>
   <ItemGroup>
