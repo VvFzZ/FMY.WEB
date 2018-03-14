@@ -9,7 +9,7 @@ using FMY.WEB.BLL;
 using FMY.WEB.Comm.Tools.CommTools;
 using FMY.WEB.Comm.Tools.ConfigTools;
 using FMY.WEB.Model.Comm;
-
+using System.Web;
 
 namespace FMY.WEB.UI.Controllers
 {
@@ -22,15 +22,27 @@ namespace FMY.WEB.UI.Controllers
         }
 
         // GET: /Regist/
+        //[OutputCache(Duration = 10, VaryByParam = null)]
         public ActionResult Index()
         {
+            //string LastModifiedTime = Request.Headers["If-Modified-Since"];            
+            //Response.Cache.SetCacheability(HttpCacheability.Private);
+            ////Response.Cache.SetExpires(DateTime.Now.AddSeconds(10.0));
+            Response.Cache.SetMaxAge(TimeSpan.FromSeconds(5));
+            //if (!string.IsNullOrEmpty(LastModifiedTime))
+            //{
+            //    Response.StatusCode = 304;
+            //    Response.End();
+            //}
+            //Response.Cache.SetLastModified(DateTime.Now);
+            //Response.Cache.SetLastModified(DateTime.Now);
             //throw new Exception();
-            //要让表示层尽可能的简单，简单到不需要测试
+            //要让表示层尽可能的简单，简单到不需要测试      
             //把调用业务逻辑代码提取到 单独一层(比如叫服务层) ，UI层调用服务层，由服务层去调用BLL （层间API粒度如何设计）
             return View();
         }
 
-        
+
         [HttpPost]
         public JsonResult Regist(User user)
         {

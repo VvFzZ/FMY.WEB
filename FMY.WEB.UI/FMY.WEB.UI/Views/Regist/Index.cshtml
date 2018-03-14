@@ -1,9 +1,11 @@
 ﻿@{
-    Layout = "~/views/Shard/1.cshtml";
+//Layout = "~/views/Shard/1.cshtml";
 }
 
 <!DOCTYPE html>
-
+@{ 
+    var abc = DateTime.Now.ToString();
+}
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
@@ -16,6 +18,7 @@
     <title>Login</title>
 </head>
 <body>
+    <a href="/">@abc</a>
     <div class="container">
         <div class="row clearfix">
             <div class="col-md-12 column">

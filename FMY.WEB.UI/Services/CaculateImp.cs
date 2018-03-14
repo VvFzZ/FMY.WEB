@@ -23,7 +23,7 @@ namespace FMY.WCF.Test.Services
     public class CalculatorService : ICalculator
     {
         [OperationBehavior(TransactionScopeRequired = true)]
-        [PrincipalPermission(SecurityAction.Demand, Role = "Administrators", Name = "FMY-PC\\FMY")]
+        //[PrincipalPermission(SecurityAction.Demand, Role = "Administrators", Name = "FMY-PC\\FMY")]
         public int Add(int i, int j)
         {
             Trace.Assert(ServiceSecurityContext.Current != null);
