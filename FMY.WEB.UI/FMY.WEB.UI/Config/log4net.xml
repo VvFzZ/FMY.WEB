@@ -16,15 +16,17 @@
   </appender>
 
   <appender name="MongoDBAppender" type="Log4Mongo.MongoDBAppender, Log4Mongo">
-    <connectionString value="mongodb://127.0.0.1/?socketTimeout=1s" />
-    <DatabaseName value="Logs"/>
-    <CollectionName value="FMY_WEB_UI_Log"/>
+    <connectionString value="mongodb://127.0.0.1:27018/?socketTimeout=1s" />
+    <!--<DatabaseName value="Logs"/>-->
+    <CollectionName value="FMY.WEB.UI"/>
+    <!--<UserName value="" />
+    <Password value="" />-->
   </appender>
 
   <root>
     <level value="ALL" />
     <appender-ref ref="RollingFileAppender" />
-    <appender-ref ref="MongoDBAppender" />
+    <!--<appender-ref ref="MongoDBAppender" />-->
   </root>
 
   <!--<logger name="testApp.Logging">

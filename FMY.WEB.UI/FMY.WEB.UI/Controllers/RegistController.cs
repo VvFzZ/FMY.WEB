@@ -15,16 +15,40 @@ namespace FMY.WEB.UI.Controllers
 {
     public class RegistController : Controller
     {
+
         UserRegistEmailService userRegistEmailService;
-        public RegistController()
+
+        public int a = 1;
+        public RegistController(UserRegistEmailService userRegistEmailService)
         {
-            userRegistEmailService = new UserRegistEmailService();
+            this.userRegistEmailService = userRegistEmailService;
         }
 
         // GET: /Regist/
         //[OutputCache(Duration = 10, VaryByParam = null)]
         public ActionResult Index()
         {
+            try
+            {
+                FMY.WEB.Comm.Tools.Log.IFMYLog loger = new Comm.Tools.Log.Log4FMYLog();
+                FMY.WEB.Comm.Tools.Log.IFMYLog loger1 = null;
+                loger1.Debug("");
+                int a = 0;
+                try
+                {
+                    FMY.WEB.Comm.Tools.Log.LogTool.Debug("DebugMessage");
+                    a = 1 / a;
+                }
+                catch (Exception ex)
+                {                    
+                    loger.Error(ex.Message);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+
             //string LastModifiedTime = Request.Headers["If-Modified-Since"];            
             //Response.Cache.SetCacheability(HttpCacheability.Private);
             ////Response.Cache.SetExpires(DateTime.Now.AddSeconds(10.0));
@@ -121,7 +145,7 @@ namespace FMY.WEB.UI.Controllers
         /// <param name="validateCode"></param>
         private void SendEmail(int emailId, string validateCode, string recevierMail)
         {
-            IDictionary<string, string> paramDic = new Dictionary<string, string>();//激活邮件url参数
+            IDictionary<string, string> paramDic = new Dictionary<string, string>(3);//激活邮件url参数
             paramDic.Add("emailId", emailId.ToString());
             paramDic.Add("validateCode", validateCode);
             new EmailTool(new Email

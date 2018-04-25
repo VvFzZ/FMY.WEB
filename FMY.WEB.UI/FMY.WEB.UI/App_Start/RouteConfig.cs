@@ -19,7 +19,6 @@ namespace FMY.WEB.UI
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Regist", action = "Index", id = UrlParameter.Optional,input="extent" }
             );
-
         }
 
         public static void RegisterRoutesExt(RouteCollection routes)

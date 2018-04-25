@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+
 using FMY.WEB.BLL;
 using FMY.WEB.Model;
+using FMY.WEB.Comm.Castle;
 
 namespace FMY.WEB.UI
 {
@@ -12,6 +14,12 @@ namespace FMY.WEB.UI
     /// </summary>
     public class ActiveUser : IHttpHandler
     {
+        UserRegistEmailService userRegistEmailService;
+        public ActiveUser()
+        {
+            this.userRegistEmailService= CastleHelper.Resolve<UserRegistEmailService>();
+        }
+
         public void ProcessRequest(HttpContext context)
         {
             context.Response.ContentType = "text/html";
@@ -25,7 +33,7 @@ namespace FMY.WEB.UI
                 context.Response.Write("<script>alert('激活失败');window.close()</script>");
             }
 
-            UserRegistEmailService userRegistEmailService = new UserRegistEmailService();
+            
 
             //if (userRegistEmailService.GetIdByUidAndVcode(emailId, validateCode) >= 1)//存在待激活邮件
             //{

@@ -23,12 +23,11 @@ namespace FMY.WEB.UI.Controllers
             //}
             return null;
         }
+
         protected override void OnActionExecuting(ActionExecutingContext filterContext)
         {
             Response.Write("Controller Override");
         }
-
-
 
         [Bar]
         public ActionResult DemoAction()

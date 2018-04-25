@@ -28,3 +28,9 @@ FMY.WEB.UI/FMY.WEB.UnitTest.IbatisDao/bin/Debug/
 FMY.WEB.UI/FMY.WEB.UnitTest.IbatisDao/obj/
 FMY.WEB.UI/output.config
 FMY.WEB.UI/FMY.WCF.Test.TestHost.zip
+FMY.WEB.UI/FMY.Core.RedisClient/bin/
+FMY.WEB.UI/FMY.WEB.UI/logs/
+FMY.WEB.UI/FMY.Core.Test.RedisClient/obj/
+FMY.WEB.UI/FMY.Core.RedisClient/obj/
+FMY.WEB.UI/FMY.Core.MongoClient/obj/
+FMY.WEB.UI/FMY.WEB.UI.rar

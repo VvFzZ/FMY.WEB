@@ -3,12 +3,15 @@ using System.Web;
 using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Routing;
+
 using FMY.WEB.Comm.Containers;
 using FMY.WEB.UI.Framework.View;
+using FMY.WEB.Comm.Castle;
+
 
 namespace FMY.WEB.UI
 {
-    public class MvcApplication : System.Web.HttpApplication
+    public class MvcApplication : HttpApplication
     {
         protected void Application_Start()
         {
@@ -16,11 +19,10 @@ namespace FMY.WEB.UI
             WebApiConfig.Register(GlobalConfiguration.Configuration);
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
+            CastleHelper.RegistCastle();
             //ViewEngines.Engines.Insert(0, new StaticFileViewEngine());
             //ControllerBuilder.Current.SetControllerFactory(new UnityControllerFactory());
         }
-
-
 
         #region [          Application管道          ]
         //如果是IIS7，第10个事件也就是MapRequestHandler事件，而且在EndRequest 事件前，还增加了另二个事件：LogRequest 和 PostLogRequest 事件。
@@ -28,7 +30,8 @@ namespace FMY.WEB.UI
 
         protected void Application_BeginRequest(object sender, EventArgs e)
         {
-
+            var a= RouteTable.Routes.GetRouteData(new HttpContextWrapper(HttpContext.Current));
+           
         }
 
         //验证
@@ -216,7 +219,6 @@ namespace FMY.WEB.UI
 
         #endregion
 
-
         protected void Session_Start(object sender, EventArgs e)
         {
 
@@ -231,9 +233,10 @@ namespace FMY.WEB.UI
 
         protected void Application_End(object sender, EventArgs e)
         {
-
+            CastleHelper.Release();
         }
     }
+
 
     //public class UnityControllerFactory:DefaultControllerFactory
     //{
@@ -242,4 +245,5 @@ namespace FMY.WEB.UI
     //        return (IController)UnityContainerHelper.GetInstance(controllerType);
     //    }
     //}
+
 }
