@@ -78,13 +78,17 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="UnitTest1.cs" />
+    <Compile Include="UnitTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\FMY.Core.MongoClient\FMY.Core.MongoClient.csproj">
+      <Project>{4bebcbe9-ddfc-4f28-b28b-12aa24cfee09}</Project>
+      <Name>FMY.Core.MongoClient</Name>
+    </ProjectReference>
     <ProjectReference Include="..\FMY.Core.RedisClient\FMY.Core.RedisClient.csproj">
       <Project>{76a99c33-baac-4edd-a0eb-a4b597578e5c}</Project>
       <Name>FMY.Core.RedisClient</Name>

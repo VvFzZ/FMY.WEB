@@ -7,7 +7,7 @@ using MongoDB.Driver;
 namespace FMY.Core.TestClient
 {
     [TestClass]
-    public class UnitTest1
+    public class UnitTest
     {
         [TestMethod]
         public void TestRedis()
