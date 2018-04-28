@@ -52,7 +52,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FMY.Core.MongoClient", "FMY
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "FMY.Console", "FMY.Console", "{9A5B6075-B323-4314-A85D-7C424FFC018F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FMY.Consoles.StaticResours", "FMY.Console.StaticResours\FMY.Consoles.StaticResours.csproj", "{F6FFA452-43ED-4E37-A8B1-2D0BEB9CE5D3}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FMY.Consoles.StaticResource", "FMY.Console.StaticResours\FMY.Consoles.StaticResource.csproj", "{F6FFA452-43ED-4E37-A8B1-2D0BEB9CE5D3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FMY.Consoles.LuceneNet", "FMY.Consoles.LuceneNet\FMY.Consoles.LuceneNet.csproj", "{9155127E-DFF6-4E4F-AEC3-DF46C90AD16F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -128,6 +130,10 @@ Global
 		{F6FFA452-43ED-4E37-A8B1-2D0BEB9CE5D3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F6FFA452-43ED-4E37-A8B1-2D0BEB9CE5D3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F6FFA452-43ED-4E37-A8B1-2D0BEB9CE5D3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9155127E-DFF6-4E4F-AEC3-DF46C90AD16F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9155127E-DFF6-4E4F-AEC3-DF46C90AD16F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9155127E-DFF6-4E4F-AEC3-DF46C90AD16F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9155127E-DFF6-4E4F-AEC3-DF46C90AD16F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -142,5 +148,6 @@ Global
 		{82691486-C53C-4962-A01B-542EA5278AD9} = {0D09492C-6268-487A-B063-2982C1D7409A}
 		{4BEBCBE9-DDFC-4F28-B28B-12AA24CFEE09} = {0D09492C-6268-487A-B063-2982C1D7409A}
 		{F6FFA452-43ED-4E37-A8B1-2D0BEB9CE5D3} = {9A5B6075-B323-4314-A85D-7C424FFC018F}
+		{9155127E-DFF6-4E4F-AEC3-DF46C90AD16F} = {9A5B6075-B323-4314-A85D-7C424FFC018F}
 	EndGlobalSection
 EndGlobal

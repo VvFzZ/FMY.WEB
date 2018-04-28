@@ -36,3 +36,7 @@ FMY.WEB.UI/FMY.Core.MongoClient/obj/
 FMY.WEB.UI/FMY.WEB.UI.rar
 FMY.WEB.UI/FMY.Console.StaticResours/obj/
 FMY.WEB.UI/FMY.Console.StaticResours/bin/
+FMY.WEB.UI/FMY.Consoles.LuceneNet/obj/
+FMY.WEB.UI/FMY.Core.Test.RedisClient/bin/
+FMY.WEB.UI/FMY.Consoles.LuceneNet/bin/
+FMY.WEB.UI/FMY.Core.MongoClient/bin/

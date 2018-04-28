@@ -11,6 +11,7 @@ using System.IO;
 using System.Reflection;
 using IBatisNet.DataMapper;
 using IBatisNet.DataMapper.Configuration;
+using IBatisNet.Common.Utilities;
 
 namespace FMY.WEB.IbatisDao
 {
@@ -42,6 +43,33 @@ namespace FMY.WEB.IbatisDao
         /// <returns></returns>
         private static ISqlMapper InitMapper()
         {
+
+            #region [    Configure   SqlMapper     ]
+            //Code highlighting produced by Actipro CodeHighlighter(freeware)http://www.CodeHighlighter.com/--> 1 /*Configure s SqlMapper with the default SqlMap.config*/
+            //ISqlMapper mapper = builder.Configure();
+
+            ///*Configure s SqlMapper with the specified SqlMap.config*/
+            //mapper = builder.Configure(
+            //         ConfigurationSettings.AppSettings["rootPath"] + "SqlMap.config");
+
+
+            ///* Configure a SqlMapper with FileInfo. */
+            //FileInfo aFileInfo = someSupportClass.GetDynamicFileInfo();
+            //ISqlMapper mapper = builder.Configure(aFileInfo);
+
+            ///* Configure a SqlMapper through a Uri. */
+            //Uri aUri = someSupportClass.GetDynamicUri();
+            //ISqlMapper anotherMapper = builder.Configure(aUri);
+
+            ///* Configure a SqlMapper with an XmlDocument */
+            //XmlDocument anXmlDoc = someSupportClass.GetDynamicXmlDocument();
+            //ISqlMapper mapper = builder.Configure(anXmlDoc);
+
+            ///* Configure a SqlMapper from a stream. */
+            //Stream aStream = someSupportClass.GetDynamicStream();
+            //ISqlMapper anotherMapper = builder.Configure(aStream);
+            #endregion
+
             //SqlMapSession sesstion=
             DomSqlMapBuilder builder = new DomSqlMapBuilder();
             Assembly assembly = Assembly.GetAssembly(typeof(Mapper));
@@ -50,6 +78,12 @@ namespace FMY.WEB.IbatisDao
             {
                 try
                 {
+                    //_sqlMapper = IBatisNet.DataMapper.Mapper.Instance();//1
+
+                    //_sqlMapper = new DomSqlMapBuilder().Configure(); //2
+
+                    //System.Xml.XmlDocument sqlMapConfig = Resources.GetEmbeddedResourceAsXmlDocument("MyBatis.SqlMap.config, MyBatis");
+                    //return new DomSqlMapBuilder().Configure(sqlMapConfig);
                     return builder.Configure(stream);
                 }
                 catch (Exception)

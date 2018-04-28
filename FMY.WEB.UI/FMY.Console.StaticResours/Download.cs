@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 using System.Xml;
 using System.Globalization;
 
-namespace FMY.Consoles.StaticResours
+namespace FMY.Consoles.StaticResource
 {
     public class Download
     {
