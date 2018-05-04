@@ -18,9 +18,29 @@ namespace FMY.Consoles.LuceneNet
         static string contentStr =
 
         #region MyRegion
-            @"大家好，今年5月5日，是诞辰200周年。马克思是德国人，1818年出生在德国特里尔城，马克思是伟人，是马克思主义的创立者，他为什么能创立马克思主义理论，能够创立科学社会主义的学说？除了当时的社会历史条件之外，马克思个人所具有的特殊的优秀品质非常重要。
-他作为革命家，作为马克思主义创立者，具有革命精神、批判精神、创造精神、求实精神，包括非常勤奋刻苦的精神，这样一些优秀品质。从他的勤奋刻苦来看，我们讲一个小故事，我们都知道《资本论》是马克思主义的经典著作，这部经典著作耗费了马克思的大量心血。他为了写作《资本论》，研究资本主义的经济规律，长期泡在英国伦敦大英博物馆，查阅各种资料，进行研究思考。他有一个习惯，一边看资料一边思索的时候，右脚经常来回地滑动，结果资本论写成之日，右脚滑动的地方，是石头的地面，都滑动出一条深沟，马克思勤奋刻苦的精神由此可见一斑。他用他的勤奋刻苦研究人类思想史上一切有益的成果，进行自己独特伟大的创造，创立了马克思主义，创立了科学社会主义理论。这个理论这个学说的出现，改变了人类历史的进程。
-　　中国特色社会主义的伟大成功就是马克思主义、科学社会主义理论在中国伟大实践的成功。近代以来，中华民族、中国社会、中国人民命运的改变，我们党领导的中国革命、建设、改革的伟大成就，归根到底，都是因为我们有马克思主义中国化成果这个科学理论的指导。马克思主义中国化时代化的最新成果就是习近平新时代中国特色社会主义思想，中国人民要把中国特色社会主义事业推向前进，要把我们国家建成富强、民主、文明、和谐、美丽的社会主义现代化强国，要实现中华民族伟大复兴的中国梦，我们就必须要用习近平新时代中国特色社会主义思想这个马克思主义中国化最新成果，来武装全党。";
+            @"
+市政工程资质的审批流程是什么，对于建筑企业来说，办理市政资质关心的问题可能是市政资质的办理流程，市政资质办理并不简单，但涉及到市政资质升级和资质增项时，关于资质审批的流程和时间可能是建筑企业更为关注的问题，接下来资质管家小编将说一下市政工程资质审批流程和时间。2018年市政工程资质审批程序：
+
+　　1.建筑企业到工商行政管理部门办理注销登记手续，领取企业法人营业执照;
+
+　　2.到企业所在城市设立行政主管部门交企业资质申请表，填写规则，编制申请标准;
+
+　　3.向各县(市)报告建立初步审查的行政部门，并检查原始信息的提交情况(郊区企业间接向市报告建立行政主管部门审核并核对原始信息的提交情况);
+
+　　4.对申请资质的建筑企业进行网上公示，公告不得少于十日;
+
+　　5.市设立行政管理部门组织专家进行资质审查;
+
+　　6.负责指导审批;
+
+　　7.将企业的申请材料提交省设立办公室。
+
+　　2018年市政工程资质审批时间：
+
+　　市政工程项目总承包资质要求在互联网上公示10日。所需的步骤是：准备材料，审查，批准，报告，公示和领取证书。最初申请市政工程资质要从三级资质开始申请，建筑公司可以通过市政资质升级扩大业务范围。
+
+　　以上就是市政工程资质的审批流程和时间，在办理市政工程资质时，企业要了解市政资质的相关办理流程，对于资质办理的材料方面的要求需要满足资质标准的相关规定，如果在市政工程资质办理上还有其他疑问欢迎咨询资质管家。
+";
         #endregion
 
         private static Program instance = new Program();
@@ -34,7 +54,13 @@ namespace FMY.Consoles.LuceneNet
 
         public static void WriteIndex(string indexPath)
         {
-            FSDirectory directory = FSDirectory.Open(new DirectoryInfo(indexPath), new NativeFSLockFactory());
+            #region FSDirectory
+            //例如Directory定义了索引文件的存储结构，
+            //FSDirectory为存储在文件中的索引，
+            //RAMDirectory为存储在内存中的索引，
+            //MmapDirectory为使用内存映射的索引。 
+            #endregion
+            FSDirectory directory = Lucene.Net.Store.FSDirectory.Open(new DirectoryInfo(indexPath), new NativeFSLockFactory());
             bool existsDirectory = IndexReader.IndexExists(directory);
 
             if (existsDirectory && IndexWriter.IsLocked(directory))
@@ -48,10 +74,11 @@ namespace FMY.Consoles.LuceneNet
                 , IndexWriter.MaxFieldLength.UNLIMITED);
 
             Document doc = new Document();
-            doc.Add(new Field("title", "社会主义", Field.Store.YES, Field.Index.NOT_ANALYZED));
-            doc.Add(new Field("content", contentStr, Field.Store.NO, Field.Index.ANALYZED));
+            doc.Add(new Field("title", "市政工程资质审批流程和时间", Field.Store.YES, Field.Index.ANALYZED));
+            doc.Add(new Field("content", contentStr, Field.Store.YES, Field.Index.ANALYZED));
             writer.AddDocument(doc);
-
+            //优化主要是将多个segment合并到一个，有利于提高索引速度 (合并影响性能，定时，定量合并)
+            //writer.Optimize();
             writer.Dispose();
             directory.Dispose();
         }
@@ -59,11 +86,11 @@ namespace FMY.Consoles.LuceneNet
         public static void ReadIndex(string indexPath)
         {
             FSDirectory directory = FSDirectory.Open(new DirectoryInfo(indexPath), new NativeFSLockFactory());
-            IndexReader reader = IndexReader.Open(directory, false);
+            IndexReader reader = IndexReader.Open(directory, true);
             IndexSearcher searcher = new IndexSearcher(reader);
 
-            var query = new PhraseQuery();
-            query.Add(new Term("title", "马克思"));           
+            PhraseQuery query = new PhraseQuery();
+            query.Add(new Term("title", "工程"));
             TopScoreDocCollector collector = TopScoreDocCollector.Create(1000, true);
             searcher.Search(query, null, collector);
             ScoreDoc[] docs = collector.TopDocs(0, collector.TotalHits).ScoreDocs;
@@ -73,6 +100,60 @@ namespace FMY.Consoles.LuceneNet
                 Document d = searcher.Doc(docId);
                 Console.WriteLine(d.Get("title"));
             }
+        }
+
+        public static Query GetBasicQuery()
+        {
+            Term t = new Term("content", " lucene");
+            Query query = new TermQuery(t);
+            return query;
+        }
+
+        public static Query GetBooleanQuery()
+        {
+            TermQuery termQuery1 = new TermQuery(new Term("title", "java"));
+            TermQuery termQuery2 = new TermQuery(new Term("title", "perl"));
+            BooleanQuery booleanQuery = new BooleanQuery();
+            booleanQuery.Add(termQuery1, Occur.SHOULD);
+            booleanQuery.Add(termQuery2, Occur.SHOULD);
+            return booleanQuery;
+        }
+
+        public static Query GetWildcardQuery()
+        {
+            Query query = new WildcardQuery(new Term("content", "use*"));
+            return query;
+        }
+
+        public static Query GetPhraseQuery()
+        {
+            //你可能对中日关系比较感兴趣，
+            //想查找‘中’和‘日’挨得比较近（5个字的距离内）的文章，超过这个距离的不予考虑
+            PhraseQuery query = new PhraseQuery();
+            query.Slop = 5;// (5);
+            query.Add(new Term("content ", "中"));
+            query.Add(new Term("content", "日"));
+            return query;
+        }
+
+        public static Query GetPrefixQuery()
+        {
+            PrefixQuery query = new PrefixQuery(new Term("content ", "中"));
+            return query;
+        }
+
+        public static Query GetFuzzyQuery()
+        {
+            //想搜索跟‘wuzza’相似的词语   可能得到‘fuzzy’和‘wuzzy’。 
+            Query query = new FuzzyQuery(new Term("content", "wuzza"));
+            return query;
+        }
+
+        public static Query GetRangeQuery()
+        {            
+            //RangeQuery query = new RangeQuery(new Term(“time”, “20060101”), new Term(“time”, “20060130”), true);
+
+            return null;
         }
     }
 }
