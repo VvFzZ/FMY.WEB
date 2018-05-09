@@ -10,6 +10,7 @@ using Lucene.Net.Analysis.Standard;
 using Lucene.Net.Analysis;
 using Lucene.Net.Documents;
 using Lucene.Net.Search;
+using Lucene.Net.Analysis.Tokenattributes;
 
 namespace FMY.Consoles.LuceneNet
 {
@@ -47,8 +48,9 @@ namespace FMY.Consoles.LuceneNet
         static void Main(string[] args)
         {
             string indexPath = @"E:\lucene\index";
+            ReusableTokenStreamTest();
             //WriteIndex(indexPath);
-            ReadIndex(indexPath);
+            //ReadIndex(indexPath);
             Console.ReadKey();
         }
 
@@ -102,6 +104,24 @@ namespace FMY.Consoles.LuceneNet
             }
         }
 
+        public static void ReusableTokenStreamTest()
+        {
+            string testwords = "我是中国人，I can speak chinese!";
+
+            //SimpleAnalyzer simple = new SimpleAnalyzer();
+            StandardAnalyzer standard = new StandardAnalyzer(Lucene.Net.Util.Version.LUCENE_30);
+            TokenStream ts = standard.ReusableTokenStream("content", new StringReader(testwords));            
+            
+            while (ts.IncrementToken())
+            {
+                ITermAttribute term = ts.GetAttribute<ITermAttribute>();
+                Console.WriteLine(term.Term);
+            }
+
+            ts.Dispose();
+        }
+
+        #region Query
         public static Query GetBasicQuery()
         {
             Term t = new Term("content", " lucene");
@@ -150,10 +170,11 @@ namespace FMY.Consoles.LuceneNet
         }
 
         public static Query GetRangeQuery()
-        {            
+        {
             //RangeQuery query = new RangeQuery(new Term(“time”, “20060101”), new Term(“time”, “20060130”), true);
 
             return null;
         }
+        #endregion
     }
 }

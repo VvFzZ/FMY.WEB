@@ -7,7 +7,9 @@ using System.Web.Routing;
 using FMY.WEB.Comm.Containers;
 using FMY.WEB.UI.Framework.View;
 using FMY.WEB.Comm.Castle;
-
+using FMY.WEB.Comm.Tools;
+using System.Web.SessionState;
+using System.Reflection;
 
 namespace FMY.WEB.UI
 {
@@ -22,6 +24,38 @@ namespace FMY.WEB.UI
             CastleHelper.RegistCastle();
             //ViewEngines.Engines.Insert(0, new StaticFileViewEngine());
             //ControllerBuilder.Current.SetControllerFactory(new UnityControllerFactory());
+        }
+
+        public override void Init()
+        {
+            base.Init();
+            foreach (string moduleName in this.Modules)
+            {
+                string appName = "zizhiguanjia.com";
+                IHttpModule module = this.Modules[moduleName];
+                SessionStateModule ssm = module as SessionStateModule;
+                if (ssm != null)
+                {
+                    FieldInfo storeInfo = typeof(SessionStateModule).GetField("_store", BindingFlags.Instance | BindingFlags.NonPublic);
+                    SessionStateStoreProviderBase store = (SessionStateStoreProviderBase)storeInfo.GetValue(ssm);
+                    if (store == null)//In IIS7 Integrated mode, module.Init() is called later
+                    {
+                        FieldInfo runtimeInfo = typeof(HttpRuntime).GetField("_theRuntime", BindingFlags.Static | BindingFlags.NonPublic);
+                        HttpRuntime theRuntime = (HttpRuntime)runtimeInfo.GetValue(null);
+                        FieldInfo appNameInfo = typeof(HttpRuntime).GetField("_appDomainAppId", BindingFlags.Instance | BindingFlags.NonPublic);
+                        appNameInfo.SetValue(theRuntime, appName);
+                    }
+                    else
+                    {
+                        Type storeType = store.GetType();
+                        if (storeType.Name.Equals("OutOfProcSessionStateStore"))
+                        {
+                            FieldInfo uribaseInfo = storeType.GetField("s_uribase", BindingFlags.Static | BindingFlags.NonPublic);
+                            uribaseInfo.SetValue(storeType, appName);
+                        }
+                    }
+                }
+            }
         }
 
         #region [          Application管道          ]
@@ -138,52 +172,7 @@ namespace FMY.WEB.UI
 
         protected void Application_Error(object sender, EventArgs e)
         {
-            //出处：http://shiyousan.com/post/635813858052755170
-            //1.将Web.config配置文件中customErrors节点的mode设置为Off
-            //2.在GlobalFilter全局过滤器中取消HandleErrorAttribute的注册：            
-            Exception lastException = Server.GetLastError();
-            Response.Clear();
-            if (lastException != null)
-            {
-                //异常信息
-                string strExceptionMessage = string.Empty;
-
-                //对HTTP 404做额外处理，其他错误全部当成500服务器错误
-                HttpException httpError = lastException as HttpException;
-                if (httpError != null)
-                {
-                    //获取错误代码
-                    int httpCode = httpError.GetHttpCode();
-                    strExceptionMessage = httpError.Message;
-                    if (httpCode == 400 || httpCode == 404)
-                    {
-                        Response.StatusCode = 404;
-                        //跳转到指定的静态404信息页面，根据需求自己更改URL                        
-                        Response.WriteFile("~/Error/error1.html");
-                        Server.ClearError();
-                        Response.Flush();
-                        Response.End();
-                        return;
-                    }
-                }
-                strExceptionMessage = lastException.Message;
-
-                /*-----------------------------------------------------
-                 * 此处代码可根据需求进行日志记录，或者处理其他业务流程
-                 * ---------------------------------------------------*/
-
-                /*
-                 * 跳转到指定的http 500错误信息页面
-                 * 跳转到静态页面一定要用Response.WriteFile方法
-                 */
-                Response.StatusCode = 500;
-                Response.WriteFile("~/Error/500.html");               
-                Server.ClearError();
-                Response.Flush();
-                Response.End();
-                //一定要调用Server.ClearError()否则会触发错误详情页（就是黄页）                
-                //Server.Transfer("~/HttpError/500.aspx");
-            }
+           ExceptionHelper.ApplicationError(this);
         }
 
         /// <summary>

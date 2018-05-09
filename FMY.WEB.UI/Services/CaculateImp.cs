@@ -42,7 +42,7 @@ namespace FMY.WCF.Test.Services
         [OperationBehavior(TransactionScopeRequired = true)]
         public int InserRegistEmail(UserRegistEmail userRegistEmailModel)
         {
-            FMY.WEB.BLL.UserRegistEmailService userRegistEmailServie = new WEB.BLL.UserRegistEmailService();
+            FMY.WEB.BLL.UserRegistEmailService userRegistEmailServie = new WEB.BLL.UserRegistEmailService(null);
             userRegistEmailServie.addEmailRecrd(new UserRegistEmail()
             {
                 SendTime = DateTime.Now,

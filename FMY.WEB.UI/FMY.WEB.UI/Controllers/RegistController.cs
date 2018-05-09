@@ -31,8 +31,6 @@ namespace FMY.WEB.UI.Controllers
             try
             {
                 FMY.WEB.Comm.Tools.Log.IFMYLog loger = new Comm.Tools.Log.Log4FMYLog();
-                FMY.WEB.Comm.Tools.Log.IFMYLog loger1 = null;
-                loger1.Debug("");
                 int a = 0;
                 try
                 {
@@ -40,11 +38,11 @@ namespace FMY.WEB.UI.Controllers
                     a = 1 / a;
                 }
                 catch (Exception ex)
-                {                    
+                {
                     loger.Error(ex.Message);
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 throw;
             }
@@ -101,7 +99,7 @@ namespace FMY.WEB.UI.Controllers
                 SendEmail(emailId, validateCode, user.Email);
                 trans.Complete();
             }
-            return Json(new Result() { IsSuccess = true, Data = userId.ToString() });
+            return Json(new Result(true, userId.ToString()));
         }
 
 

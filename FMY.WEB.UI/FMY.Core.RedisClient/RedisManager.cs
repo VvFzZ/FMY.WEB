@@ -26,7 +26,8 @@ namespace FMY.Core.RedisClient
         {
             string[] WriteServerConStr = SplitString(RedisConfig.WriteServerConStr, ",");
             string[] ReadServerConStr = SplitString(RedisConfig.ReadServerConStr, ",");
-            prcm = new PooledRedisClientManager(ReadServerConStr, WriteServerConStr,
+            //RedisManagerPool
+            prcm = new PooledRedisClientManager(WriteServerConStr, ReadServerConStr,
                              new RedisClientManagerConfig
                              {
                                  MaxWritePoolSize = RedisConfig.MaxWritePoolSize,

@@ -41,3 +41,5 @@ FMY.WEB.UI/FMY.Core.Test.RedisClient/bin/
 FMY.WEB.UI/FMY.Consoles.LuceneNet/bin/
 FMY.WEB.UI/FMY.Core.MongoClient/bin/
 FMY.WEB.UI/Lucene.Net/obj/
+FMY.WEB.UI/ServiceStack.Redis/obj/
+FMY.WEB.UI/ServiceStack.Redis/bin/

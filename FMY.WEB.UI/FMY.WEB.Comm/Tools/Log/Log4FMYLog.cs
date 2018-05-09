@@ -14,9 +14,14 @@ namespace FMY.WEB.Comm.Tools.Log
             LogTool.Logger.Debug(message);
         }
 
-        public void Error(string message)
+        public void Error(object obj)
         {
-            LogTool.Logger.Error(message);
+            LogTool.Logger.Error(obj);
+        }
+
+        public void Error(object obj, Exception ex)
+        {
+            LogTool.Logger.Error(obj, ex);
         }
 
         public void Info(string message)

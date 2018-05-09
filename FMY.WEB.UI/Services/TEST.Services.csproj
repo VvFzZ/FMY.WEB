@@ -58,6 +58,10 @@
       <Project>{d9b12358-23bf-4d5b-8382-335b555ab480}</Project>
       <Name>FMY.WEB.BLL</Name>
     </ProjectReference>
+    <ProjectReference Include="..\FMY.WEB.IDao\FMY.WEB.IDao.csproj">
+      <Project>{41B975A3-C36C-4F41-A688-2FFB69423D30}</Project>
+      <Name>FMY.WEB.IDao</Name>
+    </ProjectReference>
     <ProjectReference Include="..\FMY.WEB.Model\FMY.WEB.Model.csproj">
       <Project>{67a3d63d-ddfd-4135-8a21-c455e7f23c68}</Project>
       <Name>FMY.WEB.Model</Name>

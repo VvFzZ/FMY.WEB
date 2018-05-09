@@ -9,7 +9,10 @@ namespace FMY.WEB.UI.Controllers
     public class ListController : Controller
     {
         public ActionResult Index()
-        {         
+        {
+            object session = Session["FMY"];
+            if (session != null)
+                ViewBag.Session = session.ToString();
             return View();
         }
     }

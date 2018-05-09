@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace FMY.WEB.Model
+namespace FMY.WEB.Model_
 {
     using System.Runtime.Serialization;
     
@@ -279,7 +279,7 @@ namespace FMY.WEB.Model
             }
         }
     }
-}
+
 
 
 [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "3.0.0.0")]
@@ -357,4 +357,5 @@ public partial class CalculatorServiceClient : System.ServiceModel.ClientBase<Ca
     {
         return base.Channel.InsertUserNoTrans(user);
     }
+}
 }

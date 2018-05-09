@@ -63,16 +63,16 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="ServiceStack.Common, Version=5.0.0.0, Culture=neutral, PublicKeyToken=02c12cbda47e6587, processorArchitecture=MSIL">
-      <HintPath>..\packages\ServiceStack.Common.5.0.2\lib\net45\ServiceStack.Common.dll</HintPath>
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\dll\redis\ServiceStack.Common.dll</HintPath>
     </Reference>
     <Reference Include="ServiceStack.Interfaces, Version=5.0.0.0, Culture=neutral, PublicKeyToken=02c12cbda47e6587, processorArchitecture=MSIL">
-      <HintPath>..\packages\ServiceStack.Interfaces.5.0.2\lib\net45\ServiceStack.Interfaces.dll</HintPath>
-    </Reference>
-    <Reference Include="ServiceStack.Redis, Version=5.0.0.0, Culture=neutral, PublicKeyToken=02c12cbda47e6587, processorArchitecture=MSIL">
-      <HintPath>..\packages\ServiceStack.Redis.5.0.2\lib\net45\ServiceStack.Redis.dll</HintPath>
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\dll\redis\ServiceStack.Interfaces.dll</HintPath>
     </Reference>
     <Reference Include="ServiceStack.Text, Version=5.0.0.0, Culture=neutral, PublicKeyToken=02c12cbda47e6587, processorArchitecture=MSIL">
-      <HintPath>..\packages\ServiceStack.Text.5.0.2\lib\net45\ServiceStack.Text.dll</HintPath>
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\dll\redis\ServiceStack.Text.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.configuration" />
@@ -124,6 +124,7 @@
     <Compile Include="Tools\ConfigTools\CustomConfigSectionHandler.cs" />
     <Compile Include="Tools\ConfigTools\WebConfigTool.cs" />
     <Compile Include="Tools\Email.cs" />
+    <Compile Include="Tools\ExceptionHelper.cs" />
     <Compile Include="Tools\Log\IFMYLog.cs" />
     <Compile Include="Tools\Log\Log4FMYLog.cs" />
     <Compile Include="Tools\Log\LogHelper.cs" />
@@ -149,6 +150,10 @@
     <ProjectReference Include="..\FMY.WEB.Model\FMY.WEB.Model.csproj">
       <Project>{67a3d63d-ddfd-4135-8a21-c455e7f23c68}</Project>
       <Name>FMY.WEB.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ServiceStack.Redis\ServiceStack.Redis.csproj">
+      <Project>{63ef9a25-7b86-48ae-a64f-8c16fe890556}</Project>
+      <Name>ServiceStack.Redis</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

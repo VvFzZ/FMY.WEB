@@ -191,6 +191,7 @@
     </Compile>
     <Compile Include="Handlers\Going.cs" />
     <Compile Include="Handlers\ReusableAshxHandlerFactory.cs" />
+    <Compile Include="Modules\CookieCrossDomain.cs" />
     <Compile Include="Modules\TestModule.cs" />
     <Compile Include="Modules\XHttpMethodModule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -216,7 +217,7 @@
     <Content Include="css\main.css" />
     <Content Include="css\regist\regist-index.css" />
     <Content Include="Error\500.html" />
-    <Content Include="Error\error1.html" />
+    <Content Include="Error\404.html" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="js\bootstrap\bootstrap.js" />
@@ -225,6 +226,7 @@
     <Content Include="js\jquery-3.1.1.min.js" />
     <Content Include="js\jquery.validate.js" />
     <Content Include="js\jquery.validate.min.js" />
+    <Content Include="js\List\index.js" />
     <Content Include="js\Login\index.js" />
     <Content Include="js\Regist\regist-index.js" />
     <Content Include="LayUI\css\layui.css" />
