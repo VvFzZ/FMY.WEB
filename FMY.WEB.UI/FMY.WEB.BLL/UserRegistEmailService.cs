@@ -9,10 +9,9 @@ namespace FMY.WEB.BLL
 
         private IUserRegistEmailDao userRegistEmailDao;
 
-        public UserRegistEmailService()
+        public UserRegistEmailService(IUserRegistEmailDao userRegistEmailDao)
         {
-            //通过注入可以解耦 
-            userRegistEmailDao = new UserRegistEmailDao();
+            this.userRegistEmailDao = userRegistEmailDao;
         }
 
         /// <summary>
@@ -25,9 +24,9 @@ namespace FMY.WEB.BLL
             return userRegistEmailDao.addEmailRecrd(model);
         }
 
-        public int UpdateEmailStatus(int id,string validateCode,int status)
+        public int UpdateEmailStatus(int id, string validateCode, int status)
         {
-            return userRegistEmailDao.UpdateEmailStatus(id, validateCode,status);
+            return userRegistEmailDao.UpdateEmailStatus(id, validateCode, status);
         }
 
         /// <summary>
@@ -36,7 +35,7 @@ namespace FMY.WEB.BLL
         /// <param name="userId"></param>
         /// <param name="validateCode"></param>
         /// <returns></returns>
-        public int GetModelByUidAndVcode(int userId,string validateCode)
+        public int GetModelByUidAndVcode(int userId, string validateCode)
         {
             return this.GetIdByUidAndVcode(userId.ToString(), validateCode);
         }

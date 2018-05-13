@@ -15,29 +15,30 @@
 <body>
     <div class="container">
         <div class="row clearfix">
-            <div class="col-md-12 column">
-                <form class="form-horizontal" role="form">
+            <form class="form-horizontal" role="form">
+                <div class="col-md-12 column">
                     <div class="form-group">
                         <label for="inputEmail" class="col-sm-2 control-label">UserName</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="inputEmail" />
+                            <input type="text" class="form-control" id="inputEmail" name="name" />
                         </div>
                     </div>
-            </div>
-            <div class="form-group">
-                <label for="inputPassword" class="col-sm-2 control-label">Password</label>
-                <div class="col-sm-10">
-                    <input type="password" class="form-control" id="inputPassword" />
                 </div>
-            </div>
-            <div class="form-group">
-                <div class="col-sm-offset-2 col-sm-10">
-                    <button type="button" id="regist" class="btn btn-default">Regist</button>
+                <div class="form-group">
+                    <label for="inputPassword" class="col-sm-2 control-label">Password</label>
+                    <div class="col-sm-10">
+                        <input type="password" class="form-control" id="inputPassword" name="pwd" />
+                    </div>
                 </div>
-            </div>
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                        <button type="button" id="regist" class="btn btn-default">Regist</button>
+                    </div>
+                </div>
             </form>
         </div>
     </div>
-    </div>
+    <script src="~/js/jquery-1.10.2.min.js"></script>
+    <script src="~/js/Login/index.js"></script>
 </body>
 </html>

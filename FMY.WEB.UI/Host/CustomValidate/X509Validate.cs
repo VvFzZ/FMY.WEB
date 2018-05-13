@@ -17,7 +17,7 @@ namespace Host.CustomValidate
             }
             if (certificate.Thumbprint != "3cebec23ab7c9604d5ea7309c469b10223ecd9be".ToUpper())
             {
-                throw new System.IdentityModel.Tokens.SecurityTokenException("Certificate Validation Error!");
+                //throw new System.IdentityModel.Tokens.SecurityTokenException("Certificate Validation Error!");
             }
         }
     }

@@ -10,6 +10,5 @@ namespace FMY.WEB.UI
             //filters.Add(new HandleErrorAttribute());
             //filters.Add(new BazAttribute());
         }
-    }
-    
+    }    
 }

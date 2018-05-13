@@ -67,6 +67,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\dll\log4mongo\MongoDB.Driver.Core.dll</HintPath>
     </Reference>
+    <Reference Include="ServiceStack.Interfaces, Version=5.0.0.0, Culture=neutral, PublicKeyToken=02c12cbda47e6587, processorArchitecture=MSIL">
+      <HintPath>..\packages\ServiceStack.Interfaces.5.0.2\lib\net45\ServiceStack.Interfaces.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.XML" />
@@ -74,6 +77,8 @@
   <ItemGroup>
     <Compile Include="log4netTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="StaticWebTest.cs" />
+    <Compile Include="UnitTestRedis.cs" />
     <Compile Include="UserDaoTest.cs" />
   </ItemGroup>
   <ItemGroup>

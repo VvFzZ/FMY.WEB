@@ -15,18 +15,38 @@ namespace FMY.WEB.UI.Controllers
 {
     public class RegistController : Controller
     {
+
         UserRegistEmailService userRegistEmailService;
-        public RegistController()
+
+        public int a = 1;
+        public RegistController(UserRegistEmailService userRegistEmailService)
         {
-            userRegistEmailService = new UserRegistEmailService();
+            this.userRegistEmailService = userRegistEmailService;
         }
 
         // GET: /Regist/
         //[OutputCache(Duration = 10, VaryByParam = null)]
         public ActionResult Index()
         {
-            Comm.Tools.Log.IFMYLog loger = new Comm.Tools.Log.Log4FMYLog();
-            loger.Error("123");
+            try
+            {
+                FMY.WEB.Comm.Tools.Log.IFMYLog loger = new Comm.Tools.Log.Log4FMYLog();
+                int a = 0;
+                try
+                {
+                    FMY.WEB.Comm.Tools.Log.LogTool.Debug("DebugMessage");
+                    a = 1 / a;
+                }
+                catch (Exception ex)
+                {
+                    loger.Error(ex.Message);
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+
             //string LastModifiedTime = Request.Headers["If-Modified-Since"];            
             //Response.Cache.SetCacheability(HttpCacheability.Private);
             ////Response.Cache.SetExpires(DateTime.Now.AddSeconds(10.0));
@@ -79,7 +99,7 @@ namespace FMY.WEB.UI.Controllers
                 SendEmail(emailId, validateCode, user.Email);
                 trans.Complete();
             }
-            return Json(new Result() { IsSuccess = true, Data = userId.ToString() });
+            return Json(new Result(true, userId.ToString()));
         }
 
 
@@ -123,7 +143,7 @@ namespace FMY.WEB.UI.Controllers
         /// <param name="validateCode"></param>
         private void SendEmail(int emailId, string validateCode, string recevierMail)
         {
-            IDictionary<string, string> paramDic = new Dictionary<string, string>();//激活邮件url参数
+            IDictionary<string, string> paramDic = new Dictionary<string, string>(3);//激活邮件url参数
             paramDic.Add("emailId", emailId.ToString());
             paramDic.Add("validateCode", validateCode);
             new EmailTool(new Email
@@ -143,13 +163,6 @@ namespace FMY.WEB.UI.Controllers
                 Subject = "感谢您的注册",
                 SubjectEncoding = Encoding.UTF8
             }).SendEmail();//发送邮件
-        }
-        
-
-        public dynamic ReturnDynamic()
-        {
-            dynamic obj = new { aaa = "1", bbb = "2" };
-            return obj;
         }
 
     }

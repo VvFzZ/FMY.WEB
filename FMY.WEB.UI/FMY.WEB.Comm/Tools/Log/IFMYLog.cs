@@ -10,7 +10,9 @@ namespace FMY.WEB.Comm.Tools.Log
     {
         void Debug(string message);
 
-        void Error(string message);
+        void Error(object obj);
+
+        void Error(object obj, Exception ex);
 
         void Info(string message);
     }

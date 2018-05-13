@@ -12,11 +12,16 @@ namespace FMY.WEB.Comm.Tools.Log
         private static ILog logger = null;
 
         static LogTool()
+        {            
+            LoadConfig();
+        }
+
+        private static void LoadConfig()
         {
             //log4net.Util.LogLog.InternalDebugging = true;//??
             string fileName = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Config/log4net.xml");
             FileInfo fileInfo = new FileInfo(fileName);
-            log4net.Config.XmlConfigurator.Configure(fileInfo);            
+            log4net.Config.XmlConfigurator.Configure(fileInfo);
         }
 
         private LogTool() { }
@@ -27,7 +32,8 @@ namespace FMY.WEB.Comm.Tools.Log
             {
                 if (logger == null)
                 {
-                    logger = LogManager.GetLogger("LogTool.Logger");
+                    //string loggerName = System.Configuration.ConfigurationManager.AppSettings["LoggerName"];
+                    logger = LogManager.GetLogger("FMY.UI.LOG");                    
                 }
                 return logger;
             }

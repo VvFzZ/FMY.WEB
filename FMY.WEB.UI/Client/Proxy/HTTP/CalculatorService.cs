@@ -11,36 +11,36 @@
 namespace FMY.WEB.Model
 {
     using System.Runtime.Serialization;
-
-
+    
+    
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "3.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name = "User", Namespace = "http://schemas.datacontract.org/2004/07/FMY.WEB.Model")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="User", Namespace="http://schemas.datacontract.org/2004/07/FMY.WEB.Model")]
     public partial class User : object, System.Runtime.Serialization.IExtensibleDataObject
     {
-
+        
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-
+        
         private System.Nullable<System.DateTime> ActiveTimeField;
-
+        
         private System.Nullable<System.DateTime> CreateTimeField;
-
+        
         private string EmailField;
-
+        
         private int IdField;
-
+        
         private string NameField;
-
+        
         private string PassWordField;
-
+        
         private string PhoneField;
-
+        
         private int SexField;
-
+        
         private bool StatusField;
-
+        
         private System.Nullable<System.DateTime> UpdateTimeField;
-
+        
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData
         {
             get
@@ -52,7 +52,7 @@ namespace FMY.WEB.Model
                 this.extensionDataField = value;
             }
         }
-
+        
         [System.Runtime.Serialization.DataMemberAttribute()]
         public System.Nullable<System.DateTime> ActiveTime
         {
@@ -65,7 +65,7 @@ namespace FMY.WEB.Model
                 this.ActiveTimeField = value;
             }
         }
-
+        
         [System.Runtime.Serialization.DataMemberAttribute()]
         public System.Nullable<System.DateTime> CreateTime
         {
@@ -78,7 +78,7 @@ namespace FMY.WEB.Model
                 this.CreateTimeField = value;
             }
         }
-
+        
         [System.Runtime.Serialization.DataMemberAttribute()]
         public string Email
         {
@@ -91,7 +91,7 @@ namespace FMY.WEB.Model
                 this.EmailField = value;
             }
         }
-
+        
         [System.Runtime.Serialization.DataMemberAttribute()]
         public int Id
         {
@@ -104,7 +104,7 @@ namespace FMY.WEB.Model
                 this.IdField = value;
             }
         }
-
+        
         [System.Runtime.Serialization.DataMemberAttribute()]
         public string Name
         {
@@ -117,7 +117,7 @@ namespace FMY.WEB.Model
                 this.NameField = value;
             }
         }
-
+        
         [System.Runtime.Serialization.DataMemberAttribute()]
         public string PassWord
         {
@@ -130,7 +130,7 @@ namespace FMY.WEB.Model
                 this.PassWordField = value;
             }
         }
-
+        
         [System.Runtime.Serialization.DataMemberAttribute()]
         public string Phone
         {
@@ -143,7 +143,7 @@ namespace FMY.WEB.Model
                 this.PhoneField = value;
             }
         }
-
+        
         [System.Runtime.Serialization.DataMemberAttribute()]
         public int Sex
         {
@@ -156,7 +156,7 @@ namespace FMY.WEB.Model
                 this.SexField = value;
             }
         }
-
+        
         [System.Runtime.Serialization.DataMemberAttribute()]
         public bool Status
         {
@@ -169,7 +169,7 @@ namespace FMY.WEB.Model
                 this.StatusField = value;
             }
         }
-
+        
         [System.Runtime.Serialization.DataMemberAttribute()]
         public System.Nullable<System.DateTime> UpdateTime
         {
@@ -183,25 +183,25 @@ namespace FMY.WEB.Model
             }
         }
     }
-
+    
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "3.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name = "UserRegistEmail", Namespace = "http://schemas.datacontract.org/2004/07/FMY.WEB.Model")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="UserRegistEmail", Namespace="http://schemas.datacontract.org/2004/07/FMY.WEB.Model")]
     public partial class UserRegistEmail : object, System.Runtime.Serialization.IExtensibleDataObject
     {
-
+        
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-
+        
         private int IdField;
-
+        
         private System.DateTime SendTimeField;
-
+        
         private int StatusField;
-
+        
         private int UserIdField;
-
+        
         private string ValidateCodeField;
-
+        
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData
         {
             get
@@ -213,7 +213,7 @@ namespace FMY.WEB.Model
                 this.extensionDataField = value;
             }
         }
-
+        
         [System.Runtime.Serialization.DataMemberAttribute()]
         public int Id
         {
@@ -226,7 +226,7 @@ namespace FMY.WEB.Model
                 this.IdField = value;
             }
         }
-
+        
         [System.Runtime.Serialization.DataMemberAttribute()]
         public System.DateTime SendTime
         {
@@ -239,7 +239,7 @@ namespace FMY.WEB.Model
                 this.SendTimeField = value;
             }
         }
-
+        
         [System.Runtime.Serialization.DataMemberAttribute()]
         public int Status
         {
@@ -252,7 +252,7 @@ namespace FMY.WEB.Model
                 this.StatusField = value;
             }
         }
-
+        
         [System.Runtime.Serialization.DataMemberAttribute()]
         public int UserId
         {
@@ -265,7 +265,7 @@ namespace FMY.WEB.Model
                 this.UserIdField = value;
             }
         }
-
+        
         [System.Runtime.Serialization.DataMemberAttribute()]
         public string ValidateCode
         {
@@ -279,79 +279,78 @@ namespace FMY.WEB.Model
             }
         }
     }
+}
 
 
+[System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "3.0.0.0")]
+[System.ServiceModel.ServiceContractAttribute(ConfigurationName="CalculatorService", SessionMode=System.ServiceModel.SessionMode.Required)]
+public interface CalculatorService
+{
+    
+    [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/CalculatorService/Add", ReplyAction="http://tempuri.org/CalculatorService/AddResponse")]
+    int Add(int i, int j);
+    
+    [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/CalculatorService/InsertUser", ReplyAction="http://tempuri.org/CalculatorService/InsertUserResponse")]
+    int InsertUser(FMY.WEB.Model.User user);
+    
+    [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/CalculatorService/InserRegistEmail", ReplyAction="http://tempuri.org/CalculatorService/InserRegistEmailResponse")]
+    int InserRegistEmail(FMY.WEB.Model.UserRegistEmail userRegistEmailModel);
+    
+    [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/CalculatorService/InsertUserNoTrans", ReplyAction="http://tempuri.org/CalculatorService/InsertUserNoTransResponse")]
+    int InsertUserNoTrans(FMY.WEB.Model.User user);
+}
 
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "3.0.0.0")]
-    [System.ServiceModel.ServiceContractAttribute(ConfigurationName = "CalculatorService", SessionMode = System.ServiceModel.SessionMode.Required)]
-    public interface CalculatorService
+[System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "3.0.0.0")]
+public interface CalculatorServiceChannel : CalculatorService, System.ServiceModel.IClientChannel
+{
+}
+
+[System.Diagnostics.DebuggerStepThroughAttribute()]
+[System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "3.0.0.0")]
+public partial class CalculatorServiceClient : System.ServiceModel.ClientBase<CalculatorService>, CalculatorService
+{
+    
+    public CalculatorServiceClient()
     {
-
-        [System.ServiceModel.OperationContractAttribute(Action = "http://tempuri.org/CalculatorService/Add", ReplyAction = "http://tempuri.org/CalculatorService/AddResponse")]
-        int Add(int i, int j);
-
-        [System.ServiceModel.OperationContractAttribute(Action = "http://tempuri.org/CalculatorService/InsertUser", ReplyAction = "http://tempuri.org/CalculatorService/InsertUserResponse")]
-        int InsertUser(FMY.WEB.Model_.User user);
-
-        [System.ServiceModel.OperationContractAttribute(Action = "http://tempuri.org/CalculatorService/InserRegistEmail", ReplyAction = "http://tempuri.org/CalculatorService/InserRegistEmailResponse")]
-        int InserRegistEmail(FMY.WEB.Model_.UserRegistEmail userRegistEmailModel);
-
-        [System.ServiceModel.OperationContractAttribute(Action = "http://tempuri.org/CalculatorService/InsertUserNoTrans", ReplyAction = "http://tempuri.org/CalculatorService/InsertUserNoTransResponse")]
-        int InsertUserNoTrans(FMY.WEB.Model_.User user);
     }
-
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "3.0.0.0")]
-    public interface CalculatorServiceChannel : CalculatorService, System.ServiceModel.IClientChannel
+    
+    public CalculatorServiceClient(string endpointConfigurationName) : 
+            base(endpointConfigurationName)
     {
     }
-
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "3.0.0.0")]
-    public partial class CalculatorServiceClient : System.ServiceModel.ClientBase<CalculatorService>, CalculatorService
+    
+    public CalculatorServiceClient(string endpointConfigurationName, string remoteAddress) : 
+            base(endpointConfigurationName, remoteAddress)
     {
-
-        public CalculatorServiceClient()
-        {
-        }
-
-        public CalculatorServiceClient(string endpointConfigurationName) :
-                base(endpointConfigurationName)
-        {
-        }
-
-        public CalculatorServiceClient(string endpointConfigurationName, string remoteAddress) :
-                base(endpointConfigurationName, remoteAddress)
-        {
-        }
-
-        public CalculatorServiceClient(string endpointConfigurationName, System.ServiceModel.EndpointAddress remoteAddress) :
-                base(endpointConfigurationName, remoteAddress)
-        {
-        }
-
-        public CalculatorServiceClient(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) :
-                base(binding, remoteAddress)
-        {
-        }
-
-        public int Add(int i, int j)
-        {
-            return base.Channel.Add(i, j);
-        }
-
-        public int InsertUser(FMY.WEB.Model_.User user)
-        {
-            return base.Channel.InsertUser(user);
-        }
-
-        public int InserRegistEmail(FMY.WEB.Model_.UserRegistEmail userRegistEmailModel)
-        {
-            return base.Channel.InserRegistEmail(userRegistEmailModel);
-        }
-
-        public int InsertUserNoTrans(FMY.WEB.Model_.User user)
-        {
-            return base.Channel.InsertUserNoTrans(user);
-        }
+    }
+    
+    public CalculatorServiceClient(string endpointConfigurationName, System.ServiceModel.EndpointAddress remoteAddress) : 
+            base(endpointConfigurationName, remoteAddress)
+    {
+    }
+    
+    public CalculatorServiceClient(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
+            base(binding, remoteAddress)
+    {
+    }
+    
+    public int Add(int i, int j)
+    {
+        return base.Channel.Add(i, j);
+    }
+    
+    public int InsertUser(FMY.WEB.Model.User user)
+    {
+        return base.Channel.InsertUser(user);
+    }
+    
+    public int InserRegistEmail(FMY.WEB.Model.UserRegistEmail userRegistEmailModel)
+    {
+        return base.Channel.InserRegistEmail(userRegistEmailModel);
+    }
+    
+    public int InsertUserNoTrans(FMY.WEB.Model.User user)
+    {
+        return base.Channel.InsertUserNoTrans(user);
     }
 }
