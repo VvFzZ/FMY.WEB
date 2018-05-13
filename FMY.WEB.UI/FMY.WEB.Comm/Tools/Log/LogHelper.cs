@@ -14,7 +14,7 @@ namespace FMY.WEB.Comm.Tools.Log
         static LogTool()
         {
             //log4net.Util.LogLog.InternalDebugging = true;//??
-            string fileName = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "/Config/log4net.xml");
+            string fileName = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Config/log4net.xml");
             FileInfo fileInfo = new FileInfo(fileName);
             log4net.Config.XmlConfigurator.Configure(fileInfo);            
         }

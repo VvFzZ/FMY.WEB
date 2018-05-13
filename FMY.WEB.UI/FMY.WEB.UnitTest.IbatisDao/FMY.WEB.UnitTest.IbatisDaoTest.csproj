@@ -83,6 +83,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\FMY.WEB.Comm\FMY.WEB.Comm.csproj">
+      <Project>{d6a2a9bd-67f1-4869-9d70-85765173a17d}</Project>
+      <Name>FMY.WEB.Comm</Name>
+    </ProjectReference>
     <ProjectReference Include="..\FMY.WEB.IbatisDao\FMY.WEB.IbatisDao.csproj">
       <Project>{f78a9714-fdae-42d5-a87f-6925e1536af4}</Project>
       <Name>FMY.WEB.IbatisDao</Name>

@@ -89,6 +89,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Containers\UnityContainerHelper.cs" />
+    <Compile Include="GC\GCNotification.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Tools\ConfigTools\CustomConfigSectionHandler.cs" />
     <Compile Include="Tools\ConfigTools\WebConfigTool.cs" />

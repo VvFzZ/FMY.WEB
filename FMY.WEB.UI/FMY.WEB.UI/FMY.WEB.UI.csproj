@@ -193,7 +193,10 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
-    <Content Include="Config\log4net.xml" />
+    <Content Include="Config\log4net.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="css\bootstrap\bootstrap-theme.css" />
     <Content Include="css\bootstrap\bootstrap-theme.min.css" />
     <Content Include="css\bootstrap\bootstrap.css" />

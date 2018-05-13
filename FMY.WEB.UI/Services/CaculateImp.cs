@@ -26,6 +26,12 @@ namespace FMY.WCF.Test.Services
         //[PrincipalPermission(SecurityAction.Demand, Role = "Administrators", Name = "FMY-PC\\FMY")]
         public int Add(int i, int j)
         {
+            //身份标识接口：IIdentity 
+            //三种实现： 1 WindowsIdentity 2 GenericIdentity  3 x509Identity
+            //WindowsIdentity表示Windows账户
+            //GenericIdentity通用型
+            //1.2这两种如果身份标识名为空字符串，则验证失败；不为空，则验证通过。
+            //x509Identity 代表X509证书验证通过的身份标识。x509Identity的身份表示总是验证通过的。
             Trace.Assert(ServiceSecurityContext.Current != null);
             Trace.Assert(OperationContext.Current.ServiceSecurityContext != null);
             Trace.Assert(ServiceSecurityContext.Current == OperationContext.Current.ServiceSecurityContext);

@@ -16,9 +16,9 @@
   </appender>
 
   <appender name="MongoDBAppender" type="Log4Mongo.MongoDBAppender, Log4Mongo">
-    <connectionString value="mongodb://127.0.0.1/?socketTimeout=1s" />
-    <DatabaseName value="Logs"/>
-    <CollectionName value="FMY_WEB_UI_Log"/>
+    <connectionString value="mongodb://127.0.0.1:27017/?socketTimeout=10s" />
+    <!--<DatabaseName value="Logs"/>-->
+    <CollectionName value="FMY.WEB.UI"/>
   </appender>
 
   <root>
@@ -30,5 +30,4 @@
   <!--<logger name="testApp.Logging">
     <level value="DEBUG"/>
   </logger>-->
-
 </log4net>

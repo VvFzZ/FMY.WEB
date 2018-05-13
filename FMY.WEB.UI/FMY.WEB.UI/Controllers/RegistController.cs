@@ -25,6 +25,8 @@ namespace FMY.WEB.UI.Controllers
         //[OutputCache(Duration = 10, VaryByParam = null)]
         public ActionResult Index()
         {
+            Comm.Tools.Log.IFMYLog loger = new Comm.Tools.Log.Log4FMYLog();
+            loger.Error("123");
             //string LastModifiedTime = Request.Headers["If-Modified-Since"];            
             //Response.Cache.SetCacheability(HttpCacheability.Private);
             ////Response.Cache.SetExpires(DateTime.Now.AddSeconds(10.0));
@@ -141,6 +143,13 @@ namespace FMY.WEB.UI.Controllers
                 Subject = "感谢您的注册",
                 SubjectEncoding = Encoding.UTF8
             }).SendEmail();//发送邮件
+        }
+        
+
+        public dynamic ReturnDynamic()
+        {
+            dynamic obj = new { aaa = "1", bbb = "2" };
+            return obj;
         }
 
     }
