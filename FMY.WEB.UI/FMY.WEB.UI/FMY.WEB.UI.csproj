@@ -173,6 +173,7 @@
     <Compile Include="Controllers\LayUI\LayUIAdminController.cs" />
     <Compile Include="Controllers\ListController.cs" />
     <Compile Include="Controllers\FilterSequence.cs" />
+    <Compile Include="Controllers\Test\UpLoadController.cs" />
     <Compile Include="Controllers\ViewResult\ViewEngineController.cs" />
     <Compile Include="Controllers\VIP\ListController.cs" />
     <Compile Include="Controllers\VIP\UserCenterController.cs" />
@@ -229,6 +230,7 @@
     <Content Include="js\List\index.js" />
     <Content Include="js\Login\index.js" />
     <Content Include="js\Regist\regist-index.js" />
+    <Content Include="js\Test\uploadIndex.js" />
     <Content Include="LayUI\css\layui.css" />
     <Content Include="LayUI\css\layui.mobile.css" />
     <Content Include="LayUI\css\modules\code.css" />
@@ -343,10 +345,10 @@
       <DependentUpon>Web.config</DependentUpon>
     </Content>
     <Content Include="Views\Web.config" />
+    <Content Include="Views\Test\UpLoadIndex.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="js\Test\" />
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>

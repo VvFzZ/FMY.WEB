@@ -8,6 +8,7 @@ namespace FMY.WEB.Model
     public class Result
     {
         #region [          ctor          ]
+
         public Result() : this(false, string.Empty, 0, string.Empty)
         {
 
@@ -23,8 +24,6 @@ namespace FMY.WEB.Model
 
         }
 
-
-
         public Result(bool isSuccess, string data, int status, string info)
         {
             this.IsSuccess = isSuccess;
@@ -32,6 +31,7 @@ namespace FMY.WEB.Model
             this.Status = status;
             this.Info = info;
         } 
+
         #endregion
 
         /// <summary>

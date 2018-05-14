@@ -52,7 +52,7 @@ namespace FMY.WEB.Comm.Tools.Log
 
         public static void Error(Exception ex)
         {
-            logger.Error(ex);
+            Logger.Error(ex);
         }
 
         public static void Info(string message)
