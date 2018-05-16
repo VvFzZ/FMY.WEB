@@ -16,17 +16,11 @@
   </appender>
 
   <appender name="MongoDBAppender" type="Log4Mongo.MongoDBAppender, Log4Mongo">
-<<<<<<< HEAD
-    <connectionString value="mongodb://127.0.0.1:27017/?socketTimeout=10s" />
-    <!--<DatabaseName value="Logs"/>-->
-    <CollectionName value="FMY.WEB.UI"/>
-=======
     <connectionString value="mongodb://127.0.0.1:27018/?socketTimeout=1s" />
     <!--<DatabaseName value="Logs"/>-->
     <CollectionName value="FMY.WEB.UI"/>
     <!--<UserName value="" />
     <Password value="" />-->
->>>>>>> 0b2fc3db621a919969702d4091da8975083940d8
   </appender>
 
   <root>
