@@ -23,11 +23,12 @@ namespace FMY.WEB.UI.Controllers
             HttpPostedFileBase file = Request.Files[0];
             string filePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory
                 , ConfigurationManager.AppSettings["UpLoadPath"]);
+            //string serverpath = Server.MapPath("\\images\\") + filename;
             string extension = Path.GetExtension(file.FileName);
 
-            if (!(extension == ".jpeg" 
-                || extension == ".jpg" 
-                || extension == ".png" 
+            if (!(extension == ".jpeg"
+                || extension == ".jpg"
+                || extension == ".png"
                 || extension == ".gif"))
             {
                 result = new Result(false, "图片格式错误");
@@ -35,9 +36,7 @@ namespace FMY.WEB.UI.Controllers
             else
             {
                 file.SaveAs(string.Format("{0}{1}{2}"
-                    , filePath
-                    , DateTime.Now.ToString("yyyyMMddHHmmssfff")
-                    , extension));
+                    , filePath, DateTime.Now.ToString("yyyyMMddHHmmssfff"), extension));
             }
 
             return Json(new Result(true));

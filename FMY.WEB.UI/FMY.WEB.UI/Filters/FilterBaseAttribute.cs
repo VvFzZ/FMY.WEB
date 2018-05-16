@@ -36,8 +36,8 @@ namespace FMY.WEB.UI
     public class FooAttribute : FilterBaseAttribute
     {
         public override void OnActionExecuting(ActionExecutingContext filterContext)
-        {
             
+        {            
             HttpContext.Current.Response.Write("Class Foo");
         }
     }
