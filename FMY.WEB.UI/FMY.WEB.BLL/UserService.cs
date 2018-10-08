@@ -46,6 +46,11 @@ namespace FMY.WEB.BLL
             return userDao.GetUserCountByEmail(email);
         }
 
+        public bool CheckUser(string name, string pwd)
+        {
+            return true;
+        }
+
         //public void TestExecProc()
         //{
         //    userDao.ExecProc("adduser", CommandType.StoredProcedure);

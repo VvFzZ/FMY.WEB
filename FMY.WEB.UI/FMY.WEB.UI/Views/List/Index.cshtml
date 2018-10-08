@@ -11,7 +11,12 @@
 </head>
 <body>
     <div>
-        name:@ViewBag.Session
+        @foreach (KeyValuePair<int, string> item in ViewBag.BPDic)
+        {
+            <div>
+                <span>key:@item.Key;value @item.Value</span>
+            </div>
+        }
     </div>
     <div>
         <a class="logout">logout</a>

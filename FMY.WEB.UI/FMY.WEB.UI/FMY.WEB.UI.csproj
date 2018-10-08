@@ -24,6 +24,7 @@
     <RestorePackages>true</RestorePackages>
     <UseGlobalApplicationHostFile />
     <TargetFrameworkProfile />
+    <Use64BitIISExpress />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -174,6 +175,7 @@
     <Compile Include="Controllers\ListController.cs" />
     <Compile Include="Controllers\FilterSequence.cs" />
     <Compile Include="Controllers\Test\UpLoadController.cs" />
+    <Compile Include="Controllers\Test\ValidateAntiForgeryTest.cs" />
     <Compile Include="Controllers\ViewResult\ViewEngineController.cs" />
     <Compile Include="Controllers\VIP\ListController.cs" />
     <Compile Include="Controllers\VIP\UserCenterController.cs" />
@@ -193,6 +195,7 @@
     <Compile Include="Handlers\Going.cs" />
     <Compile Include="Handlers\ReusableAshxHandlerFactory.cs" />
     <Compile Include="Modules\CookieCrossDomain.cs" />
+    <Compile Include="Modules\RefreshSessionModule.cs" />
     <Compile Include="Modules\TestModule.cs" />
     <Compile Include="Modules\XHttpMethodModule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -346,6 +349,7 @@
     </Content>
     <Content Include="Views\Web.config" />
     <Content Include="Views\Test\UpLoadIndex.cshtml" />
+    <Content Include="Views\Test\ValidateAntiForgery.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

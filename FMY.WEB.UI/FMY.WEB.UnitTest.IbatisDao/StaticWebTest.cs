@@ -1,7 +1,8 @@
 ﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Net;
 using System.IO;
+
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace FMY.WEB.UnitTest.IbatisDao
 {

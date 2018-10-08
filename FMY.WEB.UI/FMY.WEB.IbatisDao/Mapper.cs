@@ -1,5 +1,5 @@
 ﻿/*
- * 作者： JT
+ * 作者：
  * 
  * 时间：
  * 
@@ -9,6 +9,7 @@ using System;
 using System.Text;
 using System.IO;
 using System.Reflection;
+
 using IBatisNet.DataMapper;
 using IBatisNet.DataMapper.Configuration;
 using IBatisNet.Common.Utilities;
@@ -43,7 +44,6 @@ namespace FMY.WEB.IbatisDao
         /// <returns></returns>
         private static ISqlMapper InitMapper()
         {
-
             #region [    Configure   SqlMapper     ]
             //Code highlighting produced by Actipro CodeHighlighter(freeware)http://www.CodeHighlighter.com/--> 1 /*Configure s SqlMapper with the default SqlMap.config*/
             //ISqlMapper mapper = builder.Configure();
@@ -73,7 +73,8 @@ namespace FMY.WEB.IbatisDao
             //SqlMapSession sesstion=
             DomSqlMapBuilder builder = new DomSqlMapBuilder();
             Assembly assembly = Assembly.GetAssembly(typeof(Mapper));
-            string resouce = string.Format("{0}.{1}", MapperDomain, "SqlMap.config");
+            string resouce = string.Format("{0}.{1}", MapperDomain, DomSqlMapBuilder.DEFAULT_FILE_CONFIG_NAME);
+
             using (Stream stream = assembly.GetManifestResourceStream(resouce))
             {
                 try
@@ -105,10 +106,12 @@ namespace FMY.WEB.IbatisDao
             try
             {
                 IBatisNet.DataMapper.MappedStatements.IMappedStatement statement = Instance.GetMappedStatement(statementName);
+
                 if (!Instance.IsSessionStarted)
                 {
                     Instance.OpenConnection();
                 }
+
                 IBatisNet.DataMapper.Scope.RequestScope scope = statement.Statement.Sql.GetRequestScope(statement, paramObject, Instance.LocalSession);
                 statement.PreparedCommand.Create(scope, Instance.LocalSession, statement.Statement, paramObject);
                 StringBuilder sbSql = new StringBuilder();
@@ -136,6 +139,7 @@ namespace FMY.WEB.IbatisDao
                         sbSql.AppendFormat("DECLARE {0} {1}  SET {0}='{2}' ", pa.ParameterName, fn(pa.DbType.ToString()), pa.Value);
                     }
                 }
+
                 sbSql.Append(scope.PreparedStatement.PreparedSql);
                 return sbSql.ToString();
             }

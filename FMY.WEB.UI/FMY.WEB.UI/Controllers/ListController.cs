@@ -10,10 +10,22 @@ namespace FMY.WEB.UI.Controllers
     {
         public ActionResult Index()
         {
-            object session = Session["FMY"];
-            if (session != null)
-                ViewBag.Session = session.ToString();
+            ViewBag.BPDic = FMY.WEB.Comm.Tools.ExceptionHelper.BlackPhoneStateDic;
             return View();
         }
+
+        public static IDictionary<int, string> _dic;
+
+        /*
+         * 一个静态字段 加载到Loader堆之后 什么时候会销毁
+         * AppDomain 卸载会销毁
+         * 更新dll会销毁吗
+         * 
+         * 
+         **/
+
+
+
+
     }
 }

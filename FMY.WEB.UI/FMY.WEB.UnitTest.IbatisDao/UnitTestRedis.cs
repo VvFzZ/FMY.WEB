@@ -2,6 +2,7 @@
 using System.Text;
 using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+
 using FMY.RedisClient;
 
 namespace FMY.WEB.UnitTest.IbatisDao
@@ -67,11 +68,33 @@ namespace FMY.WEB.UnitTest.IbatisDao
             //
             string key = "Users";
             RedisBase.Core.FlushAll();
+            TestLua();
             RedisBase.Core.AddItemToList(key, "FMY1");
             RedisBase.Core.AddItemToList(key, "FMY2");
             RedisBase.Core.Add<string>("mykey", "123456");
             RedisString.Set("mykey1", "abcdef");
             Console.ReadLine();
+        }
+
+
+        public static void TestLua()
+        {
+            var luaBody = @"
+    local val = redis.call('zrange', KEYS[1], 0, ARGV[1]-1)
+    if val then redis.call('zremrangebyrank', KEYS[1], 0, ARGV[1]-1) end
+    return val";
+
+            //var i = 0;
+            //var alphabet = 26.Times(c => ((char)('A' + c)).ToString());
+            //alphabet.ForEach(x => Redis.AddItemToSortedSet("zalphabet", x, i++));
+            for (int i = 0; i < 26; i++)
+            {
+                RedisBase.Core.AddItemToSortedSet("zalphabet", i.ToString(), i);
+            }
+
+            //Remove the letters with the lowest rank from the sorted set 'zalphabet'
+            var letters = RedisBase.Core.ExecLuaAsList(luaBody, keys: new[] { "zalphabet" }, args: new[] { "3" });
+            //letters.PrintDump(); //[A, B, C]
         }
     }
 }
