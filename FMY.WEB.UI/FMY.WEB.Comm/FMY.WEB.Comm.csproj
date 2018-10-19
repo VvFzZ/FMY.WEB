@@ -128,6 +128,7 @@
     <Compile Include="Redis\Types\RedisZSet.cs" />
     <Compile Include="Tools\ConfigTools\CustomConfigSectionHandler.cs" />
     <Compile Include="Tools\ConfigTools\WebConfigTool.cs" />
+    <Compile Include="Tools\DateTimeExt.cs" />
     <Compile Include="Tools\Email.cs" />
     <Compile Include="Tools\EncryptTools\DEncryptHelper.cs" />
     <Compile Include="Tools\ExceptionHelper.cs" />

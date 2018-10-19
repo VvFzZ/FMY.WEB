@@ -11,6 +11,7 @@ using FMY.WEB.BLL;
 using FMY.WEB.Comm.Tools.CommTools;
 using FMY.WEB.Comm.Tools.ConfigTools;
 using FMY.WEB.Comm.Tools.Log;
+using FMY.WEB.Comm.Tools;
 
 
 namespace FMY.WEB.UI.Controllers
@@ -130,7 +131,7 @@ namespace FMY.WEB.UI.Controllers
                 msg = "信息不完善！";
                 result = false;
             }
-            else if (!Regex.IsMatch(user.Name, "^[A-Za-z0-9_\u554A-\u9C52]{2,10}+$"))
+            else if (!Regex.IsMatch(user.Name, "[A-Za-z0-9_\u554A-\u9C52]{2,10}"))
             {
                 msg = "错误数据提交！";
                 result = false;
