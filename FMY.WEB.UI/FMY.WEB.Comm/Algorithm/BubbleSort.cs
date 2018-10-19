@@ -32,5 +32,5 @@ namespace FMY.WEB.Comm.Algorithm//cs
                 count = lastChange;
             }
         }
-    }
+    }//CS
 }
