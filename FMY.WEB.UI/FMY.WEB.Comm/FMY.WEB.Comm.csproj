@@ -110,6 +110,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Algorithm\BubbleSort.cs" />
+    <Compile Include="BloomFilter\BloomFilter.cs" />
     <Compile Include="Castle\CastleHelper.cs" />
     <Compile Include="Castle\WindsorControllerFactory.cs" />
     <Compile Include="Castle\WindsorControllersInstaller.cs" />

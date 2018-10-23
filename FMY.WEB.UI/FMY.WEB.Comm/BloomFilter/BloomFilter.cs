@@ -1,4 +1,10 @@
-﻿using System;
+﻿
+/**
+ * refer:https://gist.github.com/richardkundl/8300092
+ * others:https://archive.codeplex.com/?p=bloomfilter
+ */
+
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,6 +13,7 @@ using System.Threading.Tasks;
 
 namespace FMY.WEB.Comm.BloomFilter
 {
+    
     public class Filter<T>
     {
         /// <summary>
