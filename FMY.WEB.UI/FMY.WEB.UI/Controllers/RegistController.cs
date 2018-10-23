@@ -4,12 +4,15 @@ using System.Web.Mvc;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Transactions;
+
 using FMY.WEB.Model;
+using FMY.WEB.Model.Comm;
 using FMY.WEB.BLL;
 using FMY.WEB.Comm.Tools.CommTools;
 using FMY.WEB.Comm.Tools.ConfigTools;
-using FMY.WEB.Model.Comm;
-using System.Web;
+using FMY.WEB.Comm.Tools.Log;
+using FMY.WEB.Comm.Tools;
+
 
 namespace FMY.WEB.UI.Controllers
 {
@@ -30,11 +33,11 @@ namespace FMY.WEB.UI.Controllers
         {
             try
             {
-                FMY.WEB.Comm.Tools.Log.IFMYLog loger = new Comm.Tools.Log.Log4FMYLog();
+                IFMYLog loger = new Log4FMYLog();
                 int a = 0;
                 try
                 {
-                    FMY.WEB.Comm.Tools.Log.LogTool.Debug("DebugMessage");
+                    LogTool.Debug("DebugMessage");
                     a = 1 / a;
                 }
                 catch (Exception ex)
@@ -70,22 +73,30 @@ namespace FMY.WEB.UI.Controllers
         {
             string validateMsg = string.Empty;
             bool validate = ValidateRegist(user, ref validateMsg);
+
             if (!validate)
                 return Json(new Result(validate, validateMsg));
+
             UserService userService = new UserService();//×××
+
             if (userService.GetUserCountByEmail(user.Email) > 0)
                 return Json(new Result(false, "注册失败：该邮箱已注册！"));
+
             int userId = -1;
+
             using (TransactionScope trans = new TransactionScope())
             {
                 user.CreateTime = DateTime.Now;
                 user.UpdateTime = DateTime.Now;
                 userId = userService.AddUser(user);
+
                 if (userId <= 0)
                     return Json(new Result(false, "注册失败！"));
+
                 //用户状态session默认失效时间20min
                 Session[string.Format("User{0}", userId)] = user;
                 string validateCode = Guid.NewGuid().ToString();
+
                 UserRegistEmail emailModel = new UserRegistEmail()
                 {
                     SendTime = DateTime.Now,
@@ -93,12 +104,15 @@ namespace FMY.WEB.UI.Controllers
                     ValidateCode = validateCode,
                     UserId = userId
                 };
+
                 //数据库记录邮件
                 int emailId = userRegistEmailService.addEmailRecrd(emailModel);
+
                 //发送邮件
                 SendEmail(emailId, validateCode, user.Email);
                 trans.Complete();
             }
+
             return Json(new Result(true, userId.ToString()));
         }
 
@@ -117,7 +131,7 @@ namespace FMY.WEB.UI.Controllers
                 msg = "信息不完善！";
                 result = false;
             }
-            else if (user.Name.Length < 2 || user.Name.Length > 10 || !Regex.IsMatch(user.Name, "^[A-Za-z0-9_\u554A-\u9C52]+$"))
+            else if (!Regex.IsMatch(user.Name, "[A-Za-z0-9_\u554A-\u9C52]{2,10}"))
             {
                 msg = "错误数据提交！";
                 result = false;

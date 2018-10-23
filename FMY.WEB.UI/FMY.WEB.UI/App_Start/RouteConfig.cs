@@ -31,7 +31,7 @@ namespace FMY.WEB.UI
 
         public static void RegisterRoutesExt(RouteCollection routes)
         {
-            routes.Add(new Route("going.go", new Handlers.GoingRouteHandler()));
+            //routes.Add(new Route("going.go", new Handlers.GoingRouteHandler()));
         }
 
     }

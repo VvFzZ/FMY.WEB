@@ -50,3 +50,5 @@ FMY.WEB.UI/ServiceStack.Redis/bin/
 
 FMY.WEB.UI/FMY.WEB.UI/upload/
 FMY.WEB.UI/Castle.Windsor/obj/
+FMY.WEB.UI/Site/
+FMY.WEB.UI/.vs/

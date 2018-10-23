@@ -121,4 +121,34 @@ namespace FMY.WEB.Model
             set { status = value; }
         }        
     }
+
+    public class UserInfo
+    {
+        private string token;
+
+        public string Token
+        {
+            get { return token; }
+            set { token = value; }
+        }
+
+        private string name;
+
+        public string Name
+        {
+            get { return name; }
+            set { name = value; }
+        }
+
+        private int userId;
+
+        public int UserId
+        {
+            get { return userId; }
+            set { userId = value; }
+        }
+
+
+
+    }
 }

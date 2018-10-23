@@ -12,6 +12,12 @@ namespace FMY.Core.TestClient
         [TestMethod]
         public void TestRedis()
         {
+            RedisBase.Core.SetValue("d", "d");
+
+            RedisBase.Core.SetValues(new System.Collections.Generic.Dictionary<string, string>() {
+                { "e","e"}
+                ,{ "f","f"}
+            });
             string key = "Users";
             RedisBase.Core.FlushAll();
             RedisBase.Core.AddItemToList(key, "FMY1");
@@ -19,6 +25,17 @@ namespace FMY.Core.TestClient
             RedisBase.Core.Add<string>("mykey", "123456");
             RedisString.Set("mykey1", "abcdef");
             Console.ReadLine();
+        }
+
+        [TestMethod]
+        public void TestRedisLua()
+        {
+            string lua2 = @"
+local a= redis.call('setnx',KEYS[1],ARGV[1])
+redis.call('expire',KEYS[1],ARGV[2])
+return a
+";
+            var result = RedisBase.Core.ExecLua(lua2, new string[] { "key4nx" }, new string[] { "val4nx", "3000" });
         }
 
         [TestMethod]
@@ -33,7 +50,6 @@ namespace FMY.Core.TestClient
             MongoDBHelper helper = new MongoDBHelper();
             //helper.Insert<Model1>(new Model1() { Name = "name", Addr = "123" });
             helper.InsertAsync<Model1>("FMY.WEB.UI7", new Model1() { Name = "name2", Addr = "122" }).Wait();
-
         }
     }
 

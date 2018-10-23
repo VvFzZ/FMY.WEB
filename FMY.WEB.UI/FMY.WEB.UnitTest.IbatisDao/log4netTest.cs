@@ -1,9 +1,11 @@
 ﻿using System;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+
+using log4net;
+
+using FMY.WEB.Comm;
 using FMY.WEB.Model;
 using FMY.WEB.IbatisDao;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using log4net;
-using FMY.WEB.Comm;
 
 namespace FMY.WEB.UnitTest.IbatisDaoTest
 {

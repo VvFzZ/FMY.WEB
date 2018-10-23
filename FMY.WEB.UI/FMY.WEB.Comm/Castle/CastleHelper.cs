@@ -2,6 +2,7 @@
 
 using Castle.Windsor;
 using Castle.Windsor.Installer;
+using Castle.MicroKernel.Registration;
 
 namespace FMY.WEB.Comm.Castle
 {
@@ -15,12 +16,19 @@ namespace FMY.WEB.Comm.Castle
 
             //注册Installer (Installer 注册组件)
             container.Install(FromAssembly.This());//注册本程序集中实现IWindsorInstaller接口的Installer
+            container.Install(new WindsorControllersInstaller());
+            //container.Install(This);
             string configPath = System.Configuration.ConfigurationManager.AppSettings["CastleConfigPath"];
+            
             container.Install(
                 Configuration.FromXmlFile(configPath)
                 //,Configuration.FromAppConfig()
                 //,Configuration.FromXml(new AssemblyResource("assembly://Acme.Crm.Data/Configuration/services.xml"))
                 );
+            
+            container.Register(Classes.FromAssemblyNamed("FMY.WEB.UI").BasedOn(typeof(IController)).LifestyleTransient());
+
+            //通过IControllerFactory实现注入
             IControllerFactory controllerFactory = new WindsorControllerFactory(container.Kernel);
             ControllerBuilder.Current.SetControllerFactory(controllerFactory);
         }
@@ -36,4 +44,5 @@ namespace FMY.WEB.Comm.Castle
             return container.Resolve<T>();
         }
     }
+    
 }

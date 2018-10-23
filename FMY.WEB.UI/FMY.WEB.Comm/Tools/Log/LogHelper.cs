@@ -50,6 +50,11 @@ namespace FMY.WEB.Comm.Tools.Log
             Logger.Error(message);
         }
 
+        public static void ErrorFromate(string message,params object[] args)
+        {
+            Logger.ErrorFormat(message, args);
+        }
+
         public static void Error(Exception ex)
         {
             Logger.Error(ex);

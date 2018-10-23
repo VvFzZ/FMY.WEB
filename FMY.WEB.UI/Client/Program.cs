@@ -11,7 +11,9 @@ namespace Client
     {
         static void Main(string[] args)
         {
-            CalculatorServiceClient client = new CalculatorServiceClient();
+            NetTCP_Binding_Test();
+            HTTP_Binding_Test();
+               CalculatorServiceClient client = new CalculatorServiceClient();
             CalculatorServiceClient client2 = new CalculatorServiceClient();
             //client.ClientCredentials.Windows.ClientCredential.Domain = "myDomain";
 
@@ -68,6 +70,24 @@ namespace Client
                 throw;
             }
             Console.ReadKey();
+        }
+
+        public static void NetTCP_Binding_Test()
+        {
+            FMY.WCF.Test.Client.Proxy.TCP.CalculatorServiceClient client 
+                = new FMY.WCF.Test.Client.Proxy.TCP.CalculatorServiceClient();
+
+            int result= client.Add(1, 2);
+
+            Console.WriteLine(result);
+        }
+
+        public static void HTTP_Binding_Test()
+        {
+            FMY.WCF.Test.Client.Proxy.HTTP.CalculatorServiceClient client
+                = new FMY.WCF.Test.Client.Proxy.HTTP.CalculatorServiceClient();
+
+            Console.WriteLine(client.Add(1, 2));
         }
     }
 }

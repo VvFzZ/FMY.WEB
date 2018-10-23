@@ -68,7 +68,6 @@ namespace FMY.WEB.UI.Handlers
                     BindingFlags.InvokeMethod | BindingFlags.Static | BindingFlags.NonPublic,
                     null, null, new object[] { context });
 
-
             HttpHandlersSection section = (HttpHandlersSection)type.InvokeMember("HttpHandlers",
                  BindingFlags.GetProperty | BindingFlags.Instance | BindingFlags.NonPublic,
                  null, config, null);

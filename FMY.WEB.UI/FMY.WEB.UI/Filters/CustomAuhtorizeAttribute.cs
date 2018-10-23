@@ -39,7 +39,6 @@ namespace FMY.WEB.UI
                 string strUrl = "/Account/LogOn?returnUrl={0}";
 
                 filterContext.HttpContext.Response.Redirect(string.Format(strUrl,path/* HttpUtility.UrlEncode(path)*/), true);
-
             }
         }
     }

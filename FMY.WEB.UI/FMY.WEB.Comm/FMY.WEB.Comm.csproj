@@ -79,6 +79,7 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Runtime.Remoting" />
     <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Web.Mvc, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -108,10 +109,15 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Algorithm\BubbleSort.cs" />
+    <Compile Include="BloomFilter\BloomFilter.cs" />
     <Compile Include="Castle\CastleHelper.cs" />
     <Compile Include="Castle\WindsorControllerFactory.cs" />
     <Compile Include="Castle\WindsorControllersInstaller.cs" />
     <Compile Include="Containers\UnityContainerHelper.cs" />
+    <Compile Include="CookieSession\CookieHelper.cs" />
+    <Compile Include="CookieSession\CookieKeys.cs" />
+    <Compile Include="CookieSession\SessionHelper.cs" />
     <Compile Include="GC\GCNotification.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Redis\RedisConfig.cs" />
@@ -124,7 +130,9 @@
     <Compile Include="Redis\Types\RedisZSet.cs" />
     <Compile Include="Tools\ConfigTools\CustomConfigSectionHandler.cs" />
     <Compile Include="Tools\ConfigTools\WebConfigTool.cs" />
+    <Compile Include="Tools\DateTimeExt.cs" />
     <Compile Include="Tools\Email.cs" />
+    <Compile Include="Tools\EncryptTools\DEncryptHelper.cs" />
     <Compile Include="Tools\ExceptionHelper.cs" />
     <Compile Include="Tools\Log\IFMYLog.cs" />
     <Compile Include="Tools\Log\Log4FMYLog.cs" />
@@ -133,9 +141,12 @@
   <ItemGroup>
     <Folder Include="Framework\" />
     <Folder Include="Tools\Config\" />
-    <Folder Include="Tools\EncryptTools\" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\FMY.Core.RedisClient\FMY.Core.RedisClient.csproj">
+      <Project>{76a99c33-baac-4edd-a0eb-a4b597578e5c}</Project>
+      <Name>FMY.Core.RedisClient</Name>
+    </ProjectReference>
     <ProjectReference Include="..\FMY.WEB.DAL\FMY.WEB.Dao.csproj">
       <Project>{2d1aac84-caf9-4e37-91d8-c0a8b526f2cd}</Project>
       <Name>FMY.WEB.Dao</Name>

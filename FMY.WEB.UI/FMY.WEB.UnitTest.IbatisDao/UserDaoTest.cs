@@ -1,13 +1,12 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Diagnostics;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+
 using FMY.WEB.Model;
 using FMY.WEB.IbatisDao;
-using System.Diagnostics;
+
 
 namespace FMY.WEB.UnitTest.IbatisDaoTest
 {
@@ -30,8 +29,10 @@ namespace FMY.WEB.UnitTest.IbatisDaoTest
                 Status = false,
                 UpdateTime = DateTime.Now
             };
+
             UserDao userDao = new UserDao();
             int result = userDao.AddUser(user);
+
             Trace.Assert(result > 0);
         }
 
@@ -80,5 +81,20 @@ namespace FMY.WEB.UnitTest.IbatisDaoTest
             Trace.Assert(users != null);
         }
 
+        [TestMethod]
+        public void Test1()
+        {
+            string chinese = "你好，";
+            string english = "你好,";
+            bool b = chinese == english;
+            string s = string.Empty;
+            //s=System.Text.RegularExpressions.Regex.Replace(chinese, "，", ",");
+            b= chinese.Replace("，", ",") == english;
+            b = s == english;
+            //Trace.Assert(users != null);
+            string ss = string.Empty;
+        }
+
     }
+    
 }

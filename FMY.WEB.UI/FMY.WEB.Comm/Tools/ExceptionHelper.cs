@@ -58,12 +58,28 @@ namespace FMY.WEB.Comm.Tools
                     }
                 }
 
-                WriteFile500();                
-                application.Server.ClearError();                
+                WriteFile500();
+                application.Server.ClearError();
 
                 //一定要调用Server.ClearError()否则会触发错误详情页（就是黄页）                
                 //Server.Transfer("~/HttpError/500.aspx");
             }
         }
+
+
+
+        public static IDictionary<int, string> BlackPhoneStateDic = new Dictionary<int, string>(8)
+                            {
+                                { 0,"未审核"}
+                                ,{ 1,"已处理-有效"}
+                                ,{ 2,"已处理-有效-资质代办"}
+                                ,{ 3,"已处理-有效-买资质"}
+                                ,{ 4,"已处理-有效-卖资质"}
+                                ,{ 5,"已处理-有效-安证办理"}
+                                ,{ 6,"已处理-企业库"}
+                                ,{ 7,"已处理-中介库"}
+                                //,{ -1,"已处理-无效"}
+                            };
+
     }
 }

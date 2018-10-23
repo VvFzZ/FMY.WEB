@@ -45,14 +45,17 @@ namespace FMY.WEB.UI.Framework.View
             ViewEngineResultCacheKey key =
                 new ViewEngineResultCacheKey(controllerName, viewName);
             ViewEngineResult result;
+
             if (useCache)
             {
                 result = InternalFindView(controllerContext, viewName, controllerName);
                 viewEnginResults[key] = result;
                 return result;
             }
+
             if (viewEnginResults.TryGetValue(key, out result))
                 return result;
+
             lock (syncHelper)
             {
                 if (viewEnginResults.TryGetValue(key, out result))
@@ -60,6 +63,7 @@ namespace FMY.WEB.UI.Framework.View
                     return result;
                 }
             }
+
             return InternalFindView(controllerContext, viewName, controllerName);
         }
 
@@ -76,16 +80,21 @@ namespace FMY.WEB.UI.Framework.View
                 string.Format("~/views/{0}/{1}.html",controllerName,viewName),
                 string.Format("~/views/Shared/{0}.html",viewName)
             };
+
             string fileName = controllerContex.HttpContext.Request.MapPath(searchLocations[0]);
+
             if (System.IO.File.Exists(fileName))
             {
                 return new ViewEngineResult(new StaticFileView(fileName), this);
             }
+
             fileName = string.Format(@"\views\Shared\{0}.html", viewName);
+
             if (System.IO.File.Exists(fileName))
             {
                 return new ViewEngineResult(new StaticFileView(fileName), this);
             }
+
             return new ViewEngineResult(searchLocations);
         }
     }

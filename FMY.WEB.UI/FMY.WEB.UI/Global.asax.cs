@@ -10,6 +10,7 @@ using FMY.WEB.Comm.Castle;
 using FMY.WEB.Comm.Tools;
 using System.Web.SessionState;
 using System.Reflection;
+using Castle.Core;
 
 namespace FMY.WEB.UI
 {
@@ -26,46 +27,13 @@ namespace FMY.WEB.UI
             //ControllerBuilder.Current.SetControllerFactory(new UnityControllerFactory());
         }
 
-        public override void Init()
-        {
-            base.Init();
-            foreach (string moduleName in this.Modules)
-            {
-                string appName = "zizhiguanjia.com";
-                IHttpModule module = this.Modules[moduleName];
-                SessionStateModule ssm = module as SessionStateModule;
-                if (ssm != null)
-                {
-                    FieldInfo storeInfo = typeof(SessionStateModule).GetField("_store", BindingFlags.Instance | BindingFlags.NonPublic);
-                    SessionStateStoreProviderBase store = (SessionStateStoreProviderBase)storeInfo.GetValue(ssm);
-                    if (store == null)//In IIS7 Integrated mode, module.Init() is called later
-                    {
-                        FieldInfo runtimeInfo = typeof(HttpRuntime).GetField("_theRuntime", BindingFlags.Static | BindingFlags.NonPublic);
-                        HttpRuntime theRuntime = (HttpRuntime)runtimeInfo.GetValue(null);
-                        FieldInfo appNameInfo = typeof(HttpRuntime).GetField("_appDomainAppId", BindingFlags.Instance | BindingFlags.NonPublic);
-                        appNameInfo.SetValue(theRuntime, appName);
-                    }
-                    else
-                    {
-                        Type storeType = store.GetType();
-                        if (storeType.Name.Equals("OutOfProcSessionStateStore"))
-                        {
-                            FieldInfo uribaseInfo = storeType.GetField("s_uribase", BindingFlags.Static | BindingFlags.NonPublic);
-                            uribaseInfo.SetValue(storeType, appName);
-                        }
-                    }
-                }
-            }
-        }
-
         #region [          Application管道          ]
         //如果是IIS7，第10个事件也就是MapRequestHandler事件，而且在EndRequest 事件前，还增加了另二个事件：LogRequest 和 PostLogRequest 事件。
         //只有当应用程序在 IIS 7.0 集成模式下运行，并且与.NET Framework 3.0 或更高版本一起运行时，才会支持 MapRequestHandler、LogRequest 和 PostLogRequest 事件
 
         protected void Application_BeginRequest(object sender, EventArgs e)
         {
-            var a= RouteTable.Routes.GetRouteData(new HttpContextWrapper(HttpContext.Current));
-           
+            var a= RouteTable.Routes.GetRouteData(new HttpContextWrapper(HttpContext.Current));           
         }
 
         //验证
@@ -223,6 +191,15 @@ namespace FMY.WEB.UI
         protected void Application_End(object sender, EventArgs e)
         {
             CastleHelper.Release();
+        }
+    }
+
+    public class Ca : ICommissionConcern
+    {
+        public void Apply(ComponentModel model, object component)
+        {
+
+            model.Lifecycle.Add(new Ca());
         }
     }
 
