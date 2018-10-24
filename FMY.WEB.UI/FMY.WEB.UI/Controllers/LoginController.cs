@@ -23,7 +23,7 @@ namespace FMY.WEB.UI.Controllers
 
         public ActionResult Index()
         {
-            return View();
+            return View();//C4
         }
 
         [HttpPost]
