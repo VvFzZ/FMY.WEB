@@ -18,7 +18,7 @@ namespace FMY.WEB.UI.Controllers
         // GET: /Login/\
         public LoginController()
         {
-
+            //C3
         }
 
         public ActionResult Index()
