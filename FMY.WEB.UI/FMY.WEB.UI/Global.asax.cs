@@ -198,7 +198,6 @@ namespace FMY.WEB.UI
     {
         public void Apply(ComponentModel model, object component)
         {
-
             model.Lifecycle.Add(new Ca());
         }
     }

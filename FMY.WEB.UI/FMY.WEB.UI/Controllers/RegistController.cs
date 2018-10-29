@@ -20,9 +20,8 @@ namespace FMY.WEB.UI.Controllers
     {
 
         UserRegistEmailService userRegistEmailService;
-
-        public int a = 1;
-        public RegistController(UserRegistEmailService userRegistEmailService)
+        
+        public RegistController(UserRegistEmailService userRegistEmailService)       
         {
             this.userRegistEmailService = userRegistEmailService;
         }
@@ -160,6 +159,7 @@ namespace FMY.WEB.UI.Controllers
             IDictionary<string, string> paramDic = new Dictionary<string, string>(3);//激活邮件url参数
             paramDic.Add("emailId", emailId.ToString());
             paramDic.Add("validateCode", validateCode);
+
             new EmailTool(new Email
             {
                 ActiveLinkUrl = WebConfigTool.GetAppsetting("UserActivePageUrl"),
