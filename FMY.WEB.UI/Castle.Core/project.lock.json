@@ -3017,12 +3017,12 @@
       "licenseUrl": ""
     },
     "restore": {
-      "projectUniqueName": "F:\\GitRepository\\FMY.WEB\\FMY.WEB.UI\\Castle.Core\\Castle.Core.csproj",
+      "projectUniqueName": "E:\\Projects\\GitReporsitory\\FMY.WEB.UI\\Castle.Core\\Castle.Core.csproj",
       "projectName": "Castle.Core",
-      "projectPath": "F:\\GitRepository\\FMY.WEB\\FMY.WEB.UI\\Castle.Core\\Castle.Core.csproj",
-      "projectJsonPath": "F:\\GitRepository\\FMY.WEB\\FMY.WEB.UI\\Castle.Core\\project.json",
+      "projectPath": "E:\\Projects\\GitReporsitory\\FMY.WEB.UI\\Castle.Core\\Castle.Core.csproj",
+      "projectJsonPath": "E:\\Projects\\GitReporsitory\\FMY.WEB.UI\\Castle.Core\\project.json",
       "packagesPath": "C:\\Users\\Administrator\\.nuget\\packages\\",
-      "outputPath": "F:\\GitRepository\\FMY.WEB\\FMY.WEB.UI\\Castle.Core\\obj\\",
+      "outputPath": "E:\\Projects\\GitReporsitory\\FMY.WEB.UI\\Castle.Core\\obj\\",
       "projectStyle": "ProjectJson",
       "configFilePaths": [
         "C:\\Users\\Administrator\\AppData\\Roaming\\NuGet\\NuGet.Config",
