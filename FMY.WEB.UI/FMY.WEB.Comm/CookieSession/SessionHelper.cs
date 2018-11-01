@@ -69,6 +69,11 @@ namespace FMY.WEB.Comm.CookieSession
             //RedisSet.Add(LoginKeyPre + token, userId);
         }
 
+        /// <summary>
+        /// 是否登录
+        /// </summary>
+        /// <param name="token">客户端token(cookie携带)</param>
+        /// <returns></returns>
         public static bool IsLogin(
             string token)
         {
@@ -87,6 +92,11 @@ namespace FMY.WEB.Comm.CookieSession
             return token == nowRedisToken;
         }
 
+        /// <summary>
+        /// 每次请求刷新Session过期时间
+        /// </summary>
+        /// <param name="token">cookie["sessionid"].value</param>
+        /// <returns></returns>
         public static bool RefreshSessionOfEveryRequest(string token)
         {
             //RedisString.Get(SessionIdPre + token);
